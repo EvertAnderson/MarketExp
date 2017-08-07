@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Yachay.Entities.Negocio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="col-md-12">Negocios</h2>
+<div class="col-md-12" style="margin-bottom:7px;">
+    @*@Html.ActionLink("Nuevo", "Negocio")*@
+    <a class="btn btn-md btn-info pull-right" href="@Url.Action("Negocio", "Negocios")">Nuevo</a>
+</div>
+<br />
+<table class="dataTable table table-striped table-hover" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Dirección
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.email_Negocio
+                </td>
+                <td>
+                    @item.Direccion_texto
+                </td>
+                <td>
+                    @Html.ActionLink("Negocio", "Negocio", "Negocios", new { email = item.email_Negocio }, new {  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
