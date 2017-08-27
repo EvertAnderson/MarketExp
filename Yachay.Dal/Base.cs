@@ -9,9 +9,9 @@ namespace Yachay.DAL
 {
     public class Base
     {
-        protected YACHAYEntities getContext()
+        protected yachaydi_marketEntities getContext()
         {
-            return new YACHAYEntities();
+            return new yachaydi_marketEntities();
         }
     }
 }

@@ -8,3 +8,20 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\bin\Release\En
 C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\obj\Release\Yachay.Data.csprojResolveAssemblyReference.cache
 C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\obj\Release\Yachay.Data.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\obj\Release\Yachay.Data.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\bin\Release\Yachay.Entities.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\bin\Release\Yachay.Entities.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\bin\Release\Yachay.Entities.dll.config
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\Yachay.Data.dll.config
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\Yachay.Data.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\Yachay.Data.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\EntityFramework.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\Yachay.Entities.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\Yachay.Entities.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\Yachay.Entities.dll.config
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\EntityFramework.xml
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\obj\Release\Yachay.Data.csprojResolveAssemblyReference.cache
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\obj\Release\Yachay.Data.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay - Produccion\Yachay.Data\obj\Release\Yachay.Data.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Data\obj\Release\Yachay.Data.csproj.CoreCompileInputs.cache

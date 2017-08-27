@@ -49,6 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NegocioModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NegocioModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="NegocioModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,6 +74,20 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yachay.Entities\Yachay.Entities.csproj">
+      <Project>{48806df0-9f7c-4e53-a80f-7d7c026bd3b7}</Project>
+      <Name>Yachay.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NegocioModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NegocioModel.edmx</DependentUpon>
+      <LastGenOutput>NegocioModel.Context.cs</LastGenOutput>
+      <CustomToolNamespace>Yachay.Entities</CustomToolNamespace>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -53,11 +53,6 @@
     <Compile Include="Negocio.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NegocioModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NegocioModel.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="NegocioModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,26 +61,8 @@
     <Compile Include="Negocio_Producto.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NodoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="NegocioModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NegocioModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="NegocioModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NegocioModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -93,6 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NegocioModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NegocioModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

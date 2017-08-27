@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -53,6 +54,19 @@ namespace Yachay.Controllers
             {
                 throw ex;
             }
+        }
+        public ActionResult Mapa()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ObtenerSitios()
+        {
+            var lista = dal.GetNegocios_LatLng();
+
+            string json = JsonConvert.SerializeObject(lista);
+            return Json(new { success = true, lista = lista }, JsonRequestBehavior.AllowGet);
         }
     }
 }

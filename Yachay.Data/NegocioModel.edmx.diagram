@@ -4,13 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f69380ca3e8a462283afec54955e72df" Name="Diagram1">
-        <EntityTypeShape EntityType="YACHAYModel.Horario_Negocio" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="YACHAYModel.Negocio" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="YACHAYModel.Negocio_Producto" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YACHAYModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="YACHAYModel.AK_Horario_Negocio" ManuallyRouted="false" />
-        <AssociationConnector Association="YACHAYModel.AK_ALTERNATE" ManuallyRouted="false" />
+      <Diagram DiagramId="5f898a862ab24c6da91688d9395b4b1a" Name="Diagram1">
+        <EntityTypeShape EntityType="yachaydi_marketModel.Horario_Negocio" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Producto" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="yachaydi_marketModel.AK_Horario_Negocio" ManuallyRouted="false" />
+        <AssociationConnector Association="yachaydi_marketModel.AK_ALTERNATE" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

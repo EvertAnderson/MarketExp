@@ -1,8 +1,112 @@
-﻿
-@model Yachay.Entities.Negocio
+﻿@model Yachay.Entities.Negocio
+@using System.Globalization;
 @{
     ViewBag.Title = "Negocio";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        var map;
+        var markers = [];
+
+        function initMap() {
+            var mapCanvas = document.getElementById("map");
+
+            var myCenter = new google.maps.LatLng(-12.051671, -77.034605);
+            var myZoom = 14;
+
+            if (isLatitude(parseFloat($('#Direccion_Latitud').val())) && isLongitude(parseFloat($('#Direccion_Longitud').val()))) {
+                myCenter = currentLocation();
+                myZoom = 16;
+            } else if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    deleteMarkers();
+                    placeMarker(map, myCenter);
+                    console.log(position.coords);
+                    setLatitud(position.coords.latitude);
+                    setLongitud(position.coords.longitude);
+                });
+            } else {
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+
+            var mapOptions = { center: myCenter, zoom: myZoom };
+            map = new google.maps.Map(mapCanvas, mapOptions);
+            placeMarker(map, myCenter);
+            google.maps.event.addListener(map, 'click', function (event) {
+                deleteMarkers();
+                placeMarker(map, event.latLng);
+                console.log(event.latLng);
+                setLatitud(event.latLng.lat());
+                setLongitud(event.latLng.lng());
+            });
+        }
+
+        function placeMarker(map, location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Latitud: ' + location.lat() + '<br>Longitud: ' + location.lng()
+            });
+            infowindow.open(map, marker);
+            markers.push(marker);
+        }
+
+        function setLatitud(latitude) {
+            $('#Direccion_Latitud').val(latitude);
+        }
+
+        function setLongitud(longitude) {
+            $('#Direccion_Longitud').val(longitude);
+        }
+
+        function addMarker(map, location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            markers.push(marker);
+        }
+
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
+
+        function showMarkers() {
+            setMapOnAll(map);
+        }
+
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
+
+        function currentLocation() {
+            return new google.maps.LatLng(parseFloat($('#Direccion_Latitud').val()), parseFloat($('#Direccion_Longitud').val()));
+        }
+
+        function isLatitude(lat) {
+            return isFinite(lat) && Math.abs(lat) <= 90;
+        }
+
+        function isLongitude(lng) {
+            return isFinite(lng) && Math.abs(lng) <= 180;
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&callback=initMap" type="text/javascript"></script>
+     @*AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ*@
+
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>*@
 }
 
 @if (Model == null || string.IsNullOrEmpty(Model.email_Negocio))
@@ -45,7 +149,7 @@ else
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label class="col-md-3">Horario</label>
                                 @*@Html.TextBoxFor(model => model.Direccion_texto, new { @class = "form-control", @required = "" })*@
                                 <button id="btn_lu">L</button>
@@ -58,6 +162,33 @@ else
                                 @*@Html.ValidationMessageFor(model => model.Direccion_texto, "", new { @class = "text-danger" })*@
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="col-md-3">Hora de inicio:</label>
+                                <input id="hora_inicio" class="form-control" type="text" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-md-3">Hora de fin:</label>
+                                <input id="hora_fin" class="form-control" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="col-md-3">Latitud:</label>
+                                @Html.TextBoxFor(model => model.Direccion_Latitud, new { @class = "form-control", @required = "", @readonly = "" })
+                                @*@Html.TextBox("", Model.Direccion_Latitud.ToString() + "," + Model.Direccion_Longitud.ToString(), new { @class = "editor-for-dbgeography" })*@
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-md-3">Longitud:</label>
+                                @Html.TextBoxFor(model => model.Direccion_Longitud, new { @class = "form-control", @required = "", @readonly = "" })
+                                @*@Html.TextBox("", Model.Direccion_Latitud.ToString() + "," + Model.Direccion_Longitud.ToString(), new { @class = "editor-for-dbgeography" })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="map" style="width:100%;height:500px;"></div>
                     </div>
                 </div>
             </section>
