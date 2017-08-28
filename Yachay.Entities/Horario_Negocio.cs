@@ -14,8 +14,9 @@ namespace Yachay.Entities
     
     public partial class Horario_Negocio
     {
-        public string email_Negocio { get; set; }
-        public string dia_Laboral { get; set; }
+        public int id_Negocio { get; set; }
+        public byte dia_Laboral { get; set; }
+        public string dia_nombre { get; set; }
         public byte Hora_Inicio { get; set; }
         public byte Hora_Fin { get; set; }
     

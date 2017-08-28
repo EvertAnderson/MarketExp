@@ -12,12 +12,12 @@ namespace Yachay.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Negocio_Producto
+    public partial class sysdiagrams
     {
-        public int id_Negocio { get; set; }
-        public string Nombre_Producto { get; set; }
-        public decimal Precio_Producto { get; set; }
-    
-        public virtual Negocio Negocio { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

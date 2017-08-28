@@ -10,14 +10,10 @@
 namespace Yachay.Entities
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Negocio_Producto
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int id_Negocio { get; set; }
-        public string Nombre_Producto { get; set; }
-        public decimal Precio_Producto { get; set; }
-    
-        public virtual Negocio Negocio { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

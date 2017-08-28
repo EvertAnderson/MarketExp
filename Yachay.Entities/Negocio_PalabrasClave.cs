@@ -12,11 +12,11 @@ namespace Yachay.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Negocio_Producto
+    public partial class Negocio_PalabrasClave
     {
         public int id_Negocio { get; set; }
-        public string Nombre_Producto { get; set; }
-        public decimal Precio_Producto { get; set; }
+        public string caracter_PalabraClave { get; set; }
+        public string texto_PalabraClave { get; set; }
     
         public virtual Negocio Negocio { get; set; }
     }

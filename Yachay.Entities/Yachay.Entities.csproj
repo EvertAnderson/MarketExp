@@ -58,11 +58,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Negocio_PalabrasClave.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Negocio_Producto.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NodoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
