@@ -14,13 +14,14 @@
 
     <link href="~/Content/monster-admin/html/main/css/style.css" rel="stylesheet" />
     <link href="~/Content/monster-admin/html/main/css/blue.css" rel="stylesheet" />
-    
+
     @RenderSection("styles", required: false)
 </head>
 <body class="fix-sidebar fix-header card-no-border">
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
     <div id="main-wrapper">
         <header class="topbar">
@@ -304,8 +305,13 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
-                            <div class="dropdown-menu  dropdown-menu-right animated bounceInDown"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a>                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-pe"></i></a>
+                            <div class="dropdown-menu  dropdown-menu-right animated bounceInDown">
+                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-co"></i> Colombia</a>
+                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-br"></i> Brazil</a>
+                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-ar"></i> Argentina</a>
+                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-mx"></i> México</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -337,14 +343,7 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">PERSONAL</li>
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard <span class="label label-rounded label-success">5</span></span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">Modern Dashboard</a></li>
-                                <li><a href="index2.html">Awesome Dashboard</a></li>
-                                <li><a href="index3.html">Classy Dashboard</a></li>
-                                <li><a href="index4.html">Analytical Dashboard</a></li>
-                                <li><a href="index5.html">Minimal Dashboard</a></li>
-                            </ul>
+                            <a href="@Url.Action("Index", "Negocios")" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Negocios</span></a>
                         </li>
                         <li>
                             <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Apps</span></a>
@@ -562,62 +561,14 @@
             </div>
             <!-- End Bottom points-->
         </aside>
-
-
-
-
-
         <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Layout Fix-header &amp; sidebar</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Layout Fix-header &amp; sidebar</li>
-                        </ol>
-                    </div>
-                    <div class="col-md-6 col-4 align-self-center">
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-block">
-                                @RenderBody()
-                                <hr />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
+            @RenderBody()
             <footer class="footer">
                 <p>Yachay - &copy; @DateTime.Now.Year</p>
             </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
         </div>
     </div>
-        <!-- <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -637,12 +588,12 @@
         </div>
     </div> -->
     @*<div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer class="footer">
-            <p>Yachay - &copy; @DateTime.Now.Year</p>
-        </footer>
-    </div>*@
+            @RenderBody()
+            <hr />
+            <footer class="footer">
+                <p>Yachay - &copy; @DateTime.Now.Year</p>
+            </footer>
+        </div>*@
 
     @Scripts.Render("~/bundles/jquery")
     <!-- Bootstrap tether Core JavaScript -->

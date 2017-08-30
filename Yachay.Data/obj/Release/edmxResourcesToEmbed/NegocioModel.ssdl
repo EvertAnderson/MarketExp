@@ -1,32 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="yachaydi_marketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="Horario_Negocio">
     <Key>
-      <PropertyRef Name="email_Negocio" />
+      <PropertyRef Name="id_Negocio" />
       <PropertyRef Name="dia_Laboral" />
     </Key>
-    <Property Name="email_Negocio" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="dia_Laboral" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="id_Negocio" Type="int" Nullable="false" />
+    <Property Name="dia_Laboral" Type="tinyint" Nullable="false" />
+    <Property Name="dia_nombre" Type="nvarchar" MaxLength="10" />
     <Property Name="Hora_Inicio" Type="tinyint" Nullable="false" />
     <Property Name="Hora_Fin" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="Negocio">
     <Key>
-      <PropertyRef Name="email_Negocio" />
+      <PropertyRef Name="id_Negocio" />
     </Key>
-    <Property Name="email_Negocio" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Direccion_texto" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="Direccion_Latitud" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Direccion_Longitud" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_Negocio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email_Negocio" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telefono" Type="bigint" />
+    <Property Name="Celular" Type="bigint" />
+    <Property Name="Direccion_texto" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Referencia" Type="nvarchar" MaxLength="300" />
+    <Property Name="Direccion_Latitud" Type="nvarchar" MaxLength="50" />
+    <Property Name="Direccion_Longitud" Type="nvarchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasClave' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Negocio_PalabrasClave">
+    <Key>
+      <PropertyRef Name="id_Negocio" />
+      <PropertyRef Name="caracter_PalabraClave" />
+    </Key>
+    <Property Name="id_Negocio" Type="int" Nullable="false" />
+    <Property Name="caracter_PalabraClave" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="texto_PalabraClave" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Negocio_Producto">
     <Key>
-      <PropertyRef Name="email_Negocio" />
+      <PropertyRef Name="id_Negocio" />
       <PropertyRef Name="Nombre_Producto" />
     </Key>
-    <Property Name="email_Negocio" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Nombre_Producto" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="id_Negocio" Type="int" Nullable="false" />
+    <Property Name="Nombre_Producto" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Precio_Producto" Type="decimal" Precision="8" Scale="2" Nullable="false" />
   </EntityType>
   <Association Name="AK_ALTERNATE">
@@ -34,10 +61,10 @@
     <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Negocio">
-        <PropertyRef Name="email_Negocio" />
+        <PropertyRef Name="id_Negocio" />
       </Principal>
       <Dependent Role="Negocio_Producto">
-        <PropertyRef Name="email_Negocio" />
+        <PropertyRef Name="id_Negocio" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -46,17 +73,68 @@
     <End Role="Horario_Negocio" Type="Self.Horario_Negocio" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Negocio">
-        <PropertyRef Name="email_Negocio" />
+        <PropertyRef Name="id_Negocio" />
       </Principal>
       <Dependent Role="Horario_Negocio">
-        <PropertyRef Name="email_Negocio" />
+        <PropertyRef Name="id_Negocio" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="AK_Negocio_PalabraClave">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
+    <End Role="Negocio_PalabrasClave" Type="Self.Negocio_PalabrasClave" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Negocio_PalabrasClave">
+        <PropertyRef Name="id_Negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="yachaydi_marketModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Horario_Negocio" EntityType="Self.Horario_Negocio" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Negocio" EntityType="Self.Negocio" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Negocio_Producto" EntityType="Self.Negocio_Producto" Schema="yachaydi_admin" store:Type="Tables" />
+    <EntitySet Name="Negocio_PalabrasClave" EntityType="Self.Negocio_PalabrasClave" store:Type="Tables" store:Schema="yachaydi_admin">
+      <DefiningQuery>SELECT 
+    [Negocio_PalabrasClave].[id_Negocio] AS [id_Negocio], 
+    [Negocio_PalabrasClave].[caracter_PalabraClave] AS [caracter_PalabraClave], 
+    [Negocio_PalabrasClave].[texto_PalabraClave] AS [texto_PalabraClave]
+    FROM [yachaydi_admin].[Negocio_PalabrasClave] AS [Negocio_PalabrasClave]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="AK_ALTERNATE" Association="Self.AK_ALTERNATE">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
@@ -64,6 +142,10 @@
     <AssociationSet Name="AK_Horario_Negocio" Association="Self.AK_Horario_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Horario_Negocio" EntitySet="Horario_Negocio" />
+    </AssociationSet>
+    <AssociationSet Name="AK_Negocio_PalabraClave" Association="Self.AK_Negocio_PalabraClave">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Negocio_PalabrasClave" EntitySet="Negocio_PalabrasClave" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
