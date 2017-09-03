@@ -9,10 +9,6 @@
     <div class="row page-titles">
         <div class="col-md-6 col-8 align-self-center">
             <h3 class="text-themecolor m-b-0 m-t-0">Negocios</h3>
-            @*<ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">Negocios</li>
-            </ol>*@
         </div>
         <div class="col-md-6 col-4 align-self-center">
         </div>
@@ -55,7 +51,8 @@
                                         @item.Direccion_texto
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Negocio", "Negocio", "Negocios", new { email = item.email_Negocio }, new { })
+                                        @Html.ActionLink("Editar", "Negocio", "Negocios", new { email = item.email_Negocio }, new { }) |
+                                        @Html.ActionLink("Productos", "Productos", "Negocios", new { id_Negocio = item.id_Negocio }, new { })
                                     </td>
                                 </tr>
                             }

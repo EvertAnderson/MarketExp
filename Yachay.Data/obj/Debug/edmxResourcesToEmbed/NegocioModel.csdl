@@ -19,7 +19,9 @@
     <Property Name="dia_Laboral" Type="Byte" Nullable="false" />
     <Property Name="dia_nombre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Hora_Inicio" Type="Byte" Nullable="false" />
+    <Property Name="Minutos_Inicio" Type="Byte" Nullable="false" />
     <Property Name="Hora_Fin" Type="Byte" Nullable="false" />
+    <Property Name="Minutos_Fin" Type="Byte" Nullable="false" />
     <NavigationProperty Name="Negocio" Relationship="Self.AK_Horario_Negocio" FromRole="Horario_Negocio" ToRole="Negocio" />
   </EntityType>
   <EntityType Name="Negocio">

@@ -18,7 +18,9 @@ namespace Yachay.Entities
         public byte dia_Laboral { get; set; }
         public string dia_nombre { get; set; }
         public byte Hora_Inicio { get; set; }
+        public byte Minutos_Inicio { get; set; }
         public byte Hora_Fin { get; set; }
+        public byte Minutos_Fin { get; set; }
     
         public virtual Negocio Negocio { get; set; }
     }

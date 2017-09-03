@@ -5,7 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles{
+    <link href="~/Content/monster-admin/html/assets/plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet" />
+    <link href="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet" />
+}
+
 @section scripts{
+    <script src="~/Content/monster-admin/html/main/js/jasny-bootstrap.js"></script>
+    <script src="~/Content/monster-admin/html/assets/plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <script src="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+    <script src="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+    <script src="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+
     <script type="text/javascript">
         var map;
         var markers = [];
@@ -14,7 +25,7 @@
             var mapCanvas = document.getElementById("map");
 
             var myCenter = new google.maps.LatLng(-12.051671, -77.034605);
-            var myZoom = 14;
+            var myZoom = 17;
 
             if (isLatitude(parseFloat($('#Direccion_Latitud').val())) && isLongitude(parseFloat($('#Direccion_Longitud').val()))) {
                 myCenter = currentLocation();
@@ -102,11 +113,71 @@
         function isLongitude(lng) {
             return isFinite(lng) && Math.abs(lng) <= 180;
         }
+
+        $('.clockpicker').clockpicker({
+            donetext: 'Done',
+        }).find('input').change(function () {
+            console.log(this.value);
+            });
+
+        $(function () {
+
+        });
+
+        function GrabarHorarios()
+        {
+            var dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+            var lista = [];
+
+            var clockId_i = clockId_f = "";
+            var clockIni = clockFin = [];
+
+            for (var i = 1; i <= 7; i++) {
+                clockId_i = "#clock_" + i + "_i";
+                clockId_f = "#clock_" + i + "_f";
+
+                clockIni = $(clockId_i).val().split(":");
+                clockFin = $(clockId_f).val().split(":");
+
+                /*String timme = "13:10";
+                String[] time = timme.split(":");
+                int hour = Integer.parseInt(time[0].trim());
+                int min = Integer.parseInt(time[1].trim());*/
+
+                var elem = {
+                    id_Negocio: $("#id_Negocio").val(),
+                    dia_Laboral: i,
+                    dia_nombre: dias[i - 1],
+                    Hora_Inicio: parseInt(clockIni[0].trim()),
+                    Minutos_Inicio: parseInt(clockIni[1].trim()),
+                    Hora_Fin: parseInt(clockFin[0].trim()),
+                    Minutos_Fin: parseInt(clockFin[1].trim())
+                };
+                //console.log(elem);
+                lista.push(elem);
+            }
+
+            var ruta = '@Url.Action("AlmacenarListaHorarios", "Negocios")';
+            var miData = JSON.stringify({ 'lista': lista });
+
+            $.ajax({
+                type: 'POST',
+                url: ruta,
+                data: miData,
+                contentType: 'application/json',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    return data;
+                },
+                error: function (xhr, status, error) {
+                    return error;
+                }
+            });
+        }
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&callback=initMap" type="text/javascript"></script>
-    @*AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ*@
-
-    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>*@
 }
 
 <div class="container-fluid">
@@ -124,92 +195,130 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-block">
-                    @using (Html.BeginForm("AddNegocio", "Negocios", FormMethod.Post, new { @class = "formulario" }))
+                    @using (Html.BeginForm("AddNegocio", "Negocios", FormMethod.Post, new { @class = "" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="row media-body">
-                            <div class="col-xs-12 col-md-12">
-                                <section class="panel panel-default">
-                                    <header class="panel panel-heading"><strong>Información Básica</strong></header>
-                                    <div class="panel-body">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="col-md-3">Nombre</label>
-                                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @required = "" })
-                                                    @*@Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })*@
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="col-md-3">Correo</label>
-                                                    @Html.TextBoxFor(model => model.email_Negocio, new { @class = "form-control", @type = "email" })
-                                                    @*@Html.ValidationMessageFor(model => model.email_Negocio, "", new { @class = "text-danger" })*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="col-md-3">Dirección</label>
-                                                    @Html.TextBoxFor(model => model.Direccion_texto, new { @class = "form-control", @required = "" })
-                                                    @*@Html.ValidationMessageFor(model => model.Direccion_texto, "", new { @class = "text-danger" })*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="col-md-3">Horario</label>
-                                                    @*@Html.TextBoxFor(model => model.Direccion_texto, new { @class = "form-control", @required = "" })*@
-                                                    <button id="btn_lu">L</button>
-                                                    <button id="btn_ma">M</button>
-                                                    <button id="btn_mi">M</button>
-                                                    <button id="btn_ju">J</button>
-                                                    <button id="btn_vi">V</button>
-                                                    <button id="btn_sa">S</button>
-                                                    <button id="btn_do">D</button>
-                                                    @*@Html.ValidationMessageFor(model => model.Direccion_texto, "", new { @class = "text-danger" })*@
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="col-md-3">Hora de inicio:</label>
-                                                    <input id="hora_inicio" class="form-control" type="text" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="col-md-3">Hora de fin:</label>
-                                                    <input id="hora_fin" class="form-control" type="text" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="col-md-3">Latitud:</label>
-                                                    @Html.TextBoxFor(model => model.Direccion_Latitud, new { @class = "form-control", @required = "", @readonly = "" })
-                                                    @*@Html.TextBox("", Model.Direccion_Latitud.ToString() + "," + Model.Direccion_Longitud.ToString(), new { @class = "editor-for-dbgeography" })*@
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="col-md-3">Longitud:</label>
-                                                    @Html.TextBoxFor(model => model.Direccion_Longitud, new { @class = "form-control", @required = "", @readonly = "" })
-                                                    @*@Html.TextBox("", Model.Direccion_Latitud.ToString() + "," + Model.Direccion_Longitud.ToString(), new { @class = "editor-for-dbgeography" })*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div id="map" style="width:100%;height:500px;"></div>
-                                        </div>
-                                    </div>
-                                </section>
-                                @Html.TextBoxFor(model => model.email_Negocio, new { @value = Model != null ? Model.email_Negocio : "", @type = "hidden" })
-                                @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.email_Negocio)) ? "Guardar Cambios" : "Crear";}
-                                <div class="col-xs-6 col-md-6 text-left">
-                                    <button type="submit" class="btn btn-md btn-success">@btnname</button>
-                                    <a class="btn btn-sm btn-danger" href="@Url.Action("Index", "Negocios")">Salir</a>
-                                </div>
+                        <h4 class="card-title">Información Básica</h4>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="m-t-20">Nombre</label>
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @required = "" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="m-t-20">Correo</label>
+                                @Html.TextBoxFor(model => model.email_Negocio, new { @class = "form-control", @type = "email" })
                             </div>
                         </div>
-                                    }
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="m-t-20">Dirección</label>
+                                @Html.TextBoxFor(model => model.Direccion_texto, new { @class = "form-control", @required = "" })
+                            </div>
+                        </div>
+                        <div class="row m-t-20">
+                            <div class="col-sm-12">
+                                <label class="col-2 col-form-label">Horarios</label>
+                                <label class="col-4 col-form-label">Hora de Inicio</label>
+                                <label class="col-4 col-form-label">Hora de Fin</label>
+                            </div>
+                        </div>
+                        
+                        var Horarios_ini = (List<string>)ViewBag.Horarios_ini;
+                        var Horarios_fin = (List<string>)ViewBag.Horarios_fin;
+                        
+                        <div class="row m-t-5">
+                            <label class="col-2 col-form-label text-center">Lunes</label>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_1_i" type="text" class="form-control" value="@(Horarios_ini[0])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_1_f" type="text" class="form-control" value="@(Horarios_fin[0])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <label class="col-2 col-form-label text-center">Martes</label>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_2_i" type="text" class="form-control" value="@(Horarios_ini[1])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_2_f" type="text" class="form-control" value="@(Horarios_fin[1])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <label class="col-2 col-form-label text-center">Miércoles</label>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_3_i" type="text" class="form-control" value="@(Horarios_ini[2])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_3_f" type="text" class="form-control" value="@(Horarios_fin[2])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <label class="col-2 col-form-label text-center">Jueves</label>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_4_i" type="text" class="form-control" value="@(Horarios_ini[3])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_4_f" type="text" class="form-control" value="@(Horarios_fin[3])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <label class="col-2 col-form-label text-center">Viernes</label>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_5_i" type="text" class="form-control" value="@(Horarios_ini[4])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_5_f" type="text" class="form-control" value="@(Horarios_fin[4])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <label class="col-2 col-form-label text-center">Sábado</label>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_6_i" type="text" class="form-control" value="@(Horarios_ini[5])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_6_f" type="text" class="form-control" value="@(Horarios_fin[5])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <label class="col-2 col-form-label text-center">Domingo</label>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_7_i" type="text" class="form-control" value="@(Horarios_ini[6])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                            <div class="input-group clockpicker col-4" data-autoclose="true">
+                                <input id="clock_7_f" type="text" class="form-control" value="@(Horarios_fin[6])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="m-t-20">Latitud:</label>
+                                @Html.TextBoxFor(model => model.Direccion_Latitud, new { @class = "form-control", @required = "", @readonly = "" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="m-t-20">Longitud:</label>
+                                @Html.TextBoxFor(model => model.Direccion_Longitud, new { @class = "form-control", @required = "", @readonly = "" })
+                            </div>
+                        </div>
+
+                        <div class="form-group m-t-15">
+                            <div id="map" style="width:100%;height:500px;"></div>
+                        </div>
+
+
+                            <div class="row media-body">
+                                <div class="col-xs-12 col-md-12">
+                                    @Html.TextBoxFor(model => model.email_Negocio, new { @value = Model != null ? Model.email_Negocio : "", @type = "hidden" })
+                                    @Html.TextBoxFor(model => model.id_Negocio, new { @value = Model != null ? Model.id_Negocio : 0, @type = "hidden" })
+                                    @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.email_Negocio)) ? "Guardar Cambios" : "Crear";}
+                                    <div class="col-xs-6 col-md-6 text-left">
+                                        <button type="submit" class="btn btn-md btn-success" onclick="GrabarHorarios()">@btnname</button>
+                                        <a class="btn btn-sm btn-danger" href="@Url.Action("Index", "Negocios")">Salir</a>
+                                    </div>
+                                </div>
+                            </div>
+                                        }
                 </div>
             </div>
         </div>

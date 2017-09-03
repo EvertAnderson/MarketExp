@@ -182,12 +182,21 @@
     <Content Include="Content\monster-admin\html\assets\images\users\2.jpg" />
     <Content Include="Content\monster-admin\html\assets\images\users\3.jpg" />
     <Content Include="Content\monster-admin\html\assets\images\users\4.jpg" />
+    <Content Include="Content\monster-admin\html\assets\plugins\clockpicker\dist\jquery-clockpicker.min.css" />
+    <Content Include="Content\monster-admin\html\assets\plugins\clockpicker\dist\jquery-clockpicker.min.js" />
+    <Content Include="Content\monster-admin\html\assets\plugins\jquery-asColorPicker-master\css\asColorPicker.css" />
+    <Content Include="Content\monster-admin\html\assets\plugins\jquery-asColorPicker-master\dist\jquery-asColorPicker.min.js" />
+    <Content Include="Content\monster-admin\html\assets\plugins\jquery-asColorPicker-master\libs\jquery-asColor.js" />
+    <Content Include="Content\monster-admin\html\assets\plugins\jquery-asColorPicker-master\libs\jquery-asGradient.js" />
     <Content Include="Content\monster-admin\html\assets\plugins\sticky-kit-master\dist\sticky-kit.min.js" />
     <Content Include="Content\monster-admin\html\main\css\animate.css" />
     <Content Include="Content\monster-admin\html\main\css\blue.css" />
+    <Content Include="Content\monster-admin\html\main\css\default-dark.css" />
+    <Content Include="Content\monster-admin\html\main\css\green-dark.css" />
     <Content Include="Content\monster-admin\html\main\css\spinners.css" />
     <Content Include="Content\monster-admin\html\main\css\style.css" />
     <Content Include="Content\monster-admin\html\main\js\custom.min.js" />
+    <Content Include="Content\monster-admin\html\main\js\jasny-bootstrap.js" />
     <Content Include="Content\monster-admin\html\main\js\jquery.slimscroll.js" />
     <Content Include="Content\monster-admin\html\main\js\sidebarmenu.js" />
     <Content Include="Content\monster-admin\html\main\js\waves.js" />
@@ -721,6 +730,8 @@
     <Content Include="Views\Negocios\Index.cshtml" />
     <Content Include="Views\Negocios\Negocio.cshtml" />
     <Content Include="Views\Negocios\Mapa.cshtml" />
+    <Content Include="Views\Negocios\Productos.cshtml" />
+    <Content Include="Views\Negocios\Producto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

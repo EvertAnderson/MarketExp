@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Yachay.Entities.Negocio_Producto>
+
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Productos</h3>
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-block">
+                    <div class="col-md-12" style="margin-bottom:7px;">
+                        <a class="btn btn-md btn-info pull-right" href="@Url.Action("Producto", "Negocios", new { id_Negocio = ViewBag.id_Negocio })">Nuevo</a>
+                    </div>
+                    <br />
+                    <table class="dataTable table table-striped table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Precio
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Nombre_Producto
+                                    </td>
+                                    <td>
+                                        @item.Precio_Producto
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Producto", "Negocios", new { id_Negocio = item.id_Negocio, nombre = item.Nombre_Producto }, new { })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

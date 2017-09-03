@@ -13,7 +13,20 @@
             var mapCanvas = document.getElementById("map");
 
             var myCenter = new google.maps.LatLng(-12.051671, -77.034605);
-            var myZoom = 14;
+            var myZoom = 15;
+            //Posicion Actual
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    //deleteMarkers();
+                    //placeMarker(map, myCenter);
+                    //console.log(position.coords);
+                    //setLatitud(position.coords.latitude);
+                    //setLongitud(position.coords.longitude);
+                });
+            } else {
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
 
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
@@ -113,20 +126,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-block">
-                    @*<h4 class="card-title">Mapa</h4>*@
-                    <div id="map" class="gmaps" style="width:100%;height:700px;"></div>
-
-                    @*<div class="row media-body">
-                        <div class="col-xs-12 col-md-12">
-                            <section class="panel panel-default">
-                                <div class="form-group">
-                                    <div id="map" style="width:100%;height:500px;">
-
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>*@
+                    <div id="map" class="gmaps" style="width: 100%; height: 500px;"></div>
                 </div>
             </div>
         </div>

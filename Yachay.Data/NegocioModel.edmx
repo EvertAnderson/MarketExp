@@ -24,7 +24,9 @@
           <Property Name="dia_Laboral" Type="tinyint" Nullable="false" />
           <Property Name="dia_nombre" Type="nvarchar" MaxLength="10" />
           <Property Name="Hora_Inicio" Type="tinyint" Nullable="false" />
+          <Property Name="Minutos_Inicio" Type="tinyint" Nullable="false" />
           <Property Name="Hora_Fin" Type="tinyint" Nullable="false" />
+          <Property Name="Minutos_Fin" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Negocio">
           <Key>
@@ -177,7 +179,9 @@ warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasCla
           <Property Name="dia_Laboral" Type="Byte" Nullable="false" />
           <Property Name="dia_nombre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Hora_Inicio" Type="Byte" Nullable="false" />
+          <Property Name="Minutos_Inicio" Type="Byte" Nullable="false" />
           <Property Name="Hora_Fin" Type="Byte" Nullable="false" />
+          <Property Name="Minutos_Fin" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Negocio" Relationship="Self.AK_Horario_Negocio" FromRole="Horario_Negocio" ToRole="Negocio" />
         </EntityType>
         <EntityType Name="Negocio">
@@ -338,7 +342,9 @@ warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasCla
                 <ScalarProperty Name="dia_Laboral" ColumnName="dia_Laboral" />
                 <ScalarProperty Name="dia_nombre" ColumnName="dia_nombre" />
                 <ScalarProperty Name="Hora_Inicio" ColumnName="Hora_Inicio" />
+                <ScalarProperty Name="Minutos_Inicio" ColumnName="Minutos_Inicio" />
                 <ScalarProperty Name="Hora_Fin" ColumnName="Hora_Fin" />
+                <ScalarProperty Name="Minutos_Fin" ColumnName="Minutos_Fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

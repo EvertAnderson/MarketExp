@@ -19,7 +19,9 @@
           <ScalarProperty Name="dia_Laboral" ColumnName="dia_Laboral" />
           <ScalarProperty Name="dia_nombre" ColumnName="dia_nombre" />
           <ScalarProperty Name="Hora_Inicio" ColumnName="Hora_Inicio" />
+          <ScalarProperty Name="Minutos_Inicio" ColumnName="Minutos_Inicio" />
           <ScalarProperty Name="Hora_Fin" ColumnName="Hora_Fin" />
+          <ScalarProperty Name="Minutos_Fin" ColumnName="Minutos_Fin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

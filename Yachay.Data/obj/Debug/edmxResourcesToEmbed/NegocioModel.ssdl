@@ -19,7 +19,9 @@
     <Property Name="dia_Laboral" Type="tinyint" Nullable="false" />
     <Property Name="dia_nombre" Type="nvarchar" MaxLength="10" />
     <Property Name="Hora_Inicio" Type="tinyint" Nullable="false" />
+    <Property Name="Minutos_Inicio" Type="tinyint" Nullable="false" />
     <Property Name="Hora_Fin" Type="tinyint" Nullable="false" />
+    <Property Name="Minutos_Fin" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="Negocio">
     <Key>

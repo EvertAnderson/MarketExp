@@ -25,7 +25,16 @@ namespace Yachay.Controllers
                 if (!string.IsNullOrEmpty(email))
                 {
                     ent = dal.GetNegocio(email);
+                    //ent.Horario_Negocio = dal.GetHorarios_Negocio(email);
+                    var listaIni = dal.GetHorarios_Negocio(email, 1);
+                    ViewBag.Horarios_ini = listaIni.Count > 0 ? listaIni : HorariosDefault(1);
+                    var listaFin = dal.GetHorarios_Negocio(email, 2);
+                    ViewBag.Horarios_fin = listaFin.Count > 0 ? listaFin : HorariosDefault(2);
+                    return View(ent);
                 }
+                //ent.Horario_Negocio = HorariosDefault();
+                ViewBag.Horarios_ini = HorariosDefault(1);
+                ViewBag.Horarios_fin = HorariosDefault(2);
                 return View(ent);
             }
             catch (Exception ex)
@@ -42,10 +51,23 @@ namespace Yachay.Controllers
                 {
                     if (dal.GetNegocio(ent.email_Negocio) == null)
                     {
-                        dal.AddNegocio(ent);
+                        
+                        int id = dal.AddNegocio(ent);
+                        //Registrar Horarios
+                        var lista = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();
+                        if (lista.Count > 0)
+                        {
+                            dal.Add_Horarios_Negocio(id, lista);
+                        }
                     } else
                     {
-                        dal.UpdateNegocio(ent);
+                        int id = dal.UpdateNegocio(ent);
+                        var lista = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();
+                        if(lista.Count > 0)
+                        {
+                            dal.Delete_Horarios_Negocio(id);
+                            dal.Add_Horarios_Negocio(id, lista);
+                        }
                     }
                 }
                 return RedirectToAction("Index");
@@ -67,6 +89,74 @@ namespace Yachay.Controllers
 
             string json = JsonConvert.SerializeObject(lista);
             return Json(new { success = true, lista = lista }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AlmacenarListaHorarios(List<Horario_Negocio> lista)
+        {
+            TempData["lstHorarios"] = lista;
+            return Json(new { success = true, mensaje = "Si funciona" }, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<string> HorariosDefault(int tipo)
+        {
+            List<string> lista = new List<string>();
+            for (int i = 1; i <= 7; i++)
+            {
+                if(tipo == 1)
+                    lista.Add($"9:00");
+                else
+                    lista.Add($"18:00");
+            }
+            return lista;
+        }
+
+        public ActionResult Productos(int id_Negocio)
+        {
+            ViewBag.id_Negocio = id_Negocio;
+            return View(dal.GetProductos(id_Negocio));
+        }
+
+        public ActionResult Producto(int id_Negocio, string nombre = null)
+        {
+            try
+            {
+                Negocio_Producto ent = new Negocio_Producto();
+                if (id_Negocio > 0 && !string.IsNullOrEmpty(nombre))
+                {
+                    ent = dal.GetProducto(id_Negocio, nombre);
+                    return View(ent);
+                }
+                return View(ent);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult addProducto(Negocio_Producto ent)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (dal.GetProducto(ent.id_Negocio, ent.Nombre_Producto) == null)
+                    {
+                        dal.AddProducto(ent);
+                    }
+                    else
+                    {
+                        dal.UpdateProducto(ent);
+                    }
+                }
+                return RedirectToAction("Productos", new { id_Negocio = ent.id_Negocio });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
