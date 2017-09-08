@@ -117,16 +117,18 @@ namespace Yachay.Controllers
             return View(dal.GetProductos(id_Negocio));
         }
 
-        public ActionResult Producto(int id_Negocio, string nombre = null)
+        public ActionResult Producto(int id_Negocio, int id)
         {
             try
             {
                 Negocio_Producto ent = new Negocio_Producto();
-                if (id_Negocio > 0 && !string.IsNullOrEmpty(nombre))
+                if (id_Negocio > 0 && id > 0)
                 {
-                    ent = dal.GetProducto(id_Negocio, nombre);
+                    ent = dal.GetNegocio_Producto(id_Negocio, id);
                     return View(ent);
                 }
+                ent.id_Negocio = id_Negocio;
+                ent.Producto = new Entities.Producto();
                 return View(ent);
             }
             catch (Exception ex)
@@ -142,13 +144,34 @@ namespace Yachay.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (dal.GetProducto(ent.id_Negocio, ent.Nombre_Producto) == null)
+                    Producto obj = dal.GetProducto(ent.Producto.Nombre);
+                    if (obj == null)
                     {
-                        dal.AddProducto(ent);
+                        obj = dal.AddProducto(ent.Producto.Nombre);
+                    }
+
+                    var pastObj = dal.GetNegocio_Producto(ent.id_Negocio, obj.id_Producto);
+
+                    if (ent.id_Producto == 0 && pastObj == null)
+                    {
+                        ent.id_Producto = obj.id_Producto;
+                        ent.Producto = null;
+                        dal.AddNegocio_Producto(ent);
                     }
                     else
                     {
-                        dal.UpdateProducto(ent);
+                        if (ent.id_Producto != obj.id_Producto && pastObj != null)
+                        {
+                        }
+                        else
+                        {
+                            //Eliminar registro pasado☺
+                            dal.DeleteNegocio_Producto(ent);
+                            //Agregar nuevo registro
+                            ent.id_Producto = obj.id_Producto;
+                            ent.Producto = null;
+                            dal.AddNegocio_Producto(ent);
+                        }
                     }
                 }
                 return RedirectToAction("Productos", new { id_Negocio = ent.id_Negocio });

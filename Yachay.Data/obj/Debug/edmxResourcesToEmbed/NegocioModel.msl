@@ -45,8 +45,16 @@
       <EntityTypeMapping TypeName="yachaydi_marketModel.Negocio_Producto">
         <MappingFragment StoreEntitySet="Negocio_Producto">
           <ScalarProperty Name="id_Negocio" ColumnName="id_Negocio" />
-          <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
-          <ScalarProperty Name="Precio_Producto" ColumnName="Precio_Producto" />
+          <ScalarProperty Name="id_Producto" ColumnName="id_Producto" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="yachaydi_marketModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="id_Producto" ColumnName="id_Producto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

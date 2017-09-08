@@ -31,6 +31,7 @@ namespace Yachay.Entities
         public virtual DbSet<Horario_Negocio> Horario_Negocio { get; set; }
         public virtual DbSet<Negocio> Negocio { get; set; }
         public virtual DbSet<Negocio_Producto> Negocio_Producto { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Negocio_PalabrasClave> Negocio_PalabrasClave { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

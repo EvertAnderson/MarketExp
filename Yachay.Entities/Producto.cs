@@ -12,13 +12,18 @@ namespace Yachay.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Negocio_Producto
+    public partial class Producto
     {
-        public int id_Negocio { get; set; }
-        public int id_Producto { get; set; }
-        public decimal Precio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Producto()
+        {
+            this.Negocio_Producto = new HashSet<Negocio_Producto>();
+        }
     
-        public virtual Negocio Negocio { get; set; }
-        public virtual Producto Producto { get; set; }
+        public int id_Producto { get; set; }
+        public string Nombre { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Negocio_Producto> Negocio_Producto { get; set; }
     }
 }

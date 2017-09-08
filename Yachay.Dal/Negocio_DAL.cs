@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Yachay.Entities;
 
@@ -92,19 +93,39 @@ namespace Yachay.DAL
         {
             using (var context = getContext())
             {
-                return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio).ToList();
+                return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio).Include(x => x.Producto).ToList();
             }
         }
 
-        public Negocio_Producto GetProducto(int id_Negocio, string nombre)
+        public Negocio_Producto GetNegocio_Producto(int id_Negocio, int id)
         {
             using (var context = getContext())
             {
-                return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio && x.Nombre_Producto == nombre).SingleOrDefault();
+                //return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio && x.id_Producto == id).SingleOrDefault();
+                return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio && x.id_Producto == id).Include(x => x.Producto).SingleOrDefault();
             }
         }
 
-        public bool AddProducto(Negocio_Producto ent)
+        public Producto GetProducto(string nombre)
+        {
+            using (var context = getContext())
+            {
+                return context.Producto.Where(x => x.Nombre == nombre).FirstOrDefault();
+            }
+        }
+
+        public Producto AddProducto(string nombre)
+        {
+            using (var context = getContext())
+            {
+                var nuevo = new Producto() { Nombre = nombre };
+                context.Producto.Add(nuevo);
+                context.SaveChanges();
+                return nuevo;
+            }
+        }
+
+        public bool AddNegocio_Producto(Negocio_Producto ent)
         {
             using (var context = getContext())
             {
@@ -113,13 +134,36 @@ namespace Yachay.DAL
                 return true;
             }
         }
+
+        public bool UpdateNegocio_Producto(Negocio_Producto ent)
+        {
+            using (var context = getContext())
+            {
+                var obj = context.Negocio_Producto.Where(x => x.id_Negocio == ent.id_Negocio && x.id_Producto == ent.id_Producto).Include(x => x.Producto).SingleOrDefault();
+                obj.Precio = ent.Precio;
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool DeleteNegocio_Producto(Negocio_Producto ent)
+        {
+            using (var context = getContext())
+            {
+                var obj = context.Negocio_Producto.Where(x => x.id_Negocio == ent.id_Negocio && x.id_Producto == ent.id_Producto).SingleOrDefault();
+                context.Negocio_Producto.Remove(obj);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
         public bool UpdateProducto(Negocio_Producto ent)
         {
             using (var context = getContext())
             {
-                var obj = context.Negocio_Producto.Where(x => x.Nombre_Producto == ent.Nombre_Producto && x.id_Negocio == ent.id_Negocio).SingleOrDefault();
-                obj.Nombre_Producto = ent.Nombre_Producto;
-                obj.Precio_Producto = ent.Precio_Producto;
+                var obj = context.Negocio_Producto.Where(x => x.id_Producto == ent.id_Producto && x.id_Negocio == ent.id_Negocio).SingleOrDefault();
+                //obj.Precio = ent.Nombre_Producto;
+                //obj.Precio_Producto = ent.Precio_Producto;
                 context.SaveChanges();
                 return true;
             }

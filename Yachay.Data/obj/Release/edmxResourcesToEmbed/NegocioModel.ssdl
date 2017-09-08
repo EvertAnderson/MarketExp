@@ -52,24 +52,19 @@ warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasCla
   <EntityType Name="Negocio_Producto">
     <Key>
       <PropertyRef Name="id_Negocio" />
-      <PropertyRef Name="Nombre_Producto" />
+      <PropertyRef Name="id_Producto" />
     </Key>
     <Property Name="id_Negocio" Type="int" Nullable="false" />
-    <Property Name="Nombre_Producto" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Precio_Producto" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="id_Producto" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Precision="8" Scale="2" Nullable="false" />
   </EntityType>
-  <Association Name="AK_ALTERNATE">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
-    <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Negocio_Producto">
-        <PropertyRef Name="id_Negocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="id_Producto" />
+    </Key>
+    <Property Name="id_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
+  </EntityType>
   <Association Name="AK_Horario_Negocio">
     <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
     <End Role="Horario_Negocio" Type="Self.Horario_Negocio" Multiplicity="*" />
@@ -78,6 +73,18 @@ warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasCla
         <PropertyRef Name="id_Negocio" />
       </Principal>
       <Dependent Role="Horario_Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AK_Negocio_NP">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
+    <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Negocio_Producto">
         <PropertyRef Name="id_Negocio" />
       </Dependent>
     </ReferentialConstraint>
@@ -91,6 +98,18 @@ warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasCla
       </Principal>
       <Dependent Role="Negocio_PalabrasClave">
         <PropertyRef Name="id_Negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AK_Producto_NP">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="id_Producto" />
+      </Principal>
+      <Dependent Role="Negocio_Producto">
+        <PropertyRef Name="id_Producto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -130,6 +149,7 @@ warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasCla
     <EntitySet Name="Horario_Negocio" EntityType="Self.Horario_Negocio" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Negocio" EntityType="Self.Negocio" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Negocio_Producto" EntityType="Self.Negocio_Producto" Schema="yachaydi_admin" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Negocio_PalabrasClave" EntityType="Self.Negocio_PalabrasClave" store:Type="Tables" store:Schema="yachaydi_admin">
       <DefiningQuery>SELECT 
     [Negocio_PalabrasClave].[id_Negocio] AS [id_Negocio], 
@@ -137,17 +157,21 @@ warning 6002: The table/view 'yachaydi_market.yachaydi_admin.Negocio_PalabrasCla
     [Negocio_PalabrasClave].[texto_PalabraClave] AS [texto_PalabraClave]
     FROM [yachaydi_admin].[Negocio_PalabrasClave] AS [Negocio_PalabrasClave]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="AK_ALTERNATE" Association="Self.AK_ALTERNATE">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
-    </AssociationSet>
     <AssociationSet Name="AK_Horario_Negocio" Association="Self.AK_Horario_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Horario_Negocio" EntitySet="Horario_Negocio" />
     </AssociationSet>
+    <AssociationSet Name="AK_Negocio_NP" Association="Self.AK_Negocio_NP">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
+    </AssociationSet>
     <AssociationSet Name="AK_Negocio_PalabraClave" Association="Self.AK_Negocio_PalabraClave">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Negocio_PalabrasClave" EntitySet="Negocio_PalabrasClave" />
+    </AssociationSet>
+    <AssociationSet Name="AK_Producto_NP" Association="Self.AK_Producto_NP">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
