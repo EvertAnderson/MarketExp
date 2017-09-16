@@ -10,7 +10,7 @@ namespace Yachay.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Ingresar", "Login");
         }
 
         public ActionResult About()

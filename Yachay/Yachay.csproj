@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NegociosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -166,6 +167,10 @@
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\js\tether.min.js" />
+    <Content Include="Content\monster-admin\html\assets\images\background\error-bg.jpg" />
+    <Content Include="Content\monster-admin\html\assets\images\background\login-register.jpg" />
+    <Content Include="Content\monster-admin\html\assets\images\background\megamenubg.jpg" />
+    <Content Include="Content\monster-admin\html\assets\images\background\socialbg.jpg" />
     <Content Include="Content\monster-admin\html\assets\images\big\img1.jpg" />
     <Content Include="Content\monster-admin\html\assets\images\big\img2.jpg" />
     <Content Include="Content\monster-admin\html\assets\images\big\img3.jpg" />
@@ -189,6 +194,7 @@
     <Content Include="Content\monster-admin\html\assets\plugins\jquery-asColorPicker-master\libs\jquery-asColor.js" />
     <Content Include="Content\monster-admin\html\assets\plugins\jquery-asColorPicker-master\libs\jquery-asGradient.js" />
     <Content Include="Content\monster-admin\html\assets\plugins\sticky-kit-master\dist\sticky-kit.min.js" />
+    <Content Include="Content\monster-admin\html\assets\plugins\styleswitcher\jQuery.style.switcher.js" />
     <Content Include="Content\monster-admin\html\main\css\animate.css" />
     <Content Include="Content\monster-admin\html\main\css\blue.css" />
     <Content Include="Content\monster-admin\html\main\css\default-dark.css" />
@@ -693,6 +699,7 @@
     <Content Include="Content\monster-admin\html\main\scss\icons\weather-icons\sass\weather-icons-wind.scss" />
     <Content Include="Content\monster-admin\html\main\scss\icons\weather-icons\sass\weather-icons.min.scss" />
     <Content Include="Content\monster-admin\html\main\scss\icons\weather-icons\sass\weather-icons.scss" />
+    <Content Include="Content\monster-admin\html\assets\images\background\Thumbs.db" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -732,6 +739,8 @@
     <Content Include="Views\Negocios\Mapa.cshtml" />
     <Content Include="Views\Negocios\Productos.cshtml" />
     <Content Include="Views\Negocios\Producto.cshtml" />
+    <Content Include="Views\Login\Ingresar.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

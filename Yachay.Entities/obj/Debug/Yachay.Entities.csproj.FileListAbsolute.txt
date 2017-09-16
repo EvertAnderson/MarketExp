@@ -17,3 +17,4 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Entities\bin\Debug\
 C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Entities\obj\Debug\Yachay.Entities.csproj.CoreCompileInputs.cache
 C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Entities\obj\Debug\Yachay.Entities.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Entities\obj\Debug\Yachay.Entities.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\Yachay\Yachay.Entities\obj\Debug\Yachay.Entities.csprojResolveAssemblyReference.cache

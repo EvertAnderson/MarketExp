@@ -50,13 +50,13 @@
     <Compile Include="Horario_Negocio.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Negocio.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NegocioModel.Context.cs">
+    <Compile Include="LoginModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NegocioModel.Context.tt</DependentUpon>
+      <DependentUpon>LoginModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NegocioModel.cs">
       <AutoGen>True</AutoGen>
@@ -83,6 +83,9 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>LoginModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -92,9 +95,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NegocioModel.Context.tt">
+    <Content Include="LoginModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NegocioModel.Context.cs</LastGenOutput>
+      <LastGenOutput>LoginModel.cs</LastGenOutput>
     </Content>
     <Content Include="NegocioModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
