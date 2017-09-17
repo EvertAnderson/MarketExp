@@ -300,7 +300,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="@Url.Action("Logout", "Login")"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -612,7 +612,7 @@
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
-    <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="~/Content/monster-admin/html/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

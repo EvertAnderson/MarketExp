@@ -15,10 +15,12 @@ namespace Yachay.Controllers
         // GET: Negocios
         public ActionResult Index()
         {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             return View(dal.GetNegocios());
         }
         public ActionResult Negocio(string email = null)
         {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             try
             {
                 Negocio ent = new Entities.Negocio();
@@ -45,6 +47,7 @@ namespace Yachay.Controllers
         [HttpPost]
         public ActionResult AddNegocio(Negocio ent)
         {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             try
             {
                 if(ModelState.IsValid)
@@ -79,6 +82,7 @@ namespace Yachay.Controllers
         }
         public ActionResult Mapa()
         {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             return View();
         }
 
@@ -113,12 +117,14 @@ namespace Yachay.Controllers
 
         public ActionResult Productos(int id_Negocio)
         {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             ViewBag.id_Negocio = id_Negocio;
             return View(dal.GetProductos(id_Negocio));
         }
 
         public ActionResult Producto(int id_Negocio, int id)
         {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             try
             {
                 Negocio_Producto ent = new Negocio_Producto();
@@ -140,6 +146,7 @@ namespace Yachay.Controllers
         [HttpPost]
         public ActionResult addProducto(Negocio_Producto ent)
         {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             try
             {
                 if (ModelState.IsValid)

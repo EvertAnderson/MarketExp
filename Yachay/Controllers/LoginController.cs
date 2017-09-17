@@ -3,20 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Yachay.DAL;
+using Yachay.Entities;
 
 namespace Yachay.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
-        public ActionResult Index()
+        public ActionResult Ingresar()
         {
             return View();
         }
 
-        public ActionResult Ingresar()
+        [HttpPost]
+        public ActionResult Login(Usuarios user)
         {
-            return View();
+            Usuario_DAL usuariosBL = new Usuario_DAL();
+            if (usuariosBL.isValidUser(user))
+            {
+                System.Web.HttpContext.Current.Session["User"] = usuariosBL.GetUserByAccount(user);
+                return RedirectToAction("Index", "Negocios");
+            }
+            //createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_LOGIN);
+            return RedirectToAction("Ingresar");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Ingresar");
         }
     }
 }

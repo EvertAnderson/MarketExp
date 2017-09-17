@@ -161,37 +161,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/10/2013 17:28:38</publishTime>
     </File>
     <File Include="bin/Yachay.Dal.dll">
-      <publishTime>09/07/2017 07:02:51</publishTime>
+      <publishTime>09/16/2017 23:03:45</publishTime>
     </File>
     <File Include="bin/Yachay.Dal.dll.config">
       <publishTime>08/05/2017 16:55:51</publishTime>
     </File>
     <File Include="bin/Yachay.Dal.pdb">
-      <publishTime>09/07/2017 07:02:51</publishTime>
+      <publishTime>09/16/2017 23:03:45</publishTime>
     </File>
     <File Include="bin/Yachay.Data.dll">
-      <publishTime>09/07/2017 07:02:51</publishTime>
+      <publishTime>09/16/2017 23:03:45</publishTime>
     </File>
     <File Include="bin/Yachay.Data.dll.config">
-      <publishTime>09/03/2017 19:06:00</publishTime>
+      <publishTime>09/13/2017 00:41:53</publishTime>
     </File>
     <File Include="bin/Yachay.Data.pdb">
-      <publishTime>09/07/2017 07:02:51</publishTime>
+      <publishTime>09/16/2017 23:03:45</publishTime>
     </File>
     <File Include="bin/Yachay.dll">
-      <publishTime>09/08/2017 07:13:03</publishTime>
+      <publishTime>09/16/2017 23:03:49</publishTime>
     </File>
     <File Include="bin/Yachay.Entities.dll">
-      <publishTime>09/07/2017 07:02:50</publishTime>
+      <publishTime>09/16/2017 23:03:44</publishTime>
     </File>
     <File Include="bin/Yachay.Entities.dll.config">
       <publishTime>08/05/2017 16:10:51</publishTime>
     </File>
     <File Include="bin/Yachay.Entities.pdb">
-      <publishTime>09/07/2017 07:02:50</publishTime>
+      <publishTime>09/16/2017 23:03:44</publishTime>
     </File>
     <File Include="bin/Yachay.pdb">
-      <publishTime>09/08/2017 07:13:03</publishTime>
+      <publishTime>09/16/2017 23:03:49</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>08/05/2017 16:44:14</publishTime>
@@ -261,6 +261,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/bootstrap/js/tether.min.js">
       <publishTime>08/27/2017 22:08:07</publishTime>
+    </File>
+    <File Include="Content/monster-admin/html/assets/images/background/error-bg.jpg">
+      <publishTime>09/15/2017 22:34:54</publishTime>
+    </File>
+    <File Include="Content/monster-admin/html/assets/images/background/login-register.jpg">
+      <publishTime>09/15/2017 22:34:54</publishTime>
+    </File>
+    <File Include="Content/monster-admin/html/assets/images/background/megamenubg.jpg">
+      <publishTime>09/15/2017 22:34:54</publishTime>
+    </File>
+    <File Include="Content/monster-admin/html/assets/images/background/socialbg.jpg">
+      <publishTime>09/15/2017 22:34:54</publishTime>
+    </File>
+    <File Include="Content/monster-admin/html/assets/images/background/Thumbs.db">
+      <publishTime>09/15/2017 22:34:54</publishTime>
     </File>
     <File Include="Content/monster-admin/html/assets/images/big/img1.jpg">
       <publishTime>08/27/2017 23:40:05</publishTime>
@@ -333,6 +348,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/monster-admin/html/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js">
       <publishTime>08/27/2017 22:23:22</publishTime>
+    </File>
+    <File Include="Content/monster-admin/html/assets/plugins/styleswitcher/jQuery.style.switcher.js">
+      <publishTime>09/14/2017 01:09:43</publishTime>
     </File>
     <File Include="Content/monster-admin/html/main/css/animate.css">
       <publishTime>08/28/2017 00:42:56</publishTime>
@@ -1873,6 +1891,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/Index.cshtml">
       <publishTime>08/05/2017 15:47:25</publishTime>
     </File>
+    <File Include="Views/Login/Ingresar.cshtml">
+      <publishTime>09/16/2017 22:20:15</publishTime>
+    </File>
     <File Include="Views/Negocios/Index.cshtml">
       <publishTime>09/03/2017 17:06:30</publishTime>
     </File>
@@ -1892,7 +1913,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/05/2017 15:47:25</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/30/2017 17:12:09</publishTime>
+      <publishTime>09/16/2017 22:58:25</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/05/2017 15:47:25</publishTime>
@@ -1901,7 +1922,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/05/2017 15:47:25</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/30/2017 00:41:19</publishTime>
+      <publishTime>09/16/2017 23:03:50</publishTime>
     </File>
   </ItemGroup>
 </Project>
