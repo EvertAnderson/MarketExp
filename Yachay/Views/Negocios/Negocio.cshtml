@@ -8,6 +8,7 @@
 @section styles{
     <link href="~/Content/monster-admin/html/assets/plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet" />
     <link href="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet" />
+    <link href="~/Content/monster-admin/html/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
 }
 
 @section scripts{
@@ -16,6 +17,8 @@
     <script src="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
     <script src="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
     <script src="~/Content/monster-admin/html/assets/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+
+    <script src="~/Content/monster-admin/html/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 
     <script type="text/javascript">
         var map;
@@ -218,108 +221,110 @@
                             </div>
                         </div>
                         <div class="row m-t-20">
-                            <div class="col-sm-12">
+                            <label class="col-2 col-form-label">Horarios</label>
+                            <label class="col-2 col-form-label">Hora de Inicio</label>
+                            <label class="col-2 col-form-label">Hora de Fin</label>
+                            <label class="col-6 col-form-label">Palabras Clave</label>
+                            @*<div class="col-sm-12">
                                 <label class="col-2 col-form-label">Horarios</label>
                                 <label class="col-4 col-form-label">Hora de Inicio</label>
                                 <label class="col-4 col-form-label">Hora de Fin</label>
-                            </div>
+                            </div>*@
                         </div>
-                        
+
                         var Horarios_ini = (List<string>)ViewBag.Horarios_ini;
                         var Horarios_fin = (List<string>)ViewBag.Horarios_fin;
-                        
-                        <div class="row m-t-5">
-                            <label class="col-2 col-form-label text-center">Lunes</label>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_1_i" type="text" class="form-control" value="@(Horarios_ini[0])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4 col-form-label text-center">Lunes</label>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_1_i" type="text" class="form-control" value="@(Horarios_ini[0])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_1_f" type="text" class="form-control" value="@(Horarios_fin[0])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
                             </div>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_1_f" type="text" class="form-control" value="@(Horarios_fin[0])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                            <div class="row">
+                                <label class="col-4 col-form-label text-center">Martes</label>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_2_i" type="text" class="form-control" value="@(Horarios_ini[1])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_2_f" type="text" class="form-control" value="@(Horarios_fin[1])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-4 col-form-label text-center">Miércoles</label>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_3_i" type="text" class="form-control" value="@(Horarios_ini[2])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_3_f" type="text" class="form-control" value="@(Horarios_fin[2])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-4 col-form-label text-center">Jueves</label>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_4_i" type="text" class="form-control" value="@(Horarios_ini[3])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_4_f" type="text" class="form-control" value="@(Horarios_fin[3])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-4 col-form-label text-center">Viernes</label>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_5_i" type="text" class="form-control" value="@(Horarios_ini[4])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_5_f" type="text" class="form-control" value="@(Horarios_fin[4])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-4 col-form-label text-center">Sábado</label>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_6_i" type="text" class="form-control" value="@(Horarios_ini[5])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_6_f" type="text" class="form-control" value="@(Horarios_fin[5])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-4 col-form-label text-center">Domingo</label>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_7_i" type="text" class="form-control" value="@(Horarios_ini[6])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
+                                <div class="input-group clockpicker col-4" data-autoclose="true">
+                                    <input id="clock_7_f" type="text" class="form-control" value="@(Horarios_fin[6])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="row m-t-5">
-                            <label class="col-2 col-form-label text-center">Martes</label>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_2_i" type="text" class="form-control" value="@(Horarios_ini[1])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_2_f" type="text" class="form-control" value="@(Horarios_fin[1])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="tags-default">
+                                    <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags" />
+                                </div>
                             </div>
                         </div>
-                        <div class="row m-t-5">
-                            <label class="col-2 col-form-label text-center">Miércoles</label>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_3_i" type="text" class="form-control" value="@(Horarios_ini[2])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_3_f" type="text" class="form-control" value="@(Horarios_fin[2])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                        </div>
-                        <div class="row m-t-5">
-                            <label class="col-2 col-form-label text-center">Jueves</label>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_4_i" type="text" class="form-control" value="@(Horarios_ini[3])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_4_f" type="text" class="form-control" value="@(Horarios_fin[3])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                        </div>
-                        <div class="row m-t-5">
-                            <label class="col-2 col-form-label text-center">Viernes</label>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_5_i" type="text" class="form-control" value="@(Horarios_ini[4])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_5_f" type="text" class="form-control" value="@(Horarios_fin[4])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                        </div>
-                        <div class="row m-t-5">
-                            <label class="col-2 col-form-label text-center">Sábado</label>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_6_i" type="text" class="form-control" value="@(Horarios_ini[5])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_6_f" type="text" class="form-control" value="@(Horarios_fin[5])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                        </div>
-                        <div class="row m-t-5">
-                            <label class="col-2 col-form-label text-center">Domingo</label>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_7_i" type="text" class="form-control" value="@(Horarios_ini[6])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                            <div class="input-group clockpicker col-4" data-autoclose="true">
-                                <input id="clock_7_f" type="text" class="form-control" value="@(Horarios_fin[6])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                            </div>
-                        </div>
-                        @*<div class="row">
-                            <div class="col-sm-6">
-                                <label class="m-t-20">Latitud:</label>
-                                @Html.TextBoxFor(model => model.Direccion_Latitud, new { @class = "form-control", @required = "", @readonly = "" })
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="m-t-20">Longitud:</label>
-                                @Html.TextBoxFor(model => model.Direccion_Longitud, new { @class = "form-control", @required = "", @readonly = "" })
-                            </div>
-                        </div>*@
+
                         <div class="form-group m-t-15">
                             <div id="map" style="width:100%;height:500px;"></div>
                         </div>
-
-
-                            <div class="row media-body">
-                                <div class="col-xs-12 col-md-12">
-                                    @Html.TextBoxFor(model => model.Direccion_Latitud, new { @value = Model != null ? Model.Direccion_Latitud : "", @type = "hidden" })
-                                    @Html.TextBoxFor(model => model.Direccion_Longitud, new { @value = Model != null ? Model.Direccion_Longitud : "", @type = "hidden" })
-                                    @Html.TextBoxFor(model => model.email_Negocio, new { @value = Model != null ? Model.email_Negocio : "", @type = "hidden" })
-                                    @Html.TextBoxFor(model => model.id_Negocio, new { @value = Model != null ? Model.id_Negocio : 0, @type = "hidden" })
-                                    @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.email_Negocio)) ? "Guardar Cambios" : "Crear";}
-                                    <div class="col-xs-6 col-md-6 text-left">
-                                        <button type="submit" class="btn btn-md btn-success" onclick="GrabarHorarios()">@btnname</button>
-                                        <a class="btn btn-sm btn-danger" href="@Url.Action("Index", "Negocios")">Salir</a>
-                                    </div>
+                        <div class="row media-body">
+                            <div class="col-xs-12 col-md-12">
+                                @Html.TextBoxFor(model => model.Direccion_Latitud, new { @value = Model != null ? Model.Direccion_Latitud : "", @type = "hidden" })
+                                @Html.TextBoxFor(model => model.Direccion_Longitud, new { @value = Model != null ? Model.Direccion_Longitud : "", @type = "hidden" })
+                                @Html.TextBoxFor(model => model.email_Negocio, new { @value = Model != null ? Model.email_Negocio : "", @type = "hidden" })
+                                @Html.TextBoxFor(model => model.id_Negocio, new { @value = Model != null ? Model.id_Negocio : 0, @type = "hidden" })
+                                @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.email_Negocio)) ? "Guardar Cambios" : "Crear";}
+                                <div class="col-xs-6 col-md-6 text-left">
+                                    <button type="submit" class="btn btn-md btn-success" onclick="GrabarHorarios()">@btnname</button>
+                                    <a class="btn btn-sm btn-danger" href="@Url.Action("Index", "Negocios")">Salir</a>
                                 </div>
                             </div>
-                                        }
+                        </div>
+                                    }
                 </div>
             </div>
         </div>
