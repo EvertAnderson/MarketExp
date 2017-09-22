@@ -237,16 +237,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label class="m-t-20">Dirección</label>
                                 @Html.TextBoxFor(model => model.Direccion_texto, new { @class = "form-control", @required = "" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="m-t-20 col-12">Palabras Clave</label>
+                                @*<input id="palabrasClave" type="text" value="@(ViewBag.lstPalabrasClave)" data-role="tagsinput" placeholder="Agregar Palabras Clave" />*@
+                                <div class="input-group m-b-20">
+                                    <span class="input-group-addon">Tags</span>
+                                    <input id="palabrasClave" type="text" value="@(ViewBag.lstPalabrasClave)" data-role="tagsinput" placeholder="add tags">
+                                </div>
+
                             </div>
                         </div>
                         <div class="row m-t-20">
                             <label class="col-2 col-form-label">Horarios</label>
                             <label class="col-2 col-form-label">Hora de Inicio</label>
                             <label class="col-2 col-form-label">Hora de Fin</label>
-                            <label class="col-6 col-form-label">Palabras Clave</label>
                             @*<div class="col-sm-12">
                                 <label class="col-2 col-form-label">Horarios</label>
                                 <label class="col-4 col-form-label">Hora de Inicio</label>
@@ -319,13 +327,6 @@
                                 </div>
                                 <div class="input-group clockpicker col-4" data-autoclose="true">
                                     <input id="clock_7_f" type="text" class="form-control" value="@(Horarios_fin[6])"> <span class="input-group-addon"> <span class="fa fa-clock-o"></span> </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="row">
-                                <div class="tags-default">
-                                    <input id="palabrasClave" type="text" value="@(ViewBag.lstPalabrasClave)" data-role="tagsinput" placeholder="Agregar Palabras Clave" />
                                 </div>
                             </div>
                         </div>

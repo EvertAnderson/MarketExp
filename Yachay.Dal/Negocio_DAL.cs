@@ -206,11 +206,22 @@ namespace Yachay.DAL
                 {
                     foreach (var item in lista)
                     {
-                        PalabrasClave obj = new PalabrasClave();
-                        obj.caracter_PalabrasClave = item.Substring(0, 1).ToUpper();
-                        obj.texto_PalabrasClave = item;
-
-                        negocio.PalabrasClave.Add(obj);
+                        //Si la palabra clave ya existe
+                        //int ind = item.TakeWhile(c => char.IsWhiteSpace(c)).Count();
+                        string caracter = item[item.TakeWhile(c => char.IsWhiteSpace(c)).Count()].ToString().ToUpper();
+                        var query = context.PalabrasClave.Where(x => x.caracter_PalabrasClave == caracter && x.texto_PalabrasClave == item).SingleOrDefault();
+                        if (query != null)
+                        {
+                            negocio.PalabrasClave.Add(query);
+                        }
+                        else
+                        {
+                            PalabrasClave obj = new PalabrasClave();
+                            //obj.caracter_PalabrasClave = item.Substring(0, 1).ToUpper();
+                            obj.caracter_PalabrasClave = caracter;
+                            obj.texto_PalabrasClave = item;
+                            negocio.PalabrasClave.Add(obj);
+                        }
                     }
                     context.SaveChanges();
                     return true;
