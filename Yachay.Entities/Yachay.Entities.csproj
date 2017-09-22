@@ -63,13 +63,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Negocio_PalabrasClave.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Negocio_Producto.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NodoDTO.cs" />
+    <Compile Include="PalabrasClave.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Producto.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>

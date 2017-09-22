@@ -121,14 +121,13 @@
             donetext: 'Done',
         }).find('input').change(function () {
             console.log(this.value);
-            });
+        });
 
         $(function () {
 
         });
 
-        function GrabarHorarios()
-        {
+        function GrabarHorarios() {
             var dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
             var lista = [];
 
@@ -162,6 +161,29 @@
 
             var ruta = '@Url.Action("AlmacenarListaHorarios", "Negocios")';
             var miData = JSON.stringify({ 'lista': lista });
+
+            $.ajax({
+                type: 'POST',
+                url: ruta,
+                data: miData,
+                contentType: 'application/json',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    return data;
+                },
+                error: function (xhr, status, error) {
+                    return error;
+                }
+            });
+        }
+
+        function GrabarPalabrasClave()
+        {
+            debugger;
+            var ruta = '@Url.Action("AlmacenarListaPalabrasClave", "Negocios")';
+            var jsPalabrasClave = $('#palabrasClave').val().split(",");
+            var miData = JSON.stringify({ 'lista': jsPalabrasClave });
 
             $.ajax({
                 type: 'POST',
@@ -303,7 +325,7 @@
                         <div class="col-5">
                             <div class="row">
                                 <div class="tags-default">
-                                    <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags" />
+                                    <input id="palabrasClave" type="text" value="@(ViewBag.lstPalabrasClave)" data-role="tagsinput" placeholder="Agregar Palabras Clave" />
                                 </div>
                             </div>
                         </div>
@@ -319,7 +341,7 @@
                                 @Html.TextBoxFor(model => model.id_Negocio, new { @value = Model != null ? Model.id_Negocio : 0, @type = "hidden" })
                                 @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.email_Negocio)) ? "Guardar Cambios" : "Crear";}
                                 <div class="col-xs-6 col-md-6 text-left">
-                                    <button type="submit" class="btn btn-md btn-success" onclick="GrabarHorarios()">@btnname</button>
+                                    <button type="submit" class="btn btn-md btn-success" onclick="GrabarHorarios(); GrabarPalabrasClave();">@btnname</button>
                                     <a class="btn btn-sm btn-danger" href="@Url.Action("Index", "Negocios")">Salir</a>
                                 </div>
                             </div>

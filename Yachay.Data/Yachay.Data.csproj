@@ -73,10 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="NegocioModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NegocioModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <EntityDeploy Include="LoginModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LoginModel.Designer.cs</LastGenOutput>
@@ -84,6 +80,10 @@
     <None Include="LoginModel.edmx.diagram">
       <DependentUpon>LoginModel.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="NegocioModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NegocioModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="NegocioModel.edmx.diagram">
       <DependentUpon>NegocioModel.edmx</DependentUpon>
     </None>

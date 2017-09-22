@@ -40,7 +40,7 @@
     <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Horario_Negocio" Relationship="Self.AK_Horario_Negocio" FromRole="Negocio" ToRole="Horario_Negocio" />
     <NavigationProperty Name="Negocio_Producto" Relationship="Self.AK_Negocio_NP" FromRole="Negocio" ToRole="Negocio_Producto" />
-    <NavigationProperty Name="Negocio_PalabrasClave" Relationship="Self.AK_Negocio_PalabraClave" FromRole="Negocio" ToRole="Negocio_PalabrasClave" />
+    <NavigationProperty Name="PalabrasClave" Relationship="Self.Negocio_PalabrasClave" FromRole="Negocio" ToRole="PalabrasClave" />
   </EntityType>
   <EntityType Name="Negocio_Producto">
     <Key>
@@ -53,6 +53,15 @@
     <NavigationProperty Name="Negocio" Relationship="Self.AK_Negocio_NP" FromRole="Negocio_Producto" ToRole="Negocio" />
     <NavigationProperty Name="Producto" Relationship="Self.AK_Producto_NP" FromRole="Negocio_Producto" ToRole="Producto" />
   </EntityType>
+  <EntityType Name="PalabrasClave">
+    <Key>
+      <PropertyRef Name="id_PalabrasClave" />
+    </Key>
+    <Property Name="id_PalabrasClave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="caracter_PalabrasClave" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="texto_PalabrasClave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Negocio" Relationship="Self.Negocio_PalabrasClave" FromRole="PalabrasClave" ToRole="Negocio" />
+  </EntityType>
   <EntityType Name="Producto">
     <Key>
       <PropertyRef Name="id_Producto" />
@@ -60,16 +69,6 @@
     <Property Name="id_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Negocio_Producto" Relationship="Self.AK_Producto_NP" FromRole="Producto" ToRole="Negocio_Producto" />
-  </EntityType>
-  <EntityType Name="Negocio_PalabrasClave">
-    <Key>
-      <PropertyRef Name="id_Negocio" />
-      <PropertyRef Name="caracter_PalabraClave" />
-    </Key>
-    <Property Name="id_Negocio" Type="Int32" Nullable="false" />
-    <Property Name="caracter_PalabraClave" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="texto_PalabraClave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Negocio" Relationship="Self.AK_Negocio_PalabraClave" FromRole="Negocio_PalabrasClave" ToRole="Negocio" />
   </EntityType>
   <Association Name="AK_Horario_Negocio">
     <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
@@ -95,18 +94,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AK_Negocio_PalabraClave">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
-    <End Role="Negocio_PalabrasClave" Type="Self.Negocio_PalabrasClave" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Negocio_PalabrasClave">
-        <PropertyRef Name="id_Negocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="AK_Producto_NP">
     <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
     <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
@@ -119,13 +106,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Negocio_PalabrasClave">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="*" />
+    <End Role="PalabrasClave" Type="Self.PalabrasClave" Multiplicity="*" />
+  </Association>
   <EntityContainer Name="yachaydi_marketEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Horario_Negocio" EntityType="Self.Horario_Negocio" />
     <EntitySet Name="Negocio" EntityType="Self.Negocio" />
     <EntitySet Name="Negocio_Producto" EntityType="Self.Negocio_Producto" />
+    <EntitySet Name="PalabrasClave" EntityType="Self.PalabrasClave" />
     <EntitySet Name="Producto" EntityType="Self.Producto" />
-    <EntitySet Name="Negocio_PalabrasClave" EntityType="Self.Negocio_PalabrasClave" />
     <AssociationSet Name="AK_Horario_Negocio" Association="Self.AK_Horario_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Horario_Negocio" EntitySet="Horario_Negocio" />
@@ -134,13 +125,13 @@
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
     </AssociationSet>
-    <AssociationSet Name="AK_Negocio_PalabraClave" Association="Self.AK_Negocio_PalabraClave">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Negocio_PalabrasClave" EntitySet="Negocio_PalabrasClave" />
-    </AssociationSet>
     <AssociationSet Name="AK_Producto_NP" Association="Self.AK_Producto_NP">
       <End Role="Producto" EntitySet="Producto" />
       <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="Negocio_PalabrasClave" Association="Self.Negocio_PalabrasClave">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="PalabrasClave" EntitySet="PalabrasClave" />
     </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />

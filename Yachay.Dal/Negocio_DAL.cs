@@ -89,6 +89,14 @@ namespace Yachay.DAL
             }
         }
 
+        public List<string> GetPalabrasClave_Negocio(int id)
+        {
+            using (var context = getContext())
+            {
+                return context.Negocio.Where(x => x.id_Negocio == id).SingleOrDefault().PalabrasClave.Select(x => x.texto_PalabrasClave).ToList();
+            }
+        }
+
         public List<Negocio_Producto> GetProductos(int id_Negocio)
         {
             using (var context = getContext())
@@ -188,6 +196,29 @@ namespace Yachay.DAL
             }
         }
 
+        public bool Add_PalabrasClave_Negocio(int id, List<string> lista)
+        {
+            using (var context = getContext())
+            {
+                var negocio = context.Negocio.Where(x => x.id_Negocio == id).SingleOrDefault();
+
+                if (negocio != null)
+                {
+                    foreach (var item in lista)
+                    {
+                        PalabrasClave obj = new PalabrasClave();
+                        obj.caracter_PalabrasClave = item.Substring(0, 1).ToUpper();
+                        obj.texto_PalabrasClave = item;
+
+                        negocio.PalabrasClave.Add(obj);
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public bool Delete_Horarios_Negocio(int id)
         {
             using (var context = getContext())
@@ -200,6 +231,26 @@ namespace Yachay.DAL
                     foreach (var item in lista)
                     {
                         negocio.Horario_Negocio.Remove(item);
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool Delete_PalabrasClave_Negocio(int id)
+        {
+            using (var context = getContext())
+            {
+                var negocio = context.Negocio.Where(x => x.id_Negocio == id).SingleOrDefault();
+                var lista = negocio.PalabrasClave.ToList();
+
+                if (lista.Count > 0)
+                {
+                    foreach (var item in lista)
+                    {
+                        negocio.PalabrasClave.Remove(item);
                     }
                     context.SaveChanges();
                     return true;

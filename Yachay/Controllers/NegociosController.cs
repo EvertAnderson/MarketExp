@@ -27,14 +27,19 @@ namespace Yachay.Controllers
                 if (!string.IsNullOrEmpty(email))
                 {
                     ent = dal.GetNegocio(email);
-                    //ent.Horario_Negocio = dal.GetHorarios_Negocio(email);
+                    //Horarios
                     var listaIni = dal.GetHorarios_Negocio(email, 1);
                     ViewBag.Horarios_ini = listaIni.Count > 0 ? listaIni : HorariosDefault(1);
                     var listaFin = dal.GetHorarios_Negocio(email, 2);
                     ViewBag.Horarios_fin = listaFin.Count > 0 ? listaFin : HorariosDefault(2);
+                    //Palabras Clave
+                    var lstPalabrasClave = dal.GetPalabrasClave_Negocio(ent.id_Negocio);
+                    var coma = ",";
+                    ViewBag.lstPalabrasClave = "";
+                    if (lstPalabrasClave.Count > 0)
+                    { ViewBag.lstPalabrasClave = lstPalabrasClave.Aggregate((i, j) => i + coma + j); }
                     return View(ent);
                 }
-                //ent.Horario_Negocio = HorariosDefault();
                 ViewBag.Horarios_ini = HorariosDefault(1);
                 ViewBag.Horarios_fin = HorariosDefault(2);
                 return View(ent);
@@ -57,19 +62,30 @@ namespace Yachay.Controllers
                         
                         int id = dal.AddNegocio(ent);
                         //Registrar Horarios
-                        var lista = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();
-                        if (lista.Count > 0)
+                        var lstHorarios = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();
+                        var lstPalabrasClave = (List<string>)TempData["lstPalabrasClave"] ?? new List<string>();
+                        if (lstHorarios.Count > 0)
                         {
-                            dal.Add_Horarios_Negocio(id, lista);
+                            dal.Add_Horarios_Negocio(id, lstHorarios);
+                        }
+                        if (lstPalabrasClave.Count > 0)
+                        {
+                            dal.Add_PalabrasClave_Negocio(id, lstPalabrasClave);
                         }
                     } else
                     {
                         int id = dal.UpdateNegocio(ent);
-                        var lista = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();
-                        if(lista.Count > 0)
+                        var lstHorarios = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();
+                        var lstPalabrasClave = (List<string>)TempData["lstPalabrasClave"] ?? new List<string>();
+                        if (lstHorarios.Count > 0)
                         {
                             dal.Delete_Horarios_Negocio(id);
-                            dal.Add_Horarios_Negocio(id, lista);
+                            dal.Add_Horarios_Negocio(id, lstHorarios);
+                        }
+                        if(lstPalabrasClave.Count > 0)
+                        {
+                            dal.Delete_PalabrasClave_Negocio(id);
+                            dal.Add_PalabrasClave_Negocio(id, lstPalabrasClave);
                         }
                     }
                 }
@@ -99,6 +115,13 @@ namespace Yachay.Controllers
         public ActionResult AlmacenarListaHorarios(List<Horario_Negocio> lista)
         {
             TempData["lstHorarios"] = lista;
+            return Json(new { success = true, mensaje = "Si funciona" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AlmacenarListaPalabrasClave(List<string> lista)
+        {
+            TempData["lstPalabrasClave"] = lista;
             return Json(new { success = true, mensaje = "Si funciona" }, JsonRequestBehavior.AllowGet);
         }
 

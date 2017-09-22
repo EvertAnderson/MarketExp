@@ -19,7 +19,7 @@ namespace Yachay.Entities
         {
             this.Horario_Negocio = new HashSet<Horario_Negocio>();
             this.Negocio_Producto = new HashSet<Negocio_Producto>();
-            this.Negocio_PalabrasClave = new HashSet<Negocio_PalabrasClave>();
+            this.PalabrasClave = new HashSet<PalabrasClave>();
         }
     
         public int id_Negocio { get; set; }
@@ -38,6 +38,6 @@ namespace Yachay.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Negocio_Producto> Negocio_Producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Negocio_PalabrasClave> Negocio_PalabrasClave { get; set; }
+        public virtual ICollection<PalabrasClave> PalabrasClave { get; set; }
     }
 }
