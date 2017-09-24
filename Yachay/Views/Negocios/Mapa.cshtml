@@ -18,11 +18,6 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    //deleteMarkers();
-                    //placeMarker(map, myCenter);
-                    //console.log(position.coords);
-                    //setLatitud(position.coords.latitude);
-                    //setLongitud(position.coords.longitude);
                 });
             } else {
                 handleLocationError(false, infoWindow, map.getCenter());
@@ -39,6 +34,15 @@
 
             $.each(lstNodos, function (index, item) {
                 placeMarkerCustom(map, item);
+            });
+
+            //Search Box
+            var input = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
             });
         }
 
@@ -126,6 +130,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-block">
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                     <div id="map" class="gmaps" style="width: 100%; height: 500px;"></div>
                 </div>
             </div>
