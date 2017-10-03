@@ -226,7 +226,9 @@ namespace Yachay.Controllers
             var lista = dal.GetNegocios_LatLng();
             List<NodoDTO> listaNodos;
 
-            listaNodos = lista.Where(x => (x.Nombre.ToLower() ?? "").Contains(texto)).ToList();
+            //listaNodos = lista.Where(x => (x.Nombre.ToLower() ?? "").Contains(texto)).ToList();
+            //listaNodos = lista.Where(x => x.PalabrasClave.Any(y => (y.ToLower() ?? "").Contains(texto))).ToList();
+            listaNodos = lista.Where(x => (x.Nombre.ToLower() ?? "").Contains(texto) || x.PalabrasClave.Any(y => (y.ToLower() ?? "").Contains(texto))).ToList();
             return Json(new { listaNodos }, JsonRequestBehavior.AllowGet);
         }
     }

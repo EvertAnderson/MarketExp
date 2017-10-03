@@ -12,5 +12,6 @@ namespace Yachay.Entities
         public string Direccion_texto { get; set; }
         public string Direccion_Latitud { get; set; }
         public string Direccion_Longitud { get; set; }
+        public List<string> PalabrasClave { get; set; }
     }
 }
