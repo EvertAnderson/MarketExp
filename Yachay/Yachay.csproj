@@ -4033,6 +4033,7 @@
     <Content Include="Views\Negocios\Productos.cshtml" />
     <Content Include="Views\Negocios\Producto.cshtml" />
     <Content Include="Views\Login\Ingresar.cshtml" />
+    <Content Include="Views\Negocios\Busqueda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,7 +13,7 @@
     @*@Scripts.Render("~/bundles/modernizr")*@
 
     <link href="~/Content/monster-admin/html/main/css/style.css" rel="stylesheet" />
-    <link href="~/Content/monster-admin/html/main/css/default-dark.css" rel="stylesheet" />
+    <link href="~/Content/monster-admin/html/main/css/colors/default-dark.css" rel="stylesheet" />
 
     @RenderSection("styles", required: false)
 </head>
@@ -346,15 +346,7 @@
                             <a href="@Url.Action("Index", "Negocios")" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Negocios</span></a>
                         </li>
                         <li>
-                            <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Apps</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-calendar.html">Calendar</a></li>
-                                <li><a href="app-chat.html">Chat app</a></li>
-                                <li><a href="app-ticket.html">Support Ticket</a></li>
-                                <li><a href="app-contact.html">Contact / Employee</a></li>
-                                <li><a href="app-contact2.html">Contact Grid</a></li>
-                                <li><a href="app-contact-detail.html">Contact Detail</a></li>
-                            </ul>
+                            <a href="@Url.Action("Busqueda", "Negocios")" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Busqueda</span></a>
                         </li>
                         <li>
                             <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">Inbox</span></a>
@@ -568,32 +560,6 @@
             </footer>
         </div>
     </div>
-    <!-- <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Negocio", "Index", "Negocios")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
-    @*<div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer class="footer">
-                <p>Yachay - &copy; @DateTime.Now.Year</p>
-            </footer>
-        </div>*@
 
     @Scripts.Render("~/bundles/jquery")
     <!-- Bootstrap tether Core JavaScript -->

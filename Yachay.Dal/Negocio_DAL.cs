@@ -42,6 +42,8 @@ namespace Yachay.DAL
                 negocio.Direccion_texto = ent.Direccion_texto;
                 negocio.Direccion_Latitud = ent.Direccion_Latitud;
                 negocio.Direccion_Longitud = ent.Direccion_Longitud;
+                negocio.Telefono = ent.Telefono;
+                negocio.Celular = ent.Celular;
                 context.SaveChanges();
                 return negocio.id_Negocio;
             }
@@ -53,6 +55,22 @@ namespace Yachay.DAL
                 var result = context.Negocio.Select(x => new NodoDTO()
                 {
                     Nombre = x.Nombre,
+                    Direccion_texto = x.Direccion_texto,
+                    Direccion_Latitud = x.Direccion_Latitud,
+                    Direccion_Longitud = x.Direccion_Longitud
+                }).ToList();
+
+                return result;
+            }
+        }
+
+        public List<NodoDTO> GetNegocios_LatLng_Lower()
+        {
+            using (var context = getContext())
+            {
+                var result = context.Negocio.Select(x => new NodoDTO()
+                {
+                    Nombre = x.Nombre.ToLower() ?? "",
                     Direccion_texto = x.Direccion_texto,
                     Direccion_Latitud = x.Direccion_Latitud,
                     Direccion_Longitud = x.Direccion_Longitud

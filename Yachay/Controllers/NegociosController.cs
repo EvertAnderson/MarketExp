@@ -102,6 +102,12 @@ namespace Yachay.Controllers
             return View();
         }
 
+        public ActionResult Busqueda()
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
+            return View();
+        }
+
         [HttpPost]
         public ActionResult ObtenerSitios()
         {
@@ -210,6 +216,18 @@ namespace Yachay.Controllers
             {
                 throw ex;
             }
+        }
+
+        [HttpGet]
+        public JsonResult BuscarNegocios(string texto)
+        {
+            texto = texto.ToLower();
+
+            var lista = dal.GetNegocios_LatLng();
+            List<NodoDTO> listaNodos;
+
+            listaNodos = lista.Where(x => (x.Nombre.ToLower() ?? "").Contains(texto)).ToList();
+            return Json(new { listaNodos }, JsonRequestBehavior.AllowGet);
         }
     }
 }
