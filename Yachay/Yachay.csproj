@@ -151,6 +151,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MapaController.cs" />
     <Compile Include="Controllers\NegociosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -4034,6 +4035,8 @@
     <Content Include="Views\Negocios\Producto.cshtml" />
     <Content Include="Views\Login\Ingresar.cshtml" />
     <Content Include="Views\Negocios\Busqueda.cshtml" />
+    <Content Include="Views\Mapa\Index.cshtml" />
+    <Content Include="Views\Mapa\Prueba.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

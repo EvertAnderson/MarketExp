@@ -57,15 +57,14 @@ namespace Yachay.DAL
                     Nombre = x.Nombre,
                     Direccion_texto = x.Direccion_texto,
                     Direccion_Latitud = x.Direccion_Latitud,
-                    Direccion_Longitud = x.Direccion_Longitud,
-                    PalabrasClave = x.PalabrasClave.Select(y => y.texto_PalabrasClave).ToList()
+                    Direccion_Longitud = x.Direccion_Longitud
                 }).ToList();
 
                 return result;
             }
         }
 
-        public List<NodoDTO> GetNegocios_LatLng_Lower()
+        public List<NodoDTO> GetNegocios_LatLng_Busqueda()
         {
             using (var context = getContext())
             {
@@ -74,7 +73,9 @@ namespace Yachay.DAL
                     Nombre = x.Nombre.ToLower() ?? "",
                     Direccion_texto = x.Direccion_texto,
                     Direccion_Latitud = x.Direccion_Latitud,
-                    Direccion_Longitud = x.Direccion_Longitud
+                    Direccion_Longitud = x.Direccion_Longitud,
+                    PalabrasClave = x.PalabrasClave.Select(y => y.texto_PalabrasClave).ToList(),
+                    Productos = x.Negocio_Producto.Select(z => z.Producto.Nombre).ToList()
                 }).ToList();
 
                 return result;

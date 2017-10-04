@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/monster-admin/html/assets/images/favicon.png">
+    <title>@ViewBag.Title - Yachay</title>
+    @Styles.Render("~/Content/css")
+
+    <link href="~/Content/monster-admin/html/main/css/style.css" rel="stylesheet" />
+    <link href="~/Content/monster-admin/html/main/css/colors/default-dark.css" rel="stylesheet" />
+    <style>
+        #map {
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body class="">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        <div class="container-fluid" style="padding-bottom: 0px;">
+            <div class="row page-titles">
+                <div class="col-md-6 col-8 align-self-center">
+                    <h3 class="text-themecolor m-b-0 m-t-0">¡Bienvenidos a Yachay!</h3>
+                </div>
+                <div class="col-md-6 col-4 align-self-center">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input id="buscador" type="text" class="form-control" placeholder="Buscar Negocio, producto o servicio">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" onclick="BuscarNegocios($('#buscador').val())">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div style="position:relative; height:calc(100vh - 4em - 124px);">
+            <div id="map" class="gmaps" style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/bootstrap/js/tether.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/monster-admin/html/main/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/monster-admin/html/main/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/monster-admin/html/main/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/Content/monster-admin/html/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/monster-admin/html/main/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="~/Content/monster-admin/html/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+    <script type="text/javascript">
+        var map;
+        var markers = [];
+
+        var miBaseUrl = "";
+        var lugares = [];
+        $(function () {
+            miBaseUrl = '@Url.Action("BuscarNegocios", "Mapa")';
+        });
+
+        $('#buscador').keyup(function (e) {
+            if (e.keyCode == 13) {
+                BuscarNegocios($(this).val());
+            }
+        });
+
+        function BuscarNegocios(texto) {
+            $.ajax({
+                type: "GET",
+                url: miBaseUrl,
+                cache: false,
+                data: { texto: texto },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.listaNodos.length > 0)
+                    {
+                        deleteMarkers();
+                        addMarkers(data.listaNodos);
+                        map.setZoom(14);
+                        map.setCenter(new google.maps.LatLng(lugares[0].Direccion_Latitud, lugares[0].Direccion_Longitud));
+                    }
+                }
+            });
+        }
+
+        function datosElemento(data) {
+            var jsCadena = '<div class="padder">';
+            jsCadena += '</div>';
+            return jsCadena;
+        }
+
+        function initMap() {
+            var mapCanvas = document.getElementById("map");
+
+            var myCenter = new google.maps.LatLng(-12.051671, -77.034605);
+            var myZoom = 15;
+            //Posicion Actual
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                });
+            } else {
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+
+            var mapOptions = { center: myCenter, zoom: myZoom };
+            map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var lstNodos = ObtenerSitios();
+            if (lstNodos.length > 0)
+            {
+                lstNodos = nodosValidados(lstNodos);
+            }
+
+            $.each(lstNodos, function (index, item) {
+                placeMarkerCustom(map, item);
+            });
+        }
+
+        function placeMarker(map, location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Latitud: ' + location.lat() + '<br>Longitud: ' + location.lng()
+            });
+            infowindow.open(map, marker);
+            markers.push(marker);
+        }
+
+        function placeMarkerCustom(map, item) {
+            var location = new google.maps.LatLng(item.Direccion_Latitud, item.Direccion_Longitud);
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            var infowindow = new google.maps.InfoWindow({
+                //content: '<b>' + item.Nombre + '</b>' + '<br>Latitud: ' + location.lat() + '<br>Longitud: ' + location.lng()
+                content: '<b>' + item.Nombre + '</b>'
+            });
+            infowindow.open(map, marker);
+            markers.push(marker);
+        }
+
+        function ObtenerSitios()
+        {
+            //var miData = JSON.stringify({ 'idAplicacion': vIdApp, 'idAccion': idAccion });
+            var lista = [];
+            var ruta = '@Url.Action("ObtenerSitios", "Mapa")';
+
+            $.ajax({
+                type: 'POST',
+                url: ruta,
+                data: '',
+                contentType: 'application/json',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    lista = data.lista;
+                    return data.lista;
+                },
+                error: function (xhr, status, error) {
+                    return error;
+                }
+            });
+            return lista;
+        }
+
+        function nodosValidados(lista) {
+            var lstAux = [];
+
+            $.each(lista, function (index, item) {
+                if (isLatitude(parseFloat(item.Direccion_Latitud)) && isLongitude(parseFloat(item.Direccion_Longitud))) {
+                    lstAux.push(item);
+                }
+            });
+            return lstAux;
+        }
+
+        function deleteMarkers() {
+            markers.forEach(function (marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+        }
+
+        function addMarkers(lstMarkers) {
+            $.each(lstMarkers, function (index, item) {
+                placeMarkerCustom(map, item);
+            });
+        }
+
+        function isLatitude(lat) {
+            return isFinite(lat) && Math.abs(lat) <= 90;
+        }
+
+        function isLongitude(lng) {
+            return isFinite(lng) && Math.abs(lng) <= 180;
+        }
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&callback=initMap" type="text/javascript"></script>*@
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&libraries=places&callback=initMap"></script>
+</body>
+</html>
