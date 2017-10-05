@@ -22,7 +22,7 @@ namespace Yachay.Controllers
             if (usuariosBL.isValidUser(user))
             {
                 System.Web.HttpContext.Current.Session["User"] = usuariosBL.GetUserByAccount(user);
-                return RedirectToAction("Index", "Mapa");
+                return RedirectToAction("Mapa", "Negocios");
             }
             //createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_LOGIN);
             return RedirectToAction("Ingresar");
