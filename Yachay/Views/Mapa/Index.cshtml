@@ -134,7 +134,8 @@
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
 
-            var lstNodos = ObtenerSitios();
+            //var lstNodos = ObtenerSitios();
+            var lstNodos = [];
             if (lstNodos.length > 0)
             {
                 lstNodos = nodosValidados(lstNodos);

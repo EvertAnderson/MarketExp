@@ -1,0 +1,84 @@
+Yachay.2017$
+192.185.6.40
+Yachay.2017$
+rltr_YachayMarket
+rltr_admin
+7Ew9AjLySnziK3V7
+
+Default
+9 am - 6 pm
+
+51288147
+
+
+You can login to our billing system at http://gbclient.hostgator.com/login, using the email address we sent this email to, and the password
+    Shared Plan:        Windows Enterprise
+    Your Control Panel: https://pss21.win.hostgator.com:8443
+    Username:           rltr
+    Domain:             yachay.tech
+    Password:           7Ew9AjLySnziK3V7
+    1st Nameserver:     sns41.win.hostgator.com
+    2nd Nameserver:     sns42.win.hostgator.com
+    Server IP:          192.185.6.40
+
+
+Contacto Soporte:
+https://chat.hostgator.com/#verify_customer
+ray_torres_rodriguez@hotmail.com
+wi67kv44da
+
+51347283
+
+===================================================================================================================================================
+
+Propagacion
+https://www.whatsmydns.net/?utm_source=whatsmydns.com&utm_medium=redirect#A/yachay.tech
+
+===================================================================================================================================================
+
+Arvixe
+
+https://customers.arvixe.com/clientarea.php?action=services
+https://ws4.win.arvixe.com:8443/smb/
+
+yachaydi_market
+
+Username: yachaydi
+Password: Nymo49_5
+
+yachaydi
+yachay123
+
+-DATABASE
+
+usr: yachaydi_admin
+pwd: Yachay123.$
+
+server: 143.95.148.51 (si no funciona con este pruebas con 127.0.0.1 que es lo que sale en la información de conexión)
+puerto: 1433
+BD: yachaydi_market
+Esquema: yachaydi_admin
+
+CONECCTION STRING: https://blog.arvixe.com/how-to-properly-configure-web-config-connection-string-and-source/
+
+Email:
+
+http://ws4.win.arvixe.com:9998/Login.aspx
+admin@yachay.digital
+
+
+
+NegocioModel
+../Yachay.Data/NegocioModel.edmx
+yachaydi_marketEntities
+
+
+==========================================================================================================================================
+GitHub
+--Ignorar carpeta al subir archivos
+git add -u
+git reset -- main/dontcheckmein.txt
+
+git@github.com:EvertAnderson/MarketExp.git
+git remote add origin git@github.com:EvertAnderson/MarketExp.git
+git push -u origin master

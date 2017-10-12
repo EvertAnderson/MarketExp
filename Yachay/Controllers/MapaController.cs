@@ -19,6 +19,11 @@ namespace Yachay.Controllers
             return View();
         }
 
+        public ActionResult Busqueda()
+        {
+            return View();
+        }
+
         public ActionResult Prueba()
         {
             return View();
