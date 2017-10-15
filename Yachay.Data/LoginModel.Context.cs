@@ -25,6 +25,7 @@ namespace Yachay.Entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

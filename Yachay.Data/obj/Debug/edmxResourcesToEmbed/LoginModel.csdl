@@ -1,13 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="yachaydi_loginModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id_Rol" />
+    </Key>
+    <Property Name="id_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_Rol" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.Usuarios_Roles" FromRole="Roles" ToRole="Usuarios" />
+  </EntityType>
   <EntityType Name="Usuarios">
     <Key>
       <PropertyRef Name="Usuario" />
     </Key>
     <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="Self.Usuarios_Roles" FromRole="Usuarios" ToRole="Roles" />
   </EntityType>
+  <Association Name="Usuarios_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+  </Association>
   <EntityContainer Name="yachaydi_loginEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="Usuarios_Roles" Association="Self.Usuarios_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

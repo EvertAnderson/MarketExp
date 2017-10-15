@@ -36,7 +36,10 @@
         <div class="container-fluid p-b-0 ">
             <div class="row page-titles">
                 <div class="col-md-6 col-8 align-self-center">
-                    <h3 class="text-themecolor m-b-0 m-t-0">¡Yachay!</h3>
+                    @*<img src="~/Content/monster-admin/html/assets/images/logo-text.png" class="dark-logo" />*@
+                    <img src="~/Content/yachay/assets/yachay_logo.png" class="dark-logo" style="width:26px;height:30px;" />
+                    <img src="~/Content/yachay/assets/yachay_palabra.png" class="dark-logo" style="width:74px;height:30px;" />
+                    @*<h3 class="text-themecolor m-b-0 m-t-0">¡Yachay!</h3>*@
                 </div>
                 <div class="col-md-6 col-4 align-self-center">
                     <a class="btn btn-success pull-right" href="@Url.Action("Ingresar", "Login")">Ingresar</a>
@@ -134,7 +137,8 @@
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
 
-            var lstNodos = ObtenerSitios();
+            //var lstNodos = ObtenerSitios();
+            var lstNodos = [];
             if (lstNodos.length > 0)
             {
                 lstNodos = nodosValidados(lstNodos);

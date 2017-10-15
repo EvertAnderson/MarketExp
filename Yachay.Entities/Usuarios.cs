@@ -14,7 +14,16 @@ namespace Yachay.Entities
     
     public partial class Usuarios
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Usuarios()
+        {
+            this.Roles = new HashSet<Roles>();
+        }
+    
         public string Usuario { get; set; }
         public string Password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Roles> Roles { get; set; }
     }
 }

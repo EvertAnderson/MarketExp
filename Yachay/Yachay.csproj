@@ -3192,6 +3192,11 @@
     <Content Include="Content\monster-admin\html\main\scss\icons\weather-icons\less\css\variables-night.css" />
     <Content Include="Content\monster-admin\html\main\scss\icons\weather-icons\less\css\variables-time.css" />
     <Content Include="Content\monster-admin\html\main\scss\icons\weather-icons\less\css\variables-wind-names.css" />
+    <Content Include="Content\yachay\assets\yachay_logo.png" />
+    <Content Include="Content\yachay\assets\yachay_logo_1.0.png" />
+    <Content Include="Content\yachay\assets\yachay_logo_1.1.png" />
+    <Content Include="Content\yachay\assets\yachay_logo_1.2.png" />
+    <Content Include="Content\yachay\assets\yachay_palabra.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

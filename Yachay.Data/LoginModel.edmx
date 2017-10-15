@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="yachaydi_loginModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_Rol" />
+          </Key>
+          <Property Name="id_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Rol" Type="nvarchar" MaxLength="14" />
+        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="Usuario" />
@@ -12,23 +19,83 @@
           <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Usuarios_Roles">
+          <Key>
+            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="id_Rol" />
+          </Key>
+          <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_Rol" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="AK_Usuarios_Roles_Rol">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Usuarios_Roles" Type="Self.Usuarios_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_Rol" />
+            </Principal>
+            <Dependent Role="Usuarios_Roles">
+              <PropertyRef Name="id_Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AK_Usuarios_Roles_Usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios_Roles" Type="Self.Usuarios_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Usuario" />
+            </Principal>
+            <Dependent Role="Usuarios_Roles">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="yachaydi_loginModelStoreContainer">
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="yachaydi_admin" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="yachaydi_admin" store:Type="Tables" />
+          <EntitySet Name="Usuarios_Roles" EntityType="Self.Usuarios_Roles" Schema="yachaydi_admin" store:Type="Tables" />
+          <AssociationSet Name="AK_Usuarios_Roles_Rol" Association="Self.AK_Usuarios_Roles_Rol">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios_Roles" EntitySet="Usuarios_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="AK_Usuarios_Roles_Usuario" Association="Self.AK_Usuarios_Roles_Usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Usuarios_Roles" EntitySet="Usuarios_Roles" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="yachaydi_loginModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_Rol" />
+          </Key>
+          <Property Name="id_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Rol" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.Usuarios_Roles" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="Usuario" />
           </Key>
           <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.Usuarios_Roles" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
+        <Association Name="Usuarios_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="yachaydi_loginEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="Usuarios_Roles" Association="Self.Usuarios_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -36,6 +103,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="yachaydi_loginModelStoreContainer" CdmEntityContainer="yachaydi_loginEntities">
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="yachaydi_loginModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id_Rol" ColumnName="id_Rol" />
+                <ScalarProperty Name="nombre_Rol" ColumnName="nombre_Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="yachaydi_loginModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
@@ -44,6 +119,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="Usuarios_Roles" TypeName="yachaydi_loginModel.Usuarios_Roles" StoreEntitySet="Usuarios_Roles">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="id_Rol" ColumnName="id_Rol" />
+            </EndProperty>
+            <EndProperty Name="Usuarios">
+              <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
