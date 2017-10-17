@@ -30,5 +30,20 @@ namespace Yachay.Controllers
                 ViewBag.currentUser = user;
             }
         }
+        protected bool esAdministrador()
+        {
+            if (getCurrentUser().Roles.FirstOrDefault().id_Rol == 1) return true;
+            return false;
+        }
+        protected bool esUsuario()
+        {
+            if (getCurrentUser().Roles.FirstOrDefault().id_Rol == 2) return true;
+            return false;
+        }
+        protected bool esNegocio()
+        {
+            if (getCurrentUser().Roles.FirstOrDefault().id_Rol == 3) return true;
+            return false;
+        }
     }
 }

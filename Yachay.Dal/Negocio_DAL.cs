@@ -17,7 +17,14 @@ namespace Yachay.DAL
                 return context.Negocio.ToList();
             }
         }
-        public Negocio GetNegocio(string email)
+        public Negocio GetNegocio(int id)
+        {
+            using (var context = getContext())
+            {
+                return context.Negocio.Where(x => x.id_Negocio == id).SingleOrDefault();
+            }
+        }
+        public Negocio GetNegocioByEmail(string email)
         {
             using (var context = getContext())
             {
@@ -82,11 +89,11 @@ namespace Yachay.DAL
             }
         }
 
-        public List<string> GetHorarios_Negocio(string email, int tipo)
+        public List<string> GetHorarios_Negocio(int id, int tipo)
         {
             using (var context = getContext())
             {
-                var result = context.Negocio.Where(x => x.email_Negocio == email).SingleOrDefault().Horario_Negocio.ToList().OrderBy(x => x.dia_Laboral);
+                var result = context.Negocio.Where(x => x.id_Negocio == id).SingleOrDefault().Horario_Negocio.ToList().OrderBy(x => x.dia_Laboral);
 
                 if (result.Count() > 0)
                 {

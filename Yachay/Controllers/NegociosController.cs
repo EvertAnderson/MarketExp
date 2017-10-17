@@ -16,21 +16,27 @@ namespace Yachay.Controllers
         public ActionResult Index()
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
-            return View(dal.GetNegocios());
+            if (this.esUsuario()) { return RedirectToAction("Negocios", "Mapa"); }
+
+            Usuarios user = getCurrentUser();
+            if (user.Roles.FirstOrDefault().id_Rol == 1)
+                return View(dal.GetNegocios());
+            else
+                return View(new List<Negocio>() { dal.GetNegocioByEmail(user.Usuario) });
         }
-        public ActionResult Negocio(string email = null)
+        public ActionResult Negocio(int id = 0)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             try
             {
                 Negocio ent = new Entities.Negocio();
-                if (!string.IsNullOrEmpty(email))
+                if (id > 0)
                 {
-                    ent = dal.GetNegocio(email);
+                    ent = dal.GetNegocio(id);
                     //Horarios
-                    var listaIni = dal.GetHorarios_Negocio(email, 1);
+                    var listaIni = dal.GetHorarios_Negocio(id, 1);
                     ViewBag.Horarios_ini = listaIni.Count > 0 ? listaIni : HorariosDefault(1);
-                    var listaFin = dal.GetHorarios_Negocio(email, 2);
+                    var listaFin = dal.GetHorarios_Negocio(id, 2);
                     ViewBag.Horarios_fin = listaFin.Count > 0 ? listaFin : HorariosDefault(2);
                     //Palabras Clave
                     var lstPalabrasClave = dal.GetPalabrasClave_Negocio(ent.id_Negocio);
@@ -57,9 +63,8 @@ namespace Yachay.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    if (dal.GetNegocio(ent.email_Negocio) == null)
+                    if (dal.GetNegocio(ent.id_Negocio) == null)
                     {
-                        
                         int id = dal.AddNegocio(ent);
                         //Registrar Horarios
                         var lstHorarios = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();

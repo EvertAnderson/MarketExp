@@ -14,7 +14,8 @@ namespace Yachay.DAL
         {
             using (var context = getLoginContext())
             {
-                var result = context.Usuarios.Where(x => x.Usuario == user.Usuario && x.Password == user.Password).SingleOrDefault();
+                //var result = context.Usuarios.Where(x => x.Usuario == user.Usuario && x.Password == user.Password).SingleOrDefault();
+                var result = context.Usuarios.Where(x => x.Usuario == user.Usuario && x.Password == user.Password).Include(x => x.Roles).SingleOrDefault();
                 return result;
             }
         }
