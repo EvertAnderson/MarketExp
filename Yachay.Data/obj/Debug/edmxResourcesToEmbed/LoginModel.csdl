@@ -10,9 +10,10 @@
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
-      <PropertyRef Name="Usuario" />
+      <PropertyRef Name="id_Usuario" />
     </Key>
-    <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Roles" Relationship="Self.Usuarios_Roles" FromRole="Usuarios" ToRole="Roles" />
   </EntityType>

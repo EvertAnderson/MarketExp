@@ -20,6 +20,7 @@ namespace Yachay.Entities
             this.Roles = new HashSet<Roles>();
         }
     
+        public int id_Usuario { get; set; }
         public string Usuario { get; set; }
         public string Password { get; set; }
     

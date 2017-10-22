@@ -14,17 +14,18 @@
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
-            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="id_Usuario" />
           </Key>
-          <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="100" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios_Roles">
           <Key>
-            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="id_Usuario" />
             <PropertyRef Name="id_Rol" />
           </Key>
-          <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_Usuario" Type="int" Nullable="false" />
           <Property Name="id_Rol" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="AK_Usuarios_Roles_Rol">
@@ -39,15 +40,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AK_Usuarios_Roles_Usuario">
+        <Association Name="AK_Usuarios_Roles_Usuarios">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="Usuarios_Roles" Type="Self.Usuarios_Roles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuarios">
-              <PropertyRef Name="Usuario" />
+              <PropertyRef Name="id_Usuario" />
             </Principal>
             <Dependent Role="Usuarios_Roles">
-              <PropertyRef Name="Usuario" />
+              <PropertyRef Name="id_Usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -59,7 +60,7 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios_Roles" EntitySet="Usuarios_Roles" />
           </AssociationSet>
-          <AssociationSet Name="AK_Usuarios_Roles_Usuario" Association="Self.AK_Usuarios_Roles_Usuario">
+          <AssociationSet Name="AK_Usuarios_Roles_Usuarios" Association="Self.AK_Usuarios_Roles_Usuarios">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Usuarios_Roles" EntitySet="Usuarios_Roles" />
           </AssociationSet>
@@ -79,9 +80,10 @@
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
-            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="id_Usuario" />
           </Key>
-          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Roles" Relationship="Self.Usuarios_Roles" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
@@ -114,6 +116,7 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="yachaydi_loginModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
@@ -124,7 +127,7 @@
               <ScalarProperty Name="id_Rol" ColumnName="id_Rol" />
             </EndProperty>
             <EndProperty Name="Usuarios">
-              <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

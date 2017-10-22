@@ -9,17 +9,18 @@
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
-      <PropertyRef Name="Usuario" />
+      <PropertyRef Name="id_Usuario" />
     </Key>
-    <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario" Type="nvarchar" MaxLength="100" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Usuarios_Roles">
     <Key>
-      <PropertyRef Name="Usuario" />
+      <PropertyRef Name="id_Usuario" />
       <PropertyRef Name="id_Rol" />
     </Key>
-    <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="id_Usuario" Type="int" Nullable="false" />
     <Property Name="id_Rol" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="AK_Usuarios_Roles_Rol">
@@ -34,15 +35,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AK_Usuarios_Roles_Usuario">
+  <Association Name="AK_Usuarios_Roles_Usuarios">
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
     <End Role="Usuarios_Roles" Type="Self.Usuarios_Roles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
-        <PropertyRef Name="Usuario" />
+        <PropertyRef Name="id_Usuario" />
       </Principal>
       <Dependent Role="Usuarios_Roles">
-        <PropertyRef Name="Usuario" />
+        <PropertyRef Name="id_Usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -54,7 +55,7 @@
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios_Roles" EntitySet="Usuarios_Roles" />
     </AssociationSet>
-    <AssociationSet Name="AK_Usuarios_Roles_Usuario" Association="Self.AK_Usuarios_Roles_Usuario">
+    <AssociationSet Name="AK_Usuarios_Roles_Usuarios" Association="Self.AK_Usuarios_Roles_Usuarios">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Usuarios_Roles" EntitySet="Usuarios_Roles" />
     </AssociationSet>

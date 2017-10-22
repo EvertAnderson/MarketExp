@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Usuarios">
       <EntityTypeMapping TypeName="yachaydi_loginModel.Usuarios">
         <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
           <ScalarProperty Name="Usuario" ColumnName="Usuario" />
           <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
@@ -22,7 +23,7 @@
         <ScalarProperty Name="id_Rol" ColumnName="id_Rol" />
       </EndProperty>
       <EndProperty Name="Usuarios">
-        <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
