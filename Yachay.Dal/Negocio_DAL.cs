@@ -44,7 +44,7 @@ namespace Yachay.DAL
         {
             using (var context = getContext())
             {
-                Negocio negocio = context.Negocio.Where(x => x.email_Negocio == ent.email_Negocio).SingleOrDefault();
+                Negocio negocio = context.Negocio.Where(x => x.id_Negocio == ent.id_Negocio).SingleOrDefault();
                 negocio.Nombre = ent.Nombre;
                 negocio.Direccion_texto = ent.Direccion_texto;
                 negocio.Direccion_Latitud = ent.Direccion_Latitud;

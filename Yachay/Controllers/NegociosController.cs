@@ -19,10 +19,11 @@ namespace Yachay.Controllers
             if (this.esUsuario()) { return RedirectToAction("Negocios", "Mapa"); }
 
             Usuarios user = getCurrentUser();
-            if (user.Roles.FirstOrDefault().id_Rol == 1)
+            if (esAdministrador())
                 return View(dal.GetNegocios());
             else
                 return View(new List<Negocio>() { dal.GetNegocioByEmail(user.Usuario) });
+
         }
         public ActionResult Negocio(int id = 0)
         {
