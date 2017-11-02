@@ -22,7 +22,7 @@ namespace Yachay.Controllers
             if (esAdministrador())
                 return View(dal.GetNegocios());
             else
-                return View(new List<Negocio>() { dal.GetNegocioByEmail(user.Usuario) });
+                return View(dal.GetNegociosByUserId(user.id_Usuario));
 
         }
         public ActionResult Negocio(int id = 0)

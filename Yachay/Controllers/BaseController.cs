@@ -28,6 +28,9 @@ namespace Yachay.Controllers
             if(user != null)
             {
                 ViewBag.currentUser = user;
+                ViewBag.esAdministrador = esAdministrador();
+                ViewBag.esUsuario = esUsuario();
+                ViewBag.esNegocio = esNegocio();
             }
         }
         protected bool esAdministrador()
