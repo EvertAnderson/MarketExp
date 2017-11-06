@@ -34,12 +34,18 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <section id="wrapper">
-        <div class="login-register" style="background-image:url(~/Content/monster-admin/html/assets/images/background/login-register.jpg);">
+        <div class="login-register" style="background-image:url(~/Content/monster-admin/html/assets/images/background/login-register.jpg); padding:5%;">
             @*<img src="~/Content/monster-admin/html/assets/images/background/login-register.jpg" />*@
-            <div class="login-box card">
-                <div class="card-block">
+            <div class="login-box card border-0">
+                <div class="card-block" style="padding:0px;">
                     @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal form-material" }))
                     {
+                        <div class="text-center">
+                            @*<img src="~/Content/yachay/assets/yachay_logo.png" class="card-img-top img-responsive" alt="Card image cap" style="width:150px;height:173px;" />*@
+                            @*<img src="~/Content/yachay/assets/yachay_logo_1.1.png" class="card-img-top img-responsive" alt="Card image cap" style="width:174px;height:173px;" />*@
+                            <img src="~/Content/yachay/assets/yachay_logo_1.1.png" class="card-img-top img-responsive" alt="Card image cap" style="width:234px;height:232px;" />
+                        </div>
+
                         <h3 class="box-title m-b-20">Ingresar</h3>
                         <div class="form-group ">
                             <div class="col-xs-12">
@@ -53,18 +59,7 @@
                                 @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Contraseña", @type = "password", @required = "required" })
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="checkbox checkbox-primary pull-left p-t-0">
-                                    <input id="checkbox-signup" type="checkbox">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group text-center m-t-20">
-                            <div class="col-xs-12">
-                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Ingresar</button>
-                            </div>
-                        </div>
+                        <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Ingresar</button>
                     }
                 </div>
             </div>
