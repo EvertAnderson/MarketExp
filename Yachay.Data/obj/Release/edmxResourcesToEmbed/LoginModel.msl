@@ -1,13 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="yachaydi_loginModelStoreContainer" CdmEntityContainer="yachaydi_loginEntities">
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="yachaydi_loginModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id_Rol" ColumnName="id_Rol" />
+          <ScalarProperty Name="nombre_Rol" ColumnName="nombre_Rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Usuarios">
       <EntityTypeMapping TypeName="yachaydi_loginModel.Usuarios">
         <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
           <ScalarProperty Name="Usuario" ColumnName="Usuario" />
           <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="Usuarios_Roles" TypeName="yachaydi_loginModel.Usuarios_Roles" StoreEntitySet="Usuarios_Roles">
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="id_Rol" ColumnName="id_Rol" />
+      </EndProperty>
+      <EndProperty Name="Usuarios">
+        <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
