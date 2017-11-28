@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerta.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Horario_Negocio.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
@@ -57,6 +60,11 @@
     </Compile>
     <Compile Include="Negocio.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NegocioModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NegocioModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="NegocioModel.cs">
       <AutoGen>True</AutoGen>
@@ -80,6 +88,15 @@
     <Compile Include="Roles.cs">
       <DependentUpon>LoginModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.cs">
       <DependentUpon>LoginModel.tt</DependentUpon>
     </Compile>
@@ -95,6 +112,10 @@
     <Content Include="LoginModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LoginModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="NegocioModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NegocioModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="NegocioModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

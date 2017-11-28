@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerta_DAL.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="BaseLogin.cs" />
     <Compile Include="Negocio_DAL.cs" />

@@ -41,3 +41,14 @@ C:\Archivos\Personal\Visual Studio 2017\MarketExp\Yachay.Entities\obj\Release\Ya
 C:\Archivos\Personal\Visual Studio 2017\MarketExp\Yachay.Entities\obj\Release\Yachay.Entities.csproj.CoreCompileInputs.cache
 C:\Archivos\Personal\Visual Studio 2017\MarketExp\Yachay.Entities\obj\Release\Yachay.Entities.dll
 C:\Archivos\Personal\Visual Studio 2017\MarketExp\Yachay.Entities\obj\Release\Yachay.Entities.pdb
+D:\Proyectos\MarketExp\Yachay.Entities\bin\Release\Yachay.Entities.dll.config
+D:\Proyectos\MarketExp\Yachay.Entities\bin\Release\Yachay.Entities.dll
+D:\Proyectos\MarketExp\Yachay.Entities\bin\Release\Yachay.Entities.pdb
+D:\Proyectos\MarketExp\Yachay.Entities\bin\Release\EntityFramework.dll
+D:\Proyectos\MarketExp\Yachay.Entities\bin\Release\EntityFramework.SqlServer.dll
+D:\Proyectos\MarketExp\Yachay.Entities\bin\Release\EntityFramework.xml
+D:\Proyectos\MarketExp\Yachay.Entities\bin\Release\EntityFramework.SqlServer.xml
+D:\Proyectos\MarketExp\Yachay.Entities\obj\Release\Yachay.Entities.csprojResolveAssemblyReference.cache
+D:\Proyectos\MarketExp\Yachay.Entities\obj\Release\Yachay.Entities.csproj.CoreCompileInputs.cache
+D:\Proyectos\MarketExp\Yachay.Entities\obj\Release\Yachay.Entities.dll
+D:\Proyectos\MarketExp\Yachay.Entities\obj\Release\Yachay.Entities.pdb
