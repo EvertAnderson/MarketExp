@@ -24,5 +24,6 @@ namespace Yachay.Entities
         public int Cantidad { get; set; }
     
         public virtual Negocio Negocio { get; set; }
+        public virtual Negocio Negocio1 { get; set; }
     }
 }

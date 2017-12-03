@@ -1,0 +1,63 @@
+﻿@model Yachay.Entities.Alerta
+@{
+    ViewBag.Title = "Alerta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row pages-titles">
+        <div class="col-md-6 col-8 align-self-center">
+            @if (Model == null || string.IsNullOrEmpty(Model.Nombre))
+            { <h3 class="text-themecolor m-b-0 m-t-0">Nueva Alerta</h3>}
+            else
+            { <h3 class="text-themecolor m-b-0 m-t-0">Editar Alerta</h3>}
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-block">
+                    @using (Html.BeginForm("AddAlerta", "Alertas", FormMethod.Post, new { @class = "" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="m-t-20">Nombre</label>
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @required = "" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="m-t-20">Cantidad</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"></span>
+                                    @Html.TextBoxFor(model => model.Cantidad, new { @class = "form-control", @type = "number", @min = "1", @required = "" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="m-t-20">Descripción</label>
+                                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row media-body">
+                            <div class="col-xs-12 col-md-12">
+                                @Html.TextBoxFor(model => model.Fecha, new { @value = Model != null ? Model.Fecha : DateTime.Now, @type = "hidden" })
+                                @Html.TextBoxFor(model => model.IdCliente, new { @value = Model != null ? Model.IdCliente : 0, @type = "hidden" })
+                                @Html.TextBoxFor(model => model.IdAlerta, new { @value = Model != null ? Model.IdAlerta : 0, @type = "hidden" })
+                                @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.Nombre)) ? "Guardar Cambios" : "Crear";}
+                                <div class="col-xs-6 col-md-6 text-left">
+                                    <button type="submit" class="btn btn-md btn-success">@btnname</button>
+                                    <a class="btn btn-md btn-danger" href="@Url.Action("Index", "Alertas")">Salir</a>
+                                </div>
+                            </div>
+                        </div>
+                                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

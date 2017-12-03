@@ -4,16 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="62ca3f8d00a441c1a6fbba309f224392" Name="Diagram1">
-        <EntityTypeShape EntityType="yachaydi_marketModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Alerta" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+      <Diagram DiagramId="0aae7b899cff4e06b14e7d8ab0c178de" Name="Diagram1">
+        <EntityTypeShape EntityType="yachaydi_marketModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Alerta" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="yachaydi_marketModel.Horario_Negocio" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Login" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Login" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Producto" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="yachaydi_marketModel.PalabrasClave" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="yachaydi_marketModel.Producto" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="yachaydi_marketModel.FK_Alerta_Negocio" ManuallyRouted="false" />
+        <AssociationConnector Association="yachaydi_marketModel.FK_Alerta_Negocio1" ManuallyRouted="false" />
         <AssociationConnector Association="yachaydi_marketModel.AK_Horario_Negocio" ManuallyRouted="false" />
         <AssociationConnector Association="yachaydi_marketModel.AK_Negocio_Login_Negocio" ManuallyRouted="false" />
         <AssociationConnector Association="yachaydi_marketModel.AK_Negocio_NP" ManuallyRouted="false" />
