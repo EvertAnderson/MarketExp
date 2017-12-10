@@ -51,6 +51,7 @@
     <Compile Include="Base.cs" />
     <Compile Include="BaseLogin.cs" />
     <Compile Include="Negocio_DAL.cs" />
+    <Compile Include="Notificacion_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario_DAL.cs" />
   </ItemGroup>

@@ -154,6 +154,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MapaController.cs" />
     <Compile Include="Controllers\NegociosController.cs" />
+    <Compile Include="Controllers\NotificacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4045,6 +4046,8 @@
     <Content Include="Views\Mapa\Prueba.cshtml" />
     <Content Include="Views\Alertas\Index.cshtml" />
     <Content Include="Views\Alertas\Alerta.cshtml" />
+    <Content Include="Views\Notificaciones\Index.cshtml" />
+    <Content Include="Views\Notificaciones\Notificacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
