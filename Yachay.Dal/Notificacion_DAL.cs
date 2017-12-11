@@ -18,11 +18,11 @@ namespace Yachay.Dal
             }
         }
 
-        public Alerta GetNotificacion(int id)
+        public Alerta GetNotificacion(int idUser)
         {
             using (var context = getContext())
             {
-                return context.Alerta.Where(x => x.IdAlerta == id).SingleOrDefault();
+                return context.Alerta.Where(x => x.IdAlerta == idUser).SingleOrDefault();
             }
         }
 
@@ -51,7 +51,7 @@ namespace Yachay.Dal
                 {
                     case 1:
                         return context.Alerta.Take(7).ToList();
-                    case 2:
+                    case 3:
                         return context.Alerta.Where(x => x.IdCliente != idUser).Take(7).ToList();
                     default:
                         return null;
@@ -74,14 +74,9 @@ namespace Yachay.Dal
             using (var context = getContext())
             {
                 Alerta Alerta = context.Alerta.Where(x => x.IdAlerta == obj.IdAlerta).SingleOrDefault();
-                Alerta.Nombre = obj.Nombre;
-                Alerta.IdCliente = obj.IdCliente;
                 Alerta.IdNegocio = obj.IdNegocio;
                 Alerta.IdProducto = obj.IdProducto;
-                Alerta.Fecha = obj.Fecha;
-                Alerta.Nombre = obj.Nombre;
-                Alerta.Descripcion = obj.Descripcion;
-                Alerta.Cantidad = obj.Cantidad;
+                Alerta.Tomado = obj.IdNegocio > 0 ? true : false;
                 context.SaveChanges();
                 return true;
             }

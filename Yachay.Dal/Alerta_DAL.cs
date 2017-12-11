@@ -15,7 +15,16 @@ namespace Yachay.Dal
         {
             using (var context = getContext())
             {
-                return context.Alerta.ToList();
+                return context.Alerta.Include(x => x.Negocio).ToList();
+            }
+        }
+
+        public List<Alerta> GetAlertasByUserId(int idUser)
+        {
+            using (var context = getContext())
+            {
+                var result = context.Alerta.Where(x => x.IdCliente == idUser).Include(x => x.Negocio).ToList();
+                return result;
             }
         }
 
@@ -31,6 +40,7 @@ namespace Yachay.Dal
         {
             using (var context = getContext())
             {
+                obj.Estado = true;
                 context.Alerta.Add(obj);
                 context.SaveChanges();
                 return obj.IdAlerta;

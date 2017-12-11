@@ -15,7 +15,12 @@ namespace Yachay.Controllers
         public ActionResult Index()
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
-            return View(dal.GetAlertas());
+            //return View(dal.GetAlertas());
+            Usuarios user = getCurrentUser();
+            if (esAdministrador())
+                return View(dal.GetAlertas());
+            else
+                return View(dal.GetAlertasByUserId(user.id_Usuario));
         }
 
         public ActionResult Alerta(int id = 0)

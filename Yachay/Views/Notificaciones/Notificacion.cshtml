@@ -14,6 +14,27 @@
         $(function () {
             $(".select2").select2();
         });
+
+        function GetProductosAjax() {
+            debugger;
+            var jsIdNegocio = $("#IdNegocio").val();
+
+            $('#IdProducto').empty();
+            var miUrl = '@Url.Action("GetProductosSelect", "Notificaciones")';
+
+            $.ajax({
+                type: "POST",
+                url: miUrl,
+                cache: false,
+                data: { idNegocio: jsIdNegocio },
+                dataType: 'json',
+                success: function (data) {
+                    $('#IdProducto').select2({
+                        data: data.lista
+                    })
+                }
+            });
+        }
     </script>
 }
 
@@ -22,15 +43,15 @@
         <div class="col-12">
             <div class="card card-outline-info">
                 <div class="card-block">
-                    @using (Html.BeginForm("AddNotificacion", "Notificacions", FormMethod.Post, new { @class = "form-horizontal" }))
+                    @using (Html.BeginForm("AddNotificacion", "Notificaciones", FormMethod.Post, new { @class = "form-horizontal" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-body">
                             @if (Model == null || string.IsNullOrEmpty(Model.Nombre))
-                            {<h3 class="box-title">Nueva Notificacion</h3>}
+                            {<h3 class="text-themecolor box-title">Nueva Notificacion</h3>}
                             else
-                            {<h3 class="box-title">Editar Notificacion</h3>}
+                            {<h3 class="text-themecolor box-title">Editar Notificacion</h3>}
 
 
                             <hr class="m-t-0 m-b-40" />
@@ -67,7 +88,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-4">Negocio:</label>
                                         <div class="col-md-8">
-                                            <select class="select2">
+                                            <select id="IdNegocio" name="IdNegocio" class="select2" style="width:100%;" onchange="GetProductosAjax();">
                                                 @{ var pNegocio = Model != null ? Model.IdNegocio.GetValueOrDefault() : 0;
                                                     List<Negocio> listaNegocios = (List<Negocio>)ViewBag.lstNegocios;
                                                 }
@@ -75,6 +96,23 @@
                                                 @foreach (var item in listaNegocios)
                                                 {
                                                     <option value="@item.id_Negocio" @(item.id_Negocio == pNegocio ? "selected=selected" : "")>@item.Nombre</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-4">Negocio:</label>
+                                        <div class="col-md-8">
+                                            <select id="IdProducto" name="IdProducto" class="select2" style="width:100%;">
+                                                @{ var pProducto = Model != null ? Model.IdProducto.GetValueOrDefault() : 0;
+                                                    List<Negocio_Producto> listaProductos = (List<Negocio_Producto>)ViewBag.lstProductos;
+                                                }
+                                                <option value=""></option>
+                                                @foreach (var item in listaProductos)
+                                                {
+                                                    <option value="@item.id_Producto" @(item.id_Producto == pProducto ? "selected=selected" : "")>@item.Producto.Nombre</option>
                                                 }
                                             </select>
                                         </div>
@@ -95,7 +133,7 @@
                                             @Html.TextBoxFor(model => model.Fecha, new { @value = Model != null ? Model.Fecha : DateTime.Now, @type = "hidden" })
                                             @Html.TextBoxFor(model => model.IdCliente, new { @value = Model != null ? Model.IdCliente : 0, @type = "hidden" })
                                             @Html.TextBoxFor(model => model.IdAlerta, new { @value = Model != null ? Model.IdAlerta : 0, @type = "hidden" })
-                                            @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.Nombre)) ? "Guardar Cambios" : "Crear";}
+                                            @{var btnname = (Model != null && !string.IsNullOrEmpty(Model.Nombre)) ? "Tomar Pedido" : "Crear";}
                                             <button type="submit" class="btn btn-md btn-success">@btnname</button>
                                             <a class="btn btn-md btn-inverse" href="@Url.Action("Index", "Notificaciones")">Salir</a>
                                         </div>

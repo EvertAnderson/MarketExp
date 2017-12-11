@@ -34,6 +34,12 @@
                                     Cantidad
                                 </th>
                                 <th>
+                                    Tomada
+                                </th>
+                                <th>
+                                    Negocio
+                                </th>
+                                <th>
                                     Fecha
                                 </th>
                                 <th></th>
@@ -51,6 +57,12 @@
                                     </td>
                                     <td>
                                         @item.Cantidad
+                                    </td>
+                                    <td class="@(item.Tomado == true ? "text-success" : "text-danger")">
+                                        @(item.Tomado == true ? "Tomado" : "Pendiente")
+                                    </td>
+                                    <td>
+                                        @(item.Negocio != null ? item.Negocio.Nombre : "")
                                     </td>
                                     <td>
                                         @item.Fecha

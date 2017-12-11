@@ -22,8 +22,9 @@ namespace Yachay.Entities
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int Cantidad { get; set; }
+        public Nullable<bool> Tomado { get; set; }
+        public Nullable<bool> Estado { get; set; }
     
         public virtual Negocio Negocio { get; set; }
-        public virtual Negocio Negocio1 { get; set; }
     }
 }

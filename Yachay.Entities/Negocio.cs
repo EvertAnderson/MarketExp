@@ -18,7 +18,6 @@ namespace Yachay.Entities
         public Negocio()
         {
             this.Alerta = new HashSet<Alerta>();
-            this.Alerta1 = new HashSet<Alerta>();
             this.Horario_Negocio = new HashSet<Horario_Negocio>();
             this.Negocio_Login = new HashSet<Negocio_Login>();
             this.Negocio_Producto = new HashSet<Negocio_Producto>();
@@ -38,8 +37,6 @@ namespace Yachay.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Alerta> Alerta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Alerta> Alerta1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Horario_Negocio> Horario_Negocio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

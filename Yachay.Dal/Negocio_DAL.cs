@@ -131,20 +131,31 @@ namespace Yachay.DAL
             }
         }
 
-        public List<Negocio_Producto> GetProductos(int id_Negocio)
+        public List<Negocio_Producto> GetProductos(int idNegocio)
         {
             using (var context = getContext())
             {
-                return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio).Include(x => x.Producto).ToList();
+                return context.Negocio_Producto.Where(x => x.id_Negocio == idNegocio).Include(x => x.Producto).ToList();
             }
         }
 
-        public Negocio_Producto GetNegocio_Producto(int id_Negocio, int id)
+        public List<Select2DTO> GetProductosSelect(int idNegocio)
+        {
+            using (var context = getContext())
+            {
+                return context.Negocio_Producto.Where(x => x.id_Negocio == idNegocio).Include(x => x.Producto).Select(x => new Select2DTO() {
+                    id = x.id_Producto,
+                    text = x.Producto.Nombre
+                }).ToList() ?? new List<Select2DTO>();
+            }
+        }
+
+        public Negocio_Producto GetNegocio_Producto(int idNegocio, int id)
         {
             using (var context = getContext())
             {
                 //return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio && x.id_Producto == id).SingleOrDefault();
-                return context.Negocio_Producto.Where(x => x.id_Negocio == id_Negocio && x.id_Producto == id).Include(x => x.Producto).SingleOrDefault();
+                return context.Negocio_Producto.Where(x => x.id_Negocio == idNegocio && x.id_Producto == id).Include(x => x.Producto).SingleOrDefault();
             }
         }
 

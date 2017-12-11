@@ -73,13 +73,13 @@
                                 <div class="dropdown-menu mailbox animated bounceInDown">
                                     <ul>
                                         <li>
-                                            <div class="drop-title">Notifications</div>
+                                            <div class="drop-title">Notificaciones</div>
                                         </li>
                                         <li>
                                             <div class="message-center">
                                                 @foreach (var item in (List<Yachay.Entities.Alerta>)ViewBag.Alertas)
                                                 {
-                                                    <a href="#">
+                                                    <a href="@Url.Action("Notificacion", "Notificaciones", new { id = item.IdAlerta })">
                                                         <div class="btn btn-success btn-circle"><i class="fa fa-dropbox"></i></div>
                                                         <div class="mail-contnet">
                                                             <h5>@item.Nombre</h5> <span class="mail-desc">@item.Descripcion</span> <span class="time">@item.Fecha</span>
@@ -89,7 +89,7 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                            <a class="nav-link text-center" href="@Url.Action("Index", "Notificaciones")"> <strong>Revisar todas las notificaciones</strong> <i class="fa fa-angle-right"></i> </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -325,25 +325,28 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                            <li class="nav-small-cap">PERSONAL</li>
+                        <li class="nav-small-cap">PERSONAL</li>
+                        <li>
+                            <a href="@Url.Action("Index", "Mapa")" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Mapa</span></a>
+                        </li>
+                        @if (ViewBag.esAdministrador || ViewBag.esNegocio)
+                        {
                             <li>
-                                <a href="@Url.Action("Index", "Mapa")" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Mapa</span></a>
+                                <a href="@Url.Action("Index", "Negocios")" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Negocios</span></a>
                             </li>
-                            @if (ViewBag.esAdministrador || ViewBag.esNegocio)
-                            {
-                                <li>
-                                    <a href="@Url.Action("Index", "Negocios")" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Negocios</span></a>
-                                </li>
-                            }
-                            <li>
-                                <a href="@Url.Action("Index", "Alertas")" aria-expanded="false"><i class="mdi mdi-alert-box"></i><span class="hide-menu">Alertas</span></a>
-                            </li>
+                        }
+                        <li>
+                            <a href="@Url.Action("Index", "Alertas")" aria-expanded="false"><i class="mdi mdi-alert-box"></i><span class="hide-menu">Alertas</span></a>
+                        </li>
+                        @if (!ViewBag.esUsuario)
+                        {
                             <li>
                                 <a href="@Url.Action("Index", "Notificaciones")" aria-expanded="false"><i class="mdi mdi-message"></i><span class="hide-menu">Notificaciones</span></a>
                             </li>
-                            <li>
-                                <a href="@Url.Action("Busqueda", "Negocios")" aria-expanded="false"><i class="mdi mdi-magnify"></i><span class="hide-menu">Busqueda</span></a>
-                            </li>
+                        }
+                        <li>
+                            <a href="@Url.Action("Busqueda", "Negocios")" aria-expanded="false"><i class="mdi mdi-magnify"></i><span class="hide-menu">Busqueda</span></a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

@@ -10,21 +10,6 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="Alerta">
-    <Key>
-      <PropertyRef Name="IdAlerta" />
-    </Key>
-    <Property Name="IdAlerta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdCliente" Type="Int32" Nullable="false" />
-    <Property Name="IdNegocio" Type="Int32" />
-    <Property Name="IdProducto" Type="Int32" />
-    <Property Name="Fecha" Type="DateTime" Precision="3" />
-    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Cantidad" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Negocio" Relationship="Self.FK_Alerta_Negocio" FromRole="Alerta" ToRole="Negocio" />
-    <NavigationProperty Name="Negocio1" Relationship="Self.FK_Alerta_Negocio1" FromRole="Alerta" ToRole="Negocio" />
-  </EntityType>
   <EntityType Name="Horario_Negocio">
     <Key>
       <PropertyRef Name="id_Negocio" />
@@ -37,28 +22,7 @@
     <Property Name="Minutos_Inicio" Type="Byte" Nullable="false" />
     <Property Name="Hora_Fin" Type="Byte" Nullable="false" />
     <Property Name="Minutos_Fin" Type="Byte" Nullable="false" />
-    <NavigationProperty Name="Negocio" Relationship="Self.AK_Horario_Negocio" FromRole="Horario_Negocio" ToRole="Negocio" />
-  </EntityType>
-  <EntityType Name="Negocio">
-    <Key>
-      <PropertyRef Name="id_Negocio" />
-    </Key>
-    <Property Name="id_Negocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="email_Negocio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Telefono" Type="Int64" />
-    <Property Name="Celular" Type="Int64" />
-    <Property Name="Direccion_texto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Referencia" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="Direccion_Latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Direccion_Longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Alerta" Relationship="Self.FK_Alerta_Negocio" FromRole="Negocio" ToRole="Alerta" />
-    <NavigationProperty Name="Alerta1" Relationship="Self.FK_Alerta_Negocio1" FromRole="Negocio" ToRole="Alerta" />
-    <NavigationProperty Name="Horario_Negocio" Relationship="Self.AK_Horario_Negocio" FromRole="Negocio" ToRole="Horario_Negocio" />
-    <NavigationProperty Name="Negocio_Login" Relationship="Self.AK_Negocio_Login_Negocio" FromRole="Negocio" ToRole="Negocio_Login" />
-    <NavigationProperty Name="Negocio_Producto" Relationship="Self.AK_Negocio_NP" FromRole="Negocio" ToRole="Negocio_Producto" />
-    <NavigationProperty Name="PalabrasClave" Relationship="Self.Negocio_PalabrasClave" FromRole="Negocio" ToRole="PalabrasClave" />
+    <NavigationProperty Name="Negocio" Relationship="yachaydi_marketModel.AK_Horario_Negocio" FromRole="Horario_Negocio" ToRole="Negocio" />
   </EntityType>
   <EntityType Name="Negocio_Login">
     <Key>
@@ -67,7 +31,7 @@
     </Key>
     <Property Name="id_Negocio" Type="Int32" Nullable="false" />
     <Property Name="id_Usuario" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Negocio" Relationship="Self.AK_Negocio_Login_Negocio" FromRole="Negocio_Login" ToRole="Negocio" />
+    <NavigationProperty Name="Negocio" Relationship="yachaydi_marketModel.AK_Negocio_Login_Negocio" FromRole="Negocio_Login" ToRole="Negocio" />
   </EntityType>
   <EntityType Name="Negocio_Producto">
     <Key>
@@ -77,8 +41,8 @@
     <Property Name="id_Negocio" Type="Int32" Nullable="false" />
     <Property Name="id_Producto" Type="Int32" Nullable="false" />
     <Property Name="Precio" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
-    <NavigationProperty Name="Negocio" Relationship="Self.AK_Negocio_NP" FromRole="Negocio_Producto" ToRole="Negocio" />
     <NavigationProperty Name="Producto" Relationship="Self.AK_Producto_NP" FromRole="Negocio_Producto" ToRole="Producto" />
+    <NavigationProperty Name="Negocio" Relationship="yachaydi_marketModel.AK_Negocio_NP" FromRole="Negocio_Producto" ToRole="Negocio" />
   </EntityType>
   <EntityType Name="PalabrasClave">
     <Key>
@@ -87,7 +51,7 @@
     <Property Name="id_PalabrasClave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="caracter_PalabrasClave" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="texto_PalabrasClave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Negocio" Relationship="Self.Negocio_PalabrasClave" FromRole="PalabrasClave" ToRole="Negocio" />
+    <NavigationProperty Name="Negocio" Relationship="yachaydi_marketModel.Negocio_PalabrasClave" FromRole="PalabrasClave" ToRole="Negocio" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
@@ -97,66 +61,6 @@
     <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Negocio_Producto" Relationship="Self.AK_Producto_NP" FromRole="Producto" ToRole="Negocio_Producto" />
   </EntityType>
-  <Association Name="FK_Alerta_Negocio">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
-    <End Role="Alerta" Type="Self.Alerta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Alerta">
-        <PropertyRef Name="IdNegocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Alerta_Negocio1">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
-    <End Role="Alerta" Type="Self.Alerta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Alerta">
-        <PropertyRef Name="IdNegocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AK_Horario_Negocio">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
-    <End Role="Horario_Negocio" Type="Self.Horario_Negocio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Horario_Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AK_Negocio_Login_Negocio">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
-    <End Role="Negocio_Login" Type="Self.Negocio_Login" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Negocio_Login">
-        <PropertyRef Name="id_Negocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AK_Negocio_NP">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
-    <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Negocio_Producto">
-        <PropertyRef Name="id_Negocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="AK_Producto_NP">
     <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
     <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
@@ -169,46 +73,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Negocio_PalabrasClave">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="*" />
-    <End Role="PalabrasClave" Type="Self.PalabrasClave" Multiplicity="*" />
-  </Association>
   <EntityContainer Name="yachaydi_marketEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-    <EntitySet Name="Alerta" EntityType="Self.Alerta" />
     <EntitySet Name="Horario_Negocio" EntityType="Self.Horario_Negocio" />
-    <EntitySet Name="Negocio" EntityType="Self.Negocio" />
     <EntitySet Name="Negocio_Login" EntityType="Self.Negocio_Login" />
     <EntitySet Name="Negocio_Producto" EntityType="Self.Negocio_Producto" />
     <EntitySet Name="PalabrasClave" EntityType="Self.PalabrasClave" />
     <EntitySet Name="Producto" EntityType="Self.Producto" />
-    <AssociationSet Name="FK_Alerta_Negocio" Association="Self.FK_Alerta_Negocio">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Alerta" EntitySet="Alerta" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Alerta_Negocio1" Association="Self.FK_Alerta_Negocio1">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Alerta" EntitySet="Alerta" />
-    </AssociationSet>
-    <AssociationSet Name="AK_Horario_Negocio" Association="Self.AK_Horario_Negocio">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Horario_Negocio" EntitySet="Horario_Negocio" />
-    </AssociationSet>
-    <AssociationSet Name="AK_Negocio_Login_Negocio" Association="Self.AK_Negocio_Login_Negocio">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Negocio_Login" EntitySet="Negocio_Login" />
-    </AssociationSet>
-    <AssociationSet Name="AK_Negocio_NP" Association="Self.AK_Negocio_NP">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
-    </AssociationSet>
     <AssociationSet Name="AK_Producto_NP" Association="Self.AK_Producto_NP">
       <End Role="Producto" EntitySet="Producto" />
       <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
-    </AssociationSet>
-    <AssociationSet Name="Negocio_PalabrasClave" Association="Self.Negocio_PalabrasClave">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="PalabrasClave" EntitySet="PalabrasClave" />
     </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -240,6 +114,28 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Alerta" EntityType="yachaydi_marketModel.Alerta" />
+    <EntitySet Name="Negocio" EntityType="yachaydi_marketModel.Negocio" />
+    <AssociationSet Name="FK_Alerta_Negocio" Association="yachaydi_marketModel.FK_Alerta_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Alerta" EntitySet="Alerta" />
+    </AssociationSet>
+    <AssociationSet Name="AK_Horario_Negocio" Association="yachaydi_marketModel.AK_Horario_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Horario_Negocio" EntitySet="Horario_Negocio" />
+    </AssociationSet>
+    <AssociationSet Name="AK_Negocio_Login_Negocio" Association="yachaydi_marketModel.AK_Negocio_Login_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Negocio_Login" EntitySet="Negocio_Login" />
+    </AssociationSet>
+    <AssociationSet Name="AK_Negocio_NP" Association="yachaydi_marketModel.AK_Negocio_NP">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="Negocio_PalabrasClave" Association="yachaydi_marketModel.Negocio_PalabrasClave">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="PalabrasClave" EntitySet="PalabrasClave" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -252,4 +148,92 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="Alerta">
+    <Key>
+      <PropertyRef Name="IdAlerta" />
+    </Key>
+    <Property Name="IdAlerta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="IdNegocio" Type="Int32" />
+    <Property Name="IdProducto" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Tomado" Type="Boolean" />
+    <Property Name="Estado" Type="Boolean" />
+    <NavigationProperty Name="Negocio" Relationship="yachaydi_marketModel.FK_Alerta_Negocio" FromRole="Alerta" ToRole="Negocio" />
+  </EntityType>
+  <EntityType Name="Negocio">
+    <Key>
+      <PropertyRef Name="id_Negocio" />
+    </Key>
+    <Property Name="id_Negocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email_Negocio" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="Int64" />
+    <Property Name="Celular" Type="Int64" />
+    <Property Name="Direccion_texto" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Referencia" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Direccion_Latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Direccion_Longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Alerta" Relationship="yachaydi_marketModel.FK_Alerta_Negocio" FromRole="Negocio" ToRole="Alerta" />
+    <NavigationProperty Name="Horario_Negocio" Relationship="yachaydi_marketModel.AK_Horario_Negocio" FromRole="Negocio" ToRole="Horario_Negocio" />
+    <NavigationProperty Name="Negocio_Login" Relationship="yachaydi_marketModel.AK_Negocio_Login_Negocio" FromRole="Negocio" ToRole="Negocio_Login" />
+    <NavigationProperty Name="Negocio_Producto" Relationship="yachaydi_marketModel.AK_Negocio_NP" FromRole="Negocio" ToRole="Negocio_Producto" />
+    <NavigationProperty Name="PalabrasClave" Relationship="yachaydi_marketModel.Negocio_PalabrasClave" FromRole="Negocio" ToRole="PalabrasClave" />
+  </EntityType>
+  <Association Name="FK_Alerta_Negocio">
+    <End Type="yachaydi_marketModel.Negocio" Role="Negocio" Multiplicity="0..1" />
+    <End Type="yachaydi_marketModel.Alerta" Role="Alerta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Alerta">
+        <PropertyRef Name="IdNegocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AK_Horario_Negocio">
+    <End Type="yachaydi_marketModel.Negocio" Role="Negocio" Multiplicity="1" />
+    <End Type="yachaydi_marketModel.Horario_Negocio" Role="Horario_Negocio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Horario_Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AK_Negocio_Login_Negocio">
+    <End Type="yachaydi_marketModel.Negocio" Role="Negocio" Multiplicity="1" />
+    <End Type="yachaydi_marketModel.Negocio_Login" Role="Negocio_Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Negocio_Login">
+        <PropertyRef Name="id_Negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AK_Negocio_NP">
+    <End Type="yachaydi_marketModel.Negocio" Role="Negocio" Multiplicity="1" />
+    <End Type="yachaydi_marketModel.Negocio_Producto" Role="Negocio_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Negocio_Producto">
+        <PropertyRef Name="id_Negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Negocio_PalabrasClave">
+    <End Type="yachaydi_marketModel.Negocio" Role="Negocio" Multiplicity="*" />
+    <End Type="yachaydi_marketModel.PalabrasClave" Role="PalabrasClave" Multiplicity="*" />
+  </Association>
 </Schema>

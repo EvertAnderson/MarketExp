@@ -22,6 +22,8 @@
     <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="500" />
     <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Tomado" Type="bit" />
+    <Property Name="Estado" Type="bit" />
   </EntityType>
   <EntityType Name="Horario_Negocio">
     <Key>
@@ -175,18 +177,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Alerta_Negocio1">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
-    <End Role="Alerta" Type="Self.Alerta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="id_Negocio" />
-      </Principal>
-      <Dependent Role="Alerta">
-        <PropertyRef Name="IdNegocio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -253,10 +243,6 @@
       <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
     </AssociationSet>
     <AssociationSet Name="FK_Alerta_Negocio" Association="Self.FK_Alerta_Negocio">
-      <End Role="Negocio" EntitySet="Negocio" />
-      <End Role="Alerta" EntitySet="Alerta" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Alerta_Negocio1" Association="Self.FK_Alerta_Negocio1">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Alerta" EntitySet="Alerta" />
     </AssociationSet>

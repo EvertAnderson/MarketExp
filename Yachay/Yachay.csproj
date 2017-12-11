@@ -4048,6 +4048,7 @@
     <Content Include="Views\Alertas\Alerta.cshtml" />
     <Content Include="Views\Notificaciones\Index.cshtml" />
     <Content Include="Views\Notificaciones\Notificacion.cshtml" />
+    <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

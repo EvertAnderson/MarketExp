@@ -18,7 +18,7 @@ namespace Yachay.Entities
         public int id_Producto { get; set; }
         public decimal Precio { get; set; }
     
-        public virtual Negocio Negocio { get; set; }
         public virtual Producto Producto { get; set; }
+        public virtual Negocio Negocio { get; set; }
     }
 }
