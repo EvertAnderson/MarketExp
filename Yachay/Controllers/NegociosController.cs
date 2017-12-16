@@ -16,7 +16,7 @@ namespace Yachay.Controllers
         public ActionResult Index()
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
-            if (this.esUsuario()) { return RedirectToAction("Negocios", "Mapa"); }
+            if (this.esUsuario()) { return RedirectToAction("Mapa", "Negocios"); }
 
             Usuarios user = getCurrentUser();
             if (esAdministrador())

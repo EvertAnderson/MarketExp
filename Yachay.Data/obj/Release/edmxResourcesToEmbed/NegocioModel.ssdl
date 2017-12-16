@@ -22,6 +22,8 @@
     <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="500" />
     <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Tomado" Type="bit" />
+    <Property Name="Estado" Type="bit" />
   </EntityType>
   <EntityType Name="Horario_Negocio">
     <Key>

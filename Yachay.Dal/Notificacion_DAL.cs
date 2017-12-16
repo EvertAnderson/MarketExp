@@ -74,11 +74,15 @@ namespace Yachay.Dal
             using (var context = getContext())
             {
                 Alerta Alerta = context.Alerta.Where(x => x.IdAlerta == obj.IdAlerta).SingleOrDefault();
-                Alerta.IdNegocio = obj.IdNegocio;
-                Alerta.IdProducto = obj.IdProducto;
-                Alerta.Tomado = obj.IdNegocio > 0 ? true : false;
-                context.SaveChanges();
-                return true;
+                if(Alerta.IdNegocio == null)
+                {
+                    Alerta.IdNegocio = obj.IdNegocio;
+                    Alerta.IdProducto = obj.IdProducto;
+                    Alerta.Tomado = obj.IdNegocio > 0 ? true : false;
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
             }
         }
     }
