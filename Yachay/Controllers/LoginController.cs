@@ -33,5 +33,16 @@ namespace Yachay.Controllers
             Session.Clear();
             return RedirectToAction("Ingresar");
         }
+
+        public ActionResult Registrate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registrate(Usuarios user)
+        {
+            return View();
+        }
     }
 }
