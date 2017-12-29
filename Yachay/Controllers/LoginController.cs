@@ -10,6 +10,8 @@ namespace Yachay.Controllers
 {
     public class LoginController : Controller
     {
+        Usuario_DAL dal = new Usuario_DAL();
+
         public ActionResult Ingresar()
         {
             return View();
@@ -36,13 +38,34 @@ namespace Yachay.Controllers
 
         public ActionResult Registrate()
         {
-            return View();
+            var objSent = TempData["Usuario"];
+            if (objSent != null) { TempData["Usuario"] = null; return View(objSent); }
+            return View(new Usuarios());
         }
 
         [HttpPost]
-        public ActionResult Registrate(Usuarios user)
+        public ActionResult Registrate(Usuarios user, string passUser = "", string passConfirm = "")
         {
-            return View();
+            try
+            {
+                if(dal.validateUser(user))
+                {
+                    if (passUser.Length > 6 && passUser == passConfirm)
+                    {
+                        user.Password = passUser;
+
+                        int id = dal.addUser(user);
+                        dal.addRolNegocio(id);
+                        return RedirectToAction("Ingresar");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            TempData["Usuario"] = user;
+            return RedirectToAction("Registrate");
         }
     }
 }

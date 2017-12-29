@@ -35,5 +35,43 @@ namespace Yachay.DAL
             }
             return true;
         }
+
+        public bool validateUser(Usuarios user)
+        {
+            using (var context = getLoginContext())
+            {
+                if (user.Usuario != null && user.Email != null)
+                {
+                    var result = from r in context.Usuarios
+                                 where (r.Usuario == user.Usuario || r.Email == user.Email)
+                                 select r;
+                    if(result.FirstOrDefault<Usuarios>() == null)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        public int addUser(Usuarios user)
+        {
+            using (var context = getLoginContext())
+            {
+                context.Usuarios.Add(user);
+                context.SaveChanges();
+                return user.id_Usuario;
+            }
+        }
+
+        public void addRolNegocio(int idUser)
+        {
+            using (var context = getLoginContext())
+            {
+                var rol = context.Roles.Where(x => x.id_Rol == 3).SingleOrDefault();
+                context.Usuarios.Where(x => x.id_Usuario == idUser).SingleOrDefault().Roles.Add(rol);
+                context.SaveChanges();
+            }
+        }
     }
 }
