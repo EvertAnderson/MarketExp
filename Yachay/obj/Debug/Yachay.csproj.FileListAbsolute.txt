@@ -318,6 +318,6 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\bin\Microsoft.AI
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\bin\Yachay.Data.pdb
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\bin\Yachay.Data.dll.config
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.csprojResolveAssemblyReference.cache
-C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.csproj.CoreCompileInputs.cache
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.csproj.CoreCompileInputs.cache

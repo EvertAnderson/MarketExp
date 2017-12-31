@@ -50,6 +50,6 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\bin\Debug\Y
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\bin\Debug\EntityFramework.xml
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.csprojResolveAssemblyReference.cache
-C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.csproj.CoreCompileInputs.cache
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.csproj.CoreCompileInputs.cache
