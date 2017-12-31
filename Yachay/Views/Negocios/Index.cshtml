@@ -28,12 +28,12 @@
                                 <th>
                                     Nombre
                                 </th>
-                                <th>
+                                @*<th>
                                     Email
                                 </th>
                                 <th>
                                     Dirección
-                                </th>
+                                </th>*@
                                 <th></th>
                             </tr>
                         </thead>
@@ -44,12 +44,12 @@
                                     <td>
                                         @item.Nombre
                                     </td>
-                                    <td>
+                                    @*<td>
                                         @item.email_Negocio
                                     </td>
                                     <td>
                                         @item.Direccion_texto
-                                    </td>
+                                    </td>*@
                                     <td>
                                         @Html.ActionLink("Editar", "Negocio", "Negocios", new { id = item.id_Negocio }, new { }) |
                                         @Html.ActionLink("Productos", "Productos", "Negocios", new { id_Negocio = item.id_Negocio }, new { })
