@@ -12,7 +12,7 @@
       <PropertyRef Name="id_Usuario" />
     </Key>
     <Property Name="id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Usuario" Type="nvarchar" MaxLength="80" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>

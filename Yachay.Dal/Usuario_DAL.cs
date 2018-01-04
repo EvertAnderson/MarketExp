@@ -14,21 +14,20 @@ namespace Yachay.DAL
         {
             using (var context = getLoginContext())
             {
-                //var result = context.Usuarios.Where(x => x.Usuario == user.Usuario && x.Password == user.Password).SingleOrDefault();
-                var result = context.Usuarios.Where(x => x.Usuario == user.Usuario && x.Password == user.Password).Include(x => x.Roles).SingleOrDefault();
+                var result = context.Usuarios.Where(x => x.Email == user.Email && x.Password == user.Password).Include(x => x.Roles).SingleOrDefault();
                 return result;
             }
         }
 
         public bool isValidUser(Usuarios user)
         {
-            if (user.Usuario == null || user.Password == null)
+            if (user.Password == null)
                 return false;
             else
             {
                 using (var context = getLoginContext())
                 {
-                    var result = context.Usuarios.Where(x => x.Usuario == user.Usuario && x.Password == user.Password).SingleOrDefault();
+                    var result = context.Usuarios.Where(x => x.Email == user.Email && x.Password == user.Password).SingleOrDefault();
                     if (result == null)
                         return false;
                 }
@@ -40,10 +39,10 @@ namespace Yachay.DAL
         {
             using (var context = getLoginContext())
             {
-                if (user.Usuario != null && user.Email != null)
+                if (user.Email != null)
                 {
                     var result = from r in context.Usuarios
-                                 where (r.Usuario == user.Usuario || r.Email == user.Email)
+                                 where (r.Email == user.Email)
                                  select r;
                     if(result.FirstOrDefault<Usuarios>() == null)
                     {

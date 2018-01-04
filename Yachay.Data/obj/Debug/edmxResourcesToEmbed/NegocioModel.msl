@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="yachaydi_marketModelStoreContainer" CdmEntityContainer="yachaydi_marketEntities">
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="yachaydi_marketModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
+    <EntitySetMapping Name="Alerta">
+      <EntityTypeMapping TypeName="yachaydi_marketModel.Alerta">
+        <MappingFragment StoreEntitySet="Alerta">
+          <ScalarProperty Name="IdAlerta" ColumnName="IdAlerta" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdNegocio" ColumnName="IdNegocio" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Tomado" ColumnName="Tomado" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -22,6 +27,22 @@
           <ScalarProperty Name="Minutos_Inicio" ColumnName="Minutos_Inicio" />
           <ScalarProperty Name="Hora_Fin" ColumnName="Hora_Fin" />
           <ScalarProperty Name="Minutos_Fin" ColumnName="Minutos_Fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Negocio">
+      <EntityTypeMapping TypeName="yachaydi_marketModel.Negocio">
+        <MappingFragment StoreEntitySet="Negocio">
+          <ScalarProperty Name="id_Negocio" ColumnName="id_Negocio" />
+          <ScalarProperty Name="email_Negocio" ColumnName="email_Negocio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Direccion_texto" ColumnName="Direccion_texto" />
+          <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+          <ScalarProperty Name="Direccion_Latitud" ColumnName="Direccion_Latitud" />
+          <ScalarProperty Name="Direccion_Longitud" ColumnName="Direccion_Longitud" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -59,68 +80,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="yachaydi_marketModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="yachaydi_marketModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="yachaydi_marketModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="yachaydi_marketModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="yachaydi_marketModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="yachaydi_marketModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="yachaydi_marketModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="yachaydi_marketModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="yachaydi_marketModel.Store.sp_upgraddiagrams" />
-    <EntitySetMapping Name="Alerta">
-      <EntityTypeMapping TypeName="yachaydi_marketModel.Alerta">
-        <MappingFragment StoreEntitySet="Alerta">
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Tomado" ColumnName="Tomado" />
-          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-          <ScalarProperty Name="IdNegocio" ColumnName="IdNegocio" />
-          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
-          <ScalarProperty Name="IdAlerta" ColumnName="IdAlerta" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Negocio">
-      <EntityTypeMapping TypeName="yachaydi_marketModel.Negocio">
-        <MappingFragment StoreEntitySet="Negocio">
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Direccion_Longitud" ColumnName="Direccion_Longitud" />
-          <ScalarProperty Name="Direccion_Latitud" ColumnName="Direccion_Latitud" />
-          <ScalarProperty Name="Referencia" ColumnName="Referencia" />
-          <ScalarProperty Name="Direccion_texto" ColumnName="Direccion_texto" />
-          <ScalarProperty Name="Celular" ColumnName="Celular" />
-          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="email_Negocio" ColumnName="email_Negocio" />
-          <ScalarProperty Name="id_Negocio" ColumnName="id_Negocio" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="Negocio_PalabrasClave" TypeName="yachaydi_marketModel.Negocio_PalabrasClave" StoreEntitySet="Negocio_PalabrasClave">
-      <EndProperty Name="PalabrasClave">
-        <ScalarProperty Name="id_PalabrasClave" ColumnName="id_PalabrasClave" />
-      </EndProperty>
       <EndProperty Name="Negocio">
         <ScalarProperty Name="id_Negocio" ColumnName="id_Negocio" />
+      </EndProperty>
+      <EndProperty Name="PalabrasClave">
+        <ScalarProperty Name="id_PalabrasClave" ColumnName="id_PalabrasClave" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

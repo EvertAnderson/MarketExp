@@ -4,22 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0aae7b899cff4e06b14e7d8ab0c178de" Name="Diagram1">
-        <EntityTypeShape EntityType="yachaydi_marketModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Horario_Negocio" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Login" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Producto" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.PalabrasClave" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Producto" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="4ae01ffc615647ba8cfc0afc8bd16607" Name="Diagram1">
+        <EntityTypeShape EntityType="yachaydi_marketModel.Alerta" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Horario_Negocio" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Login" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio_Producto" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.PalabrasClave" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="yachaydi_marketModel.Producto" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="yachaydi_marketModel.FK_Alerta_Negocio" ManuallyRouted="false" />
+        <AssociationConnector Association="yachaydi_marketModel.AK_Horario_Negocio" ManuallyRouted="false" />
+        <AssociationConnector Association="yachaydi_marketModel.AK_Negocio_Login_Negocio" ManuallyRouted="false" />
+        <AssociationConnector Association="yachaydi_marketModel.AK_Negocio_NP" ManuallyRouted="false" />
         <AssociationConnector Association="yachaydi_marketModel.AK_Producto_NP" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Alerta" Width="1.5" PointX="3" PointY="19.125" />
-        <EntityTypeShape EntityType="yachaydi_marketModel.Negocio" Width="1.5" PointX="0.75" PointY="10.75" />
-        <AssociationConnector Association="yachaydi_marketModel.FK_Alerta_Negocio" />
-        <AssociationConnector Association="yachaydi_marketModel.AK_Horario_Negocio" />
-        <AssociationConnector Association="yachaydi_marketModel.AK_Negocio_Login_Negocio" />
-        <AssociationConnector Association="yachaydi_marketModel.AK_Negocio_NP" />
-        <AssociationConnector Association="yachaydi_marketModel.Negocio_PalabrasClave" />
-        </Diagram>
+        <AssociationConnector Association="yachaydi_marketModel.Negocio_PalabrasClave" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -84,15 +84,6 @@
       <DependentUpon>LoginModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Select2DTO.cs" />
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>NegocioModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Usuarios.cs">
       <DependentUpon>LoginModel.tt</DependentUpon>
     </Compile>
