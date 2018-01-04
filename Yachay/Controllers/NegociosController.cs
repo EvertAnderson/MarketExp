@@ -67,6 +67,8 @@ namespace Yachay.Controllers
                     if (dal.GetNegocio(ent.id_Negocio) == null)
                     {
                         int id = dal.AddNegocio(ent);
+                        //Asociar Negocio al usuario
+                        dal.AddNegocioXUsuario(id, getCurrentUser().id_Usuario);
                         //Registrar Horarios
                         var lstHorarios = (List<Horario_Negocio>)TempData["lstHorarios"] ?? new List<Horario_Negocio>();
                         var lstPalabrasClave = (List<string>)TempData["lstPalabrasClave"] ?? new List<string>();

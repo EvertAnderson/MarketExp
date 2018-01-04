@@ -47,6 +47,15 @@ namespace Yachay.DAL
                 return ent.id_Negocio;
             }
         }
+        public bool AddNegocioXUsuario(int idNegocio, int idUser)
+        {
+            using (var context = getContext())
+            {
+                context.Negocio.Where(x => x.id_Negocio == idNegocio).SingleOrDefault().Negocio_Login.Add(new Negocio_Login() { id_Negocio = idNegocio, id_Usuario = idUser });
+                context.SaveChanges();
+                return true;
+            }
+        }
         public int UpdateNegocio(Negocio ent)
         {
             using (var context = getContext())

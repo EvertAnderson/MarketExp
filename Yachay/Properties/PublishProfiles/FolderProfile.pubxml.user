@@ -161,13 +161,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:25:07</publishTime>
     </File>
     <File Include="bin/Yachay.Dal.dll">
-      <publishTime>12/31/2017 01:27:50</publishTime>
+      <publishTime>01/02/2018 22:57:31</publishTime>
     </File>
     <File Include="bin/Yachay.Dal.dll.config">
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
     <File Include="bin/Yachay.Dal.pdb">
-      <publishTime>12/31/2017 01:27:50</publishTime>
+      <publishTime>01/02/2018 22:57:31</publishTime>
     </File>
     <File Include="bin/Yachay.Data.dll">
       <publishTime>12/31/2017 01:27:50</publishTime>
@@ -179,7 +179,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:27:50</publishTime>
     </File>
     <File Include="bin/Yachay.dll">
-      <publishTime>12/31/2017 01:27:54</publishTime>
+      <publishTime>01/02/2018 22:57:35</publishTime>
     </File>
     <File Include="bin/Yachay.Entities.dll">
       <publishTime>12/31/2017 01:27:50</publishTime>
@@ -191,7 +191,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:27:50</publishTime>
     </File>
     <File Include="bin/Yachay.pdb">
-      <publishTime>12/31/2017 01:27:54</publishTime>
+      <publishTime>01/02/2018 22:57:35</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>08/05/2017 16:44:14</publishTime>
@@ -11816,13 +11816,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
     <File Include="Views/Negocios/Index.cshtml">
-      <publishTime>12/31/2017 01:25:06</publishTime>
+      <publishTime>12/31/2017 12:32:40</publishTime>
     </File>
     <File Include="Views/Negocios/Mapa.cshtml">
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
     <File Include="Views/Negocios/Negocio.cshtml">
-      <publishTime>12/31/2017 01:25:03</publishTime>
+      <publishTime>12/31/2017 12:27:00</publishTime>
     </File>
     <File Include="Views/Negocios/Producto.cshtml">
       <publishTime>12/31/2017 01:25:06</publishTime>
@@ -11840,7 +11840,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/31/2017 01:25:06</publishTime>
+      <publishTime>01/02/2018 21:32:29</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>12/31/2017 01:25:06</publishTime>
