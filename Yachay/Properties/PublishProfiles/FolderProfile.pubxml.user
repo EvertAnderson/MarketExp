@@ -179,7 +179,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:27:50</publishTime>
     </File>
     <File Include="bin/Yachay.dll">
-      <publishTime>01/02/2018 22:57:35</publishTime>
+      <publishTime>01/03/2018 22:41:14</publishTime>
     </File>
     <File Include="bin/Yachay.Entities.dll">
       <publishTime>12/31/2017 01:27:50</publishTime>
@@ -191,7 +191,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:27:50</publishTime>
     </File>
     <File Include="bin/Yachay.pdb">
-      <publishTime>01/02/2018 22:57:35</publishTime>
+      <publishTime>01/03/2018 22:41:14</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>08/05/2017 16:44:14</publishTime>
@@ -11822,7 +11822,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
     <File Include="Views/Negocios/Negocio.cshtml">
-      <publishTime>12/31/2017 12:27:00</publishTime>
+      <publishTime>01/03/2018 22:35:07</publishTime>
     </File>
     <File Include="Views/Negocios/Producto.cshtml">
       <publishTime>12/31/2017 01:25:06</publishTime>

@@ -181,7 +181,6 @@
         function GrabarPalabrasClave()
         {
             var ruta = '@Url.Action("AlmacenarListaPalabrasClave", "Negocios")';
-            debugger;
             var jsPalabrasClave = [];
             jsPalabrasClave = $('#palabrasClave').val() != "" ? $('#palabrasClave').val().split(",") : [];
             var miData = JSON.stringify({ 'lista': jsPalabrasClave });

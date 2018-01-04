@@ -62,6 +62,7 @@ namespace Yachay.DAL
             {
                 Negocio negocio = context.Negocio.Where(x => x.id_Negocio == ent.id_Negocio).SingleOrDefault();
                 negocio.Nombre = ent.Nombre;
+                negocio.email_Negocio = ent.email_Negocio;
                 negocio.Direccion_texto = ent.Direccion_texto;
                 negocio.Direccion_Latitud = ent.Direccion_Latitud;
                 negocio.Direccion_Longitud = ent.Direccion_Longitud;
