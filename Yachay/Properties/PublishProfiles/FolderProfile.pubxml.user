@@ -179,7 +179,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2018 00:33:04</publishTime>
     </File>
     <File Include="bin/Yachay.dll">
-      <publishTime>01/04/2018 00:33:08</publishTime>
+      <publishTime>01/05/2018 00:24:07</publishTime>
     </File>
     <File Include="bin/Yachay.Entities.dll">
       <publishTime>01/04/2018 00:33:03</publishTime>
@@ -191,7 +191,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2018 00:33:03</publishTime>
     </File>
     <File Include="bin/Yachay.pdb">
-      <publishTime>01/04/2018 00:33:08</publishTime>
+      <publishTime>01/05/2018 00:24:07</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>08/05/2017 16:44:14</publishTime>
@@ -502,6 +502,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/monster-admin/html/assets/images/gallery/studio9.jpg">
       <publishTime>12/31/2017 01:25:03</publishTime>
     </File>
+    <File Include="Content/monster-admin/html/assets/images/logo-icon-yachay.png">
+      <publishTime>01/04/2018 23:50:23</publishTime>
+    </File>
     <File Include="Content/monster-admin/html/assets/images/logo-icon.png">
       <publishTime>12/31/2017 01:25:03</publishTime>
     </File>
@@ -510,6 +513,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/monster-admin/html/assets/images/logo-light-text.png">
       <publishTime>12/31/2017 01:25:03</publishTime>
+    </File>
+    <File Include="Content/monster-admin/html/assets/images/logo-text-yachay.png">
+      <publishTime>01/04/2018 23:24:29</publishTime>
     </File>
     <File Include="Content/monster-admin/html/assets/images/logo-text.png">
       <publishTime>12/31/2017 01:25:03</publishTime>
@@ -11701,6 +11707,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/Site.css">
       <publishTime>12/31/2017 01:25:03</publishTime>
     </File>
+    <File Include="Content/yachay/assets/favicon.ico">
+      <publishTime>01/05/2018 00:09:53</publishTime>
+    </File>
+    <File Include="Content/yachay/assets/favicon.png">
+      <publishTime>01/05/2018 00:19:34</publishTime>
+    </File>
+    <File Include="Content/yachay/assets/logo-icon-yachay.png">
+      <publishTime>01/04/2018 23:50:23</publishTime>
+    </File>
+    <File Include="Content/yachay/assets/logo-text-yachay.png">
+      <publishTime>01/04/2018 23:24:29</publishTime>
+    </File>
     <File Include="Content/yachay/assets/yachay_logo.png">
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
@@ -11801,13 +11819,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
     <File Include="Views/Login/Ingresar.cshtml">
-      <publishTime>01/04/2018 00:25:18</publishTime>
+      <publishTime>01/05/2018 00:22:26</publishTime>
     </File>
     <File Include="Views/Login/Registrate.cshtml">
-      <publishTime>01/04/2018 00:24:36</publishTime>
+      <publishTime>01/05/2018 00:22:35</publishTime>
     </File>
     <File Include="Views/Mapa/Index.cshtml">
-      <publishTime>12/31/2017 01:25:03</publishTime>
+      <publishTime>01/05/2018 00:22:19</publishTime>
     </File>
     <File Include="Views/Mapa/Prueba.cshtml">
       <publishTime>12/31/2017 01:25:06</publishTime>
@@ -11840,7 +11858,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/31/2017 01:25:06</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/02/2018 21:32:29</publishTime>
+      <publishTime>01/05/2018 00:22:41</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>12/31/2017 01:25:06</publishTime>

@@ -247,11 +247,13 @@
     <Content Include="Content\monster-admin\html\assets\images\gallery\studio7.jpg" />
     <Content Include="Content\monster-admin\html\assets\images\gallery\studio8.jpg" />
     <Content Include="Content\monster-admin\html\assets\images\gallery\studio9.jpg" />
-    <Content Include="Content\monster-admin\html\assets\images\logo-icon-yachay.png" />
+    <Content Include="Content\yachay\assets\favicon.ico" />
+    <Content Include="Content\yachay\assets\favicon.png" />
+    <Content Include="Content\yachay\assets\logo-icon-yachay.png" />
     <Content Include="Content\monster-admin\html\assets\images\logo-icon.png" />
     <Content Include="Content\monster-admin\html\assets\images\logo-light-icon.png" />
     <Content Include="Content\monster-admin\html\assets\images\logo-light-text.png" />
-    <Content Include="Content\monster-admin\html\assets\images\logo-text-yachay.png" />
+    <Content Include="Content\yachay\assets\logo-text-yachay.png" />
     <Content Include="Content\monster-admin\html\assets\images\logo-text.png" />
     <Content Include="Content\monster-admin\html\assets\images\tooltip\Euclid.png" />
     <Content Include="Content\monster-admin\html\assets\images\tooltip\shape1.svg" />
