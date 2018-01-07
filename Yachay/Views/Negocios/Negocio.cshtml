@@ -233,27 +233,27 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <label class="m-t-15">Correo</label>
-                @Html.TextBoxFor(model => model.email_Negocio, new { @class = "form-control", @type = "email" })
-            </div>
-            <div class="col-sm-12 col-md-6">
                 <label class="m-t-15">Dirección</label>
                 @Html.TextBoxFor(model => model.Direccion_texto, new { @class = "form-control", @required = "" })
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="m-t-15">Correo</label>
+                @Html.TextBoxFor(model => model.email_Negocio, new { @class = "form-control", @type = "email" })
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label class="m-t-15">Teléfono</label>
-                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @type = "number", @required = "", @min = 0 })
+                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @type = "number", @min = 0 })
             </div>
             <div class="col-sm-12 col-md-6">
                 <label class="m-t-15">Celular</label>
-                @Html.TextBoxFor(model => model.Celular, new { @class = "form-control", @type = "number", @required = "", @min = 0 })
+                @Html.TextBoxFor(model => model.Celular, new { @class = "form-control", @type = "number", @min = 0 })
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <label class="m-t-20 col-12">Palabras Clave</label>
+                <label class="m-t-20 col-12">Palabras Clave (palabras asociadas a tu negocio)</label>
                 <div class="input-group m-b-20">
                     <span class="input-group-addon">Tags</span>
                     <input id="palabrasClave" type="text" value="@(ViewBag.lstPalabrasClave)" data-role="tagsinput" placeholder="add tags">

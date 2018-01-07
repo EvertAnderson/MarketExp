@@ -41,46 +41,39 @@
             <div class="login-box card border-0">
                 <div class="card-block" style="padding:0px;">
                     @using (Html.BeginForm("Registrate", "Login", FormMethod.Post, new { @class = "form-horizontal form-material" }))
-    {
-                <div class="text-center">
-                    <img src="~/Content/yachay/assets/yachay_logo_1.1.png" class="card-img-top img-responsive" alt="Card image cap" style="width:234px;height:232px;" />
-                </div>
+                    {
+                            <div class="text-center">
+                                <img src="~/Content/yachay/assets/yachay_logo_1.1.png" class="card-img-top img-responsive" alt="Card image cap" style="width:234px;height:232px;" />
+                            </div>
 
-                <h3 class="box-title m-b-20">Registrate</h3>
-                @*<div class="form-group ">
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(u => u.Usuario, new { @class = "form-control", @placeholder = "Nombre", @type = "text", @required = "required" })
-                    </div>
-                </div>*@
-                <div class="form-group ">
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email", @type = "email", @required = "required" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        @*@Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Contraseña", @type = "password", @required = "required" })*@
-                        <input class="form-control" id="passUser" name="passUser" placeholder="Contraseña" required="required" value="" type="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        @*@Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Confirmar Contraseña", @type = "password", @required = "required" })*@
-                        <input class="form-control" id="passConfirm" name="passConfirm" placeholder="Confirmar Contraseña" required="required" value="" type="password">
-                    </div>
-                </div>
-                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Registrar</button>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <a href="@Url.Action("Index", "Mapa")" id="to-recover" class="text-dark pull-right"><i class="fa fa-map-marker m-r-5"></i> Ir al mapa</a>
-                    </div>
-                </div>
-                <div class="form-group m-b-0">
-                    <div class="col-sm-12 text-center">
-                        <p>¿Ya tienes una cuenta? <a href="@Url.Action("Ingresar", "Login")" class="text-info m-l-5"><b>Ingresa</b></a></p>
-                    </div>
-                </div>
-}
+                            <h3 class="box-title m-b-20">Registrate</h3>
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email", @type = "email", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <input class="form-control" id="passUser" name="passUser" placeholder="Contraseña" required="required" value="" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <input class="form-control" id="passConfirm" name="passConfirm" placeholder="Confirmar Contraseña" required="required" value="" type="password">
+                                </div>
+                            </div>
+                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Registrar</button>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <a href="@Url.Action("Index", "Mapa")" id="to-recover" class="text-dark pull-right"><i class="fa fa-map-marker m-r-5"></i> Ir al mapa</a>
+                                </div>
+                            </div>
+                            <div class="form-group m-b-0">
+                                <div class="col-sm-12 text-center">
+                                    <p>¿Ya tienes una cuenta? <a href="@Url.Action("Ingresar", "Login")" class="text-info m-l-5"><b>Ingresa</b></a></p>
+                                </div>
+                            </div>
+                    }
                 </div>
             </div>
         </div>

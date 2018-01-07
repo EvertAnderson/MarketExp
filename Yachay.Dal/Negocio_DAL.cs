@@ -24,13 +24,6 @@ namespace Yachay.DAL
                 return context.Negocio.Where(x => x.id_Negocio == id).SingleOrDefault();
             }
         }
-        public Negocio GetNegocioByEmail(string email)
-        {
-            using (var context = getContext())
-            {
-                return context.Negocio.Where(x => x.email_Negocio == email).SingleOrDefault();
-            }
-        }
         public List<Negocio> GetNegociosByUserId(int id)
         {
             using (var context = getContext())

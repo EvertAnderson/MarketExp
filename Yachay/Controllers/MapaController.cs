@@ -15,7 +15,6 @@ namespace Yachay.Controllers
         // GET: Mapa
         public ActionResult Index()
         {
-            //if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
             return View();
         }
 
