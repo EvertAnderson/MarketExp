@@ -38,17 +38,20 @@ namespace Yachay.Controllers
         }
 
         [HttpGet]
-        public JsonResult BuscarNegocios(string texto)
+        public JsonResult BuscarNegocios(double lat, double lng, string texto)
         {
             texto = texto.ToLower();
 
-            var lista = dal.GetNegocios_LatLng_Busqueda();
+            //var lista = dal.GetNegocios_LatLng_Busqueda();
+            var lista = dal.GetNegocios_SP_Busqueda(lat, lng, texto);
             List<NodoDTO> listaNodos;
 
-            listaNodos = lista.Where(x => (
+            listaNodos = lista;
+
+            /*listaNodos = lista.Where(x => (
             x.Nombre.ToLower() ?? "").Contains(texto) || 
             x.PalabrasClave.Any(y => (y.ToLower() ?? "").Contains(texto)) ||
-            x.Productos.Any(z => (z.ToLower() ?? "").Contains(texto))).ToList();
+            x.Productos.Any(z => (z.ToLower() ?? "").Contains(texto))).ToList();*/
             return Json(new { listaNodos }, JsonRequestBehavior.AllowGet);
         }
     }

@@ -38,7 +38,6 @@
                     myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     deleteMarkers();
                     placeMarker(map, myCenter);
-                    console.log(position.coords);
                     setLatitud(position.coords.latitude);
                     setLongitud(position.coords.longitude);
                 });
@@ -141,11 +140,6 @@
                 clockIni = $(clockId_i).val().split(":");
                 clockFin = $(clockId_f).val().split(":");
 
-                /*String timme = "13:10";
-                String[] time = timme.split(":");
-                int hour = Integer.parseInt(time[0].trim());
-                int min = Integer.parseInt(time[1].trim());*/
-
                 var elem = {
                     id_Negocio: $("#id_Negocio").val(),
                     dia_Laboral: i,
@@ -155,7 +149,6 @@
                     Hora_Fin: parseInt(clockFin[0].trim()),
                     Minutos_Fin: parseInt(clockFin[1].trim())
                 };
-                //console.log(elem);
                 lista.push(elem);
             }
 
@@ -204,9 +197,6 @@
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&callback=initMap" type="text/javascript"></script>
 }
-@*<div class="col-md-12 bg-white">
-        <h3 class="text-themecolor box-title" style="margin: 0px;">Ubicación del Negocio</h3>
-    </div>*@
 <div style="position:relative; height:calc(100vh - 4em - 184px);">
     <div id="map" class="gmaps" style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
 </div>
@@ -233,27 +223,27 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <label class="m-t-15">Correo</label>
-                @Html.TextBoxFor(model => model.email_Negocio, new { @class = "form-control", @type = "email" })
-            </div>
-            <div class="col-sm-12 col-md-6">
                 <label class="m-t-15">Dirección</label>
                 @Html.TextBoxFor(model => model.Direccion_texto, new { @class = "form-control", @required = "" })
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="m-t-15">Correo</label>
+                @Html.TextBoxFor(model => model.email_Negocio, new { @class = "form-control", @type = "email" })
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label class="m-t-15">Teléfono</label>
-                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @type = "number", @required = "", @min = 0 })
+                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @type = "number", @min = 0 })
             </div>
             <div class="col-sm-12 col-md-6">
                 <label class="m-t-15">Celular</label>
-                @Html.TextBoxFor(model => model.Celular, new { @class = "form-control", @type = "number", @required = "", @min = 0 })
+                @Html.TextBoxFor(model => model.Celular, new { @class = "form-control", @type = "number", @min = 0 })
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <label class="m-t-20 col-12">Palabras Clave</label>
+                <label class="m-t-20 col-12">Palabras Clave (palabras asociadas a tu negocio)</label>
                 <div class="input-group m-b-20">
                     <span class="input-group-addon">Tags</span>
                     <input id="palabrasClave" type="text" value="@(ViewBag.lstPalabrasClave)" data-role="tagsinput" placeholder="add tags">

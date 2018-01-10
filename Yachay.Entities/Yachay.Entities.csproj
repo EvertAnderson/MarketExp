@@ -76,6 +76,12 @@
     <Compile Include="PalabrasClave.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pedido.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido_Propuesta.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Producto.cs">
       <DependentUpon>NegocioModel.tt</DependentUpon>
     </Compile>
@@ -84,6 +90,9 @@
       <DependentUpon>LoginModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Select2DTO.cs" />
+    <Compile Include="sp_Busca_Negocios_Result.cs">
+      <DependentUpon>NegocioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.cs">
       <DependentUpon>LoginModel.tt</DependentUpon>
     </Compile>

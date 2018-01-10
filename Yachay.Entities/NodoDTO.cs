@@ -8,6 +8,7 @@ namespace Yachay.Entities
 {
     public class NodoDTO
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public string Direccion_texto { get; set; }
         public string Direccion_Latitud { get; set; }

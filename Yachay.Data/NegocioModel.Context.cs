@@ -12,6 +12,8 @@ namespace Yachay.Entities
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class yachaydi_marketEntities : DbContext
     {
@@ -31,6 +33,25 @@ namespace Yachay.Entities
         public virtual DbSet<Negocio_Login> Negocio_Login { get; set; }
         public virtual DbSet<Negocio_Producto> Negocio_Producto { get; set; }
         public virtual DbSet<PalabrasClave> PalabrasClave { get; set; }
+        public virtual DbSet<Pedido> Pedido { get; set; }
+        public virtual DbSet<Pedido_Propuesta> Pedido_Propuesta { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+    
+        public virtual ObjectResult<sp_Busca_Negocios_Result> sp_Busca_Negocios(Nullable<double> latitud, Nullable<double> longitud, string palabra)
+        {
+            var latitudParameter = latitud.HasValue ?
+                new ObjectParameter("Latitud", latitud) :
+                new ObjectParameter("Latitud", typeof(double));
+    
+            var longitudParameter = longitud.HasValue ?
+                new ObjectParameter("Longitud", longitud) :
+                new ObjectParameter("Longitud", typeof(double));
+    
+            var palabraParameter = palabra != null ?
+                new ObjectParameter("Palabra", palabra) :
+                new ObjectParameter("Palabra", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Busca_Negocios_Result>("sp_Busca_Negocios", latitudParameter, longitudParameter, palabraParameter);
+        }
     }
 }

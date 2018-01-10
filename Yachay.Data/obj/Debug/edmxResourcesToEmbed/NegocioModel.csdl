@@ -35,7 +35,7 @@
       <PropertyRef Name="id_Negocio" />
     </Key>
     <Property Name="id_Negocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="email_Negocio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email_Negocio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Telefono" Type="Int64" />
     <Property Name="Celular" Type="Int64" />
@@ -48,6 +48,7 @@
     <NavigationProperty Name="Horario_Negocio" Relationship="Self.AK_Horario_Negocio" FromRole="Negocio" ToRole="Horario_Negocio" />
     <NavigationProperty Name="Negocio_Login" Relationship="Self.AK_Negocio_Login_Negocio" FromRole="Negocio" ToRole="Negocio_Login" />
     <NavigationProperty Name="Negocio_Producto" Relationship="Self.AK_Negocio_NP" FromRole="Negocio" ToRole="Negocio_Producto" />
+    <NavigationProperty Name="Pedido_Propuesta" Relationship="Self.FK_Pedido_Propuesta_Negocio" FromRole="Negocio" ToRole="Pedido_Propuesta" />
     <NavigationProperty Name="PalabrasClave" Relationship="Self.Negocio_PalabrasClave" FromRole="Negocio" ToRole="PalabrasClave" />
   </EntityType>
   <EntityType Name="Negocio_Login">
@@ -78,6 +79,34 @@
     <Property Name="caracter_PalabrasClave" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="texto_PalabrasClave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Negocio" Relationship="Self.Negocio_PalabrasClave" FromRole="PalabrasClave" ToRole="Negocio" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+    </Key>
+    <Property Name="IdPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Pedido_Propuesta" Relationship="Self.FK_Pedido_Propuesta_Pedido" FromRole="Pedido" ToRole="Pedido_Propuesta" />
+  </EntityType>
+  <EntityType Name="Pedido_Propuesta">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+      <PropertyRef Name="IdNegocio" />
+    </Key>
+    <Property Name="IdPedido" Type="Int32" Nullable="false" />
+    <Property Name="IdNegocio" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Negocio" Relationship="Self.FK_Pedido_Propuesta_Negocio" FromRole="Pedido_Propuesta" ToRole="Negocio" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Propuesta_Pedido" FromRole="Pedido_Propuesta" ToRole="Pedido" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
@@ -135,6 +164,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Pedido_Propuesta_Negocio">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
+    <End Role="Pedido_Propuesta" Type="Self.Pedido_Propuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Pedido_Propuesta">
+        <PropertyRef Name="IdNegocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="AK_Producto_NP">
     <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
     <End Role="Negocio_Producto" Type="Self.Negocio_Producto" Multiplicity="*" />
@@ -144,6 +185,18 @@
       </Principal>
       <Dependent Role="Negocio_Producto">
         <PropertyRef Name="id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Propuesta_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="Pedido_Propuesta" Type="Self.Pedido_Propuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="IdPedido" />
+      </Principal>
+      <Dependent Role="Pedido_Propuesta">
+        <PropertyRef Name="IdPedido" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -158,6 +211,8 @@
     <EntitySet Name="Negocio_Login" EntityType="Self.Negocio_Login" />
     <EntitySet Name="Negocio_Producto" EntityType="Self.Negocio_Producto" />
     <EntitySet Name="PalabrasClave" EntityType="Self.PalabrasClave" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+    <EntitySet Name="Pedido_Propuesta" EntityType="Self.Pedido_Propuesta" />
     <EntitySet Name="Producto" EntityType="Self.Producto" />
     <AssociationSet Name="FK_Alerta_Negocio" Association="Self.FK_Alerta_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />
@@ -175,13 +230,32 @@
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
     </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Propuesta_Negocio" Association="Self.FK_Pedido_Propuesta_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Pedido_Propuesta" EntitySet="Pedido_Propuesta" />
+    </AssociationSet>
     <AssociationSet Name="AK_Producto_NP" Association="Self.AK_Producto_NP">
       <End Role="Producto" EntitySet="Producto" />
       <End Role="Negocio_Producto" EntitySet="Negocio_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Propuesta_Pedido" Association="Self.FK_Pedido_Propuesta_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Pedido_Propuesta" EntitySet="Pedido_Propuesta" />
     </AssociationSet>
     <AssociationSet Name="Negocio_PalabrasClave" Association="Self.Negocio_PalabrasClave">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="PalabrasClave" EntitySet="PalabrasClave" />
     </AssociationSet>
+    <FunctionImport Name="sp_Busca_Negocios" ReturnType="Collection(yachaydi_marketModel.sp_Busca_Negocios_Result)">
+      <Parameter Name="Latitud" Mode="In" Type="Double" />
+      <Parameter Name="Longitud" Mode="In" Type="Double" />
+      <Parameter Name="Palabra" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="sp_Busca_Negocios_Result">
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Direccion_Latitud" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Direccion_Longitud" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="nvPalabra" Nullable="true" MaxLength="50" />
+  </ComplexType>
 </Schema>

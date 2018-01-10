@@ -33,7 +33,7 @@
       <PropertyRef Name="id_Negocio" />
     </Key>
     <Property Name="id_Negocio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="email_Negocio" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="email_Negocio" Type="nvarchar" MaxLength="100" />
     <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Telefono" Type="bigint" />
     <Property Name="Celular" Type="bigint" />
@@ -75,6 +75,31 @@
     <Property Name="id_PalabrasClave" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="caracter_PalabrasClave" Type="nchar" MaxLength="1" />
     <Property Name="texto_PalabrasClave" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+    </Key>
+    <Property Name="IdPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCliente" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="500" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pedido_Propuesta">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+      <PropertyRef Name="IdNegocio" />
+    </Key>
+    <Property Name="IdPedido" Type="int" Nullable="false" />
+    <Property Name="IdNegocio" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Precision="18" Scale="4" Nullable="false" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
@@ -167,6 +192,35 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Pedido_Propuesta_Negocio">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="1" />
+    <End Role="Pedido_Propuesta" Type="Self.Pedido_Propuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_Negocio" />
+      </Principal>
+      <Dependent Role="Pedido_Propuesta">
+        <PropertyRef Name="IdNegocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Propuesta_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="Pedido_Propuesta" Type="Self.Pedido_Propuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="IdPedido" />
+      </Principal>
+      <Dependent Role="Pedido_Propuesta">
+        <PropertyRef Name="IdPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_Busca_Negocios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="yachaydi_admin">
+    <Parameter Name="Latitud" Type="float" Mode="In" />
+    <Parameter Name="Longitud" Type="float" Mode="In" />
+    <Parameter Name="Palabra" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="yachaydi_marketModelStoreContainer">
     <EntitySet Name="Alerta" EntityType="Self.Alerta" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Horario_Negocio" EntityType="Self.Horario_Negocio" Schema="yachaydi_admin" store:Type="Tables" />
@@ -175,6 +229,8 @@
     <EntitySet Name="Negocio_PalabrasClave" EntityType="Self.Negocio_PalabrasClave" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Negocio_Producto" EntityType="Self.Negocio_Producto" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="PalabrasClave" EntityType="Self.PalabrasClave" Schema="yachaydi_admin" store:Type="Tables" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="yachaydi_admin" store:Type="Tables" />
+    <EntitySet Name="Pedido_Propuesta" EntityType="Self.Pedido_Propuesta" Schema="yachaydi_admin" store:Type="Tables" />
     <EntitySet Name="Producto" EntityType="Self.Producto" Schema="yachaydi_admin" store:Type="Tables" />
     <AssociationSet Name="AK_Horario_Negocio" Association="Self.AK_Horario_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />
@@ -203,6 +259,14 @@
     <AssociationSet Name="FK_Alerta_Negocio" Association="Self.FK_Alerta_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Alerta" EntitySet="Alerta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Propuesta_Negocio" Association="Self.FK_Pedido_Propuesta_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Pedido_Propuesta" EntitySet="Pedido_Propuesta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Propuesta_Pedido" Association="Self.FK_Pedido_Propuesta_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Pedido_Propuesta" EntitySet="Pedido_Propuesta" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

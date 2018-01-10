@@ -35,16 +35,21 @@
     <div id="main-wrapper">
         <div class="container-fluid p-b-0 ">
             <div class="row page-titles">
-                <div class="col-md-6 col-8 align-self-center">
+                <div class="col-md-6 col-sm-12 align-self-center text-md-left text-sm-center">
                     <img src="~/Content/yachay/assets/yachay_logo_1.0.png" class="dark-logo" style="width:106px;height:30px;" />
                 </div>
-                <div class="col-md-6 col-4 align-self-center">
+                <div class="col-md-6 col-sm-12 align-self-center text-sm-center">
+                    <a class="btn btn-secondary waves-effect waves-light" href="tel:+51910026770" target="_blank"><i class="fa fa-phone"></i> </a>
+                    <a class="btn btn-facebook waves-effect waves-light" href="https://www.facebook.com/yachay.digital/" target="_blank"><i class="fa fa-facebook"></i> </a>
+                    <a class="btn btn-success waves-effect waves-light" href="https://api.whatsapp.com/send?phone=51910026770" target="_blank"><i class="fa fa-whatsapp"></i> </a>
                     <a class="btn btn-success pull-right" href="@Url.Action("Ingresar", "Login")">Ingresar</a>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <input id="buscador" type="text" class="form-control" placeholder="Buscar Negocio, producto o servicio">
+                    <input id="lat" name="lat" type="hidden">
+                    <input id="lng" name="lng" type="hidden">
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" onclick="BuscarNegocios($('#buscador').val())">Buscar</button>
                     </span>
@@ -78,6 +83,7 @@
     <script type="text/javascript">
         var map;
         var markers = [];
+        var circle;
 
         var miBaseUrl = "";
         var lugares = [];
@@ -92,18 +98,22 @@
         });
 
         function BuscarNegocios(texto) {
+            var jsLat = $('#lat').val();
+            var jsLng = $('#lng').val();
+
             $.ajax({
                 type: "GET",
                 url: miBaseUrl,
                 cache: false,
-                data: { texto: texto },
+                data: { lat: jsLat, lng: jsLng, texto: texto },
                 dataType: 'json',
                 success: function (data) {
                     if (data.listaNodos.length > 0)
                     {
+                        EliminarRadio();
                         deleteMarkers();
                         addMarkers(data.listaNodos);
-                        map.setZoom(14);
+                        map.setZoom(17);
                         map.setCenter(new google.maps.LatLng(lugares[0].Direccion_Latitud, lugares[0].Direccion_Longitud));
                     }
                 }
@@ -120,11 +130,15 @@
             var mapCanvas = document.getElementById("map");
 
             var myCenter = new google.maps.LatLng(-12.051671, -77.034605);
-            var myZoom = 15;
+            var myZoom = 17;
             //Posicion Actual
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    deleteMarkers();
+                    //placeMarker(map, myCenter);
+                    GuardarCentro(position.coords.latitude, position.coords.longitude);
+                    addYourLocationButton(map);
                 });
             } else {
                 handleLocationError(false, infoWindow, map.getCenter());
@@ -133,7 +147,8 @@
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
 
-            //var lstNodos = ObtenerSitios();
+            
+            
             var lstNodos = [];
             if (lstNodos.length > 0)
             {
@@ -226,10 +241,97 @@
         function isLongitude(lng) {
             return isFinite(lng) && Math.abs(lng) <= 180;
         }
+
+        function addYourLocationButton(map) {
+            var controlDiv = document.createElement('div');
+
+            var firstChild = document.createElement('button');
+            firstChild.style.backgroundColor = '#fff';
+            firstChild.style.border = 'none';
+            firstChild.style.outline = 'none';
+            firstChild.style.width = '28px';
+            firstChild.style.height = '28px';
+            firstChild.style.borderRadius = '2px';
+            firstChild.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+            firstChild.style.cursor = 'pointer';
+            firstChild.style.marginRight = '10px';
+            firstChild.style.padding = '0px';
+            firstChild.title = 'Your Location';
+            controlDiv.appendChild(firstChild);
+
+            var secondChild = document.createElement('div');
+            secondChild.style.margin = '5px';
+            secondChild.style.width = '18px';
+            secondChild.style.height = '18px';
+            secondChild.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png)';
+            secondChild.style.backgroundSize = '180px 18px';
+            secondChild.style.backgroundPosition = '0px 0px';
+            secondChild.style.backgroundRepeat = 'no-repeat';
+            secondChild.id = 'you_location_img';
+            firstChild.appendChild(secondChild);
+
+            google.maps.event.addListener(map, 'dragend', function () {
+                $('#you_location_img').css('background-position', '0px 0px');
+            });
+
+            firstChild.addEventListener('click', function () {
+                var imgX = '0';
+                var animationInterval = setInterval(function () {
+                    if (imgX == '-18') imgX = '0';
+                    else imgX = '-18';
+                    $('#you_location_img').css('background-position', imgX + 'px 0px');
+                }, 500);
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        EliminarRadio();
+                        deleteMarkers();
+                        DibujarRadio(map, latlng);
+                        placeMarker(map, latlng);
+                        GuardarCentro(position.coords.latitude, position.coords.longitude);
+                        map.setCenter(latlng);
+                        clearInterval(animationInterval);
+                        $('#you_location_img').css('background-position', '-144px 0px');
+                    });
+                }
+                else {
+                    clearInterval(animationInterval);
+                    $('#you_location_img').css('background-position', '0px 0px');
+                }
+            });
+
+            controlDiv.index = 1;
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
+        }
+
+        function GuardarCentro(lat, lng) {
+            $('#lat').val(lat);
+            $('#lng').val(lng);
+        }
+
+        function DibujarRadio(map, myCenter) {
+            var circleOptions = {
+                strokeColor: '#fffd47',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#fefb00',
+                fillOpacity: 0.05,
+                map: map,
+                center: myCenter,
+                radius: 1500
+            };
+
+            circle = new google.maps.Circle(circleOptions);
+        }
+
+        function EliminarRadio() {
+            if (circle != null) { circle.setMap(null); }
+        }
+
+
     </script>
 
     @Scripts.Render("~/bundles/jquery")
-    @*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&callback=initMap" type="text/javascript"></script>*@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&libraries=places&callback=initMap"></script>
 </body>
 </html>

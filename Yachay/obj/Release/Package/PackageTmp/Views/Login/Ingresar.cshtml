@@ -36,44 +36,47 @@
     <!-- ============================================================== -->
     <section id="wrapper">
         <div class="login-register" style="background-image:url(~/Content/monster-admin/html/assets/images/background/login-register.jpg); padding:5%;">
-            @*<img src="~/Content/monster-admin/html/assets/images/background/login-register.jpg" />*@
             <div class="login-box card border-0">
                 <div class="card-block" style="padding:0px;">
                     @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal form-material" }))
-                    {
-                        <div class="text-center">
-                            @*<img src="~/Content/yachay/assets/yachay_logo.png" class="card-img-top img-responsive" alt="Card image cap" style="width:150px;height:173px;" />*@
-                            @*<img src="~/Content/yachay/assets/yachay_logo_1.1.png" class="card-img-top img-responsive" alt="Card image cap" style="width:174px;height:173px;" />*@
-                            <img src="~/Content/yachay/assets/yachay_logo_1.1.png" class="card-img-top img-responsive" alt="Card image cap" style="width:234px;height:232px;" />
-                        </div>
+    {
+                <div class="text-center">
+                    <img src="~/Content/yachay/assets/yachay_logo_1.1.png" class="card-img-top img-responsive" alt="Card image cap" style="width:234px;height:232px;" />
+                </div>
 
-                        <h3 class="box-title m-b-20">Ingresar</h3>
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                @*<input class="form-control" type="text" required="" placeholder="Nombre">*@
-                                @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email", @type = "email", @required = "required" })
-                            </div>
+                <h3 class="box-title m-b-20">Ingresar</h3>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email", @type = "email", @required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Contraseña", @type = "password", @required = "required" })
+                    </div>
+                </div>
+                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Ingresar</button>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <a href="@Url.Action("Index", "Mapa")" id="to-recover" class="text-dark pull-right"><i class="fa fa-map-marker m-r-5"></i> Ir al mapa</a>
+                    </div>
+                </div>
+                <div class="form-group m-b-0">
+                    <div class="col-sm-12 text-center">
+                        <p><b>¿Aún no tienes una cuenta?</b> <a href="@Url.Action("Registrate", "Login")" class="text-info m-l-5"><b>Regístrate</b></a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                        <p>Contactanos:</p>
+                        <div class="social">
+                            <a class="btn btn-secondary waves-effect waves-light" href="tel:+51910026770" target="_blank"><i class="fa fa-phone"></i> </a>
+                            <a class="btn btn-facebook waves-effect waves-light" href="https://www.facebook.com/yachay.digital/" target="_blank"><i class="fa fa-facebook"></i> </a>
+                            <a class="btn btn-success waves-effect waves-light" href="https://api.whatsapp.com/send?phone=51910026770" target="_blank"><i class="fa fa-whatsapp"></i> </a>
                         </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                @*<input class="form-control" type="password" required="" placeholder="Contraseña">*@
-                                @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Contraseña", @type = "password", @required = "required" })
-                            </div>
-                        </div>
-                        <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Ingresar</button>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                @*<a href="@Url.Action("Index", "Mapa")" id="to-recover" class="text-dark pull-left"><i class="fa fa-map-marker m-r-5"></i> Regístrate</a>*@
-                                @*<a href="#" class="text-info m-l-5 pull-left"><b>Regístrate</b></a>*@
-                                <a href="@Url.Action("Index", "Mapa")" id="to-recover" class="text-dark pull-right"><i class="fa fa-map-marker m-r-5"></i> Ir al mapa</a>
-                            </div>
-                        </div>
-                        <div class="form-group m-b-0">
-                            <div class="col-sm-12 text-center">
-                                <p>¿Aún no tienes una cuenta? <a href="@Url.Action("Registrate", "Login")" class="text-info m-l-5"><b>Regístrate</b></a></p>
-                            </div>
-                        </div>
-                    }
+                    </div>
+                </div>
+}
                 </div>
             </div>
         </div>

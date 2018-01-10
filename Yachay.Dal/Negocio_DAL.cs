@@ -99,6 +99,25 @@ namespace Yachay.DAL
             }
         }
 
+        public List<NodoDTO> GetNegocios_SP_Busqueda(double lat, double lng, string texto)
+        {
+            using (var context = getContext())
+            {
+                var result = context.sp_Busca_Negocios(lat, lng, texto).Select(x => new NodoDTO()
+                {
+                    //Id = x.id_Negocio,
+                    Nombre = x.Nombre.ToLower() ?? "",
+                    //Direccion_texto = x.Direccion_texto,
+                    Direccion_Latitud = x.Direccion_Latitud,
+                    Direccion_Longitud = x.Direccion_Longitud,
+                    //PalabrasClave = x.PalabrasClave.Select(y => y.texto_PalabrasClave).ToList(),
+                    //Productos = x.Negocio_Producto.Select(z => z.Producto.Nombre).ToList()
+                }).ToList();
+
+                return result;
+            }
+        }
+
         public List<string> GetHorarios_Negocio(int id, int tipo)
         {
             using (var context = getContext())

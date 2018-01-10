@@ -72,6 +72,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Pedido">
+      <EntityTypeMapping TypeName="yachaydi_marketModel.Pedido">
+        <MappingFragment StoreEntitySet="Pedido">
+          <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedido_Propuesta">
+      <EntityTypeMapping TypeName="yachaydi_marketModel.Pedido_Propuesta">
+        <MappingFragment StoreEntitySet="Pedido_Propuesta">
+          <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+          <ScalarProperty Name="IdNegocio" ColumnName="IdNegocio" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Producto">
       <EntityTypeMapping TypeName="yachaydi_marketModel.Producto">
         <MappingFragment StoreEntitySet="Producto">
@@ -88,5 +114,15 @@
         <ScalarProperty Name="id_PalabrasClave" ColumnName="id_PalabrasClave" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Busca_Negocios" FunctionName="yachaydi_marketModel.Store.sp_Busca_Negocios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="yachaydi_marketModel.sp_Busca_Negocios_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion_Latitud" ColumnName="Direccion_Latitud" />
+          <ScalarProperty Name="Direccion_Longitud" ColumnName="Direccion_Longitud" />
+          <ScalarProperty Name="nvPalabra" ColumnName="nvPalabra" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
