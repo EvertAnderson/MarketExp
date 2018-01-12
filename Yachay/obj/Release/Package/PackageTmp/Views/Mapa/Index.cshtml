@@ -23,6 +23,16 @@
         #map {
             height: 100%;
         }
+
+        .labels {
+            color: white;
+            background-color: red;
+            font-family: "Lucida Grande", "Arial", sans-serif;
+            font-size: 10px;
+            text-align: center;
+            width: 30px;
+            white-space: nowrap;
+        }
     </style>
 
 </head>
@@ -56,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div style="position:relative; height:calc(100vh - 4em - 94px);">
+        <div style="position:relative; height:calc(100vh - 4em - 144px);">
             <div id="map" class="gmaps" style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
         </div>
     </div>
@@ -167,6 +177,18 @@
             });
             var infowindow = new google.maps.InfoWindow({
                 content: 'Latitud: ' + location.lat() + '<br>Longitud: ' + location.lng()
+            });
+            infowindow.open(map, marker);
+            markers.push(marker);
+        }
+
+        function placeMarkerText(map, location, text) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: text
             });
             infowindow.open(map, marker);
             markers.push(marker);
@@ -287,7 +309,7 @@
                         EliminarRadio();
                         deleteMarkers();
                         DibujarRadio(map, latlng);
-                        placeMarker(map, latlng);
+                        placeMarkerText(map, latlng, 'Estás aqui.<br>Se mostrarán Negocios que<br> están a 1.5 KM de distancia.');
                         GuardarCentro(position.coords.latitude, position.coords.longitude);
                         map.setCenter(latlng);
                         clearInterval(animationInterval);
@@ -311,10 +333,10 @@
 
         function DibujarRadio(map, myCenter) {
             var circleOptions = {
-                strokeColor: '#fffd47',
+                strokeColor: '#2980b9',
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
-                fillColor: '#fefb00',
+                fillColor: '#3498db',
                 fillOpacity: 0.05,
                 map: map,
                 center: myCenter,
