@@ -11,7 +11,7 @@ namespace Yachay.Controllers
 {
     public class NotificacionesController : BaseController
     {
-        Notificacion_DAL dal = new Notificacion_DAL();
+        NotificacionDAL dal = new NotificacionDAL();
         // GET: Notificaciones
         public ActionResult Index()
         {

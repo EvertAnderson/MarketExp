@@ -47,13 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alerta_DAL.cs" />
+    <Compile Include="AlertaDAL.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="BaseLogin.cs" />
-    <Compile Include="Negocio_DAL.cs" />
-    <Compile Include="Notificacion_DAL.cs" />
+    <Compile Include="NegocioDAL.cs" />
+    <Compile Include="NotificacionDAL.cs" />
+    <Compile Include="PedidoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuario_DAL.cs" />
+    <Compile Include="UsuarioDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yachay.Data\Yachay.Data.csproj">

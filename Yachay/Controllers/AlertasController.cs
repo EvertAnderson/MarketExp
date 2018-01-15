@@ -10,7 +10,7 @@ namespace Yachay.Controllers
 {
     public class AlertasController : BaseController
     {
-        Alerta_DAL dal = new Alerta_DAL();
+        AlertaDAL dal = new AlertaDAL();
         // GET: Alertas
         public ActionResult Index()
         {

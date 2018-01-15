@@ -32,7 +32,7 @@ namespace Yachay.Controllers
                 ViewBag.esAdministrador = esAdministrador();
                 ViewBag.esUsuario = esUsuario();
                 ViewBag.esNegocio = esNegocio();
-                ViewBag.Alertas = (new Notificacion_DAL()).GetNotificaciones(user.id_Usuario, user.Roles.FirstOrDefault().id_Rol) ?? new List<Alerta>();
+                ViewBag.Alertas = (new NotificacionDAL()).GetNotificaciones(user.id_Usuario, user.Roles.FirstOrDefault().id_Rol) ?? new List<Alerta>();
             }
         }
         protected bool esAdministrador()
