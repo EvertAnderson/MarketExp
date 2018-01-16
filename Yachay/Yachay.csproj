@@ -4054,6 +4054,7 @@
     <Content Include="Views\Notificaciones\Index.cshtml" />
     <Content Include="Views\Notificaciones\Notificacion.cshtml" />
     <Content Include="Views\Login\Registrate.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4061,7 +4062,6 @@
     <Folder Include="Content\monster-admin\html\assets\plugins\footable\old\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Pedidos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
