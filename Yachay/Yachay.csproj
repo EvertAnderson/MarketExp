@@ -4055,6 +4055,7 @@
     <Content Include="Views\Notificaciones\Notificacion.cshtml" />
     <Content Include="Views\Login\Registrate.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Pedidos\Pedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
