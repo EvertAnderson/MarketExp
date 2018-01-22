@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Yachay.Dal;
+using Yachay.DAL;
 using Yachay.Entities;
 
 namespace Yachay.Controllers
@@ -33,6 +33,7 @@ namespace Yachay.Controllers
                 ViewBag.esUsuario = esUsuario();
                 ViewBag.esNegocio = esNegocio();
                 ViewBag.Alertas = (new NotificacionDAL()).GetNotificaciones(user.id_Usuario, user.Roles.FirstOrDefault().id_Rol) ?? new List<Alerta>();
+                ViewBag.Notificaciones = (new PropuestaDAL()).GetPropuestaes(user.id_Usuario, user.Roles.FirstOrDefault().id_Rol) ?? new List<Pedido>();
             }
         }
         protected bool esAdministrador()

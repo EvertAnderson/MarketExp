@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Yachay.Dal;
+using Yachay.DAL;
 using Yachay.Entities;
 
 namespace Yachay.Controllers
@@ -76,6 +76,14 @@ namespace Yachay.Controllers
             }
             TempData["Pedido"] = obj;
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Propuestas(int idPedido)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar", "Login"); }
+            if (esUsuario()) { return RedirectToAction("Index", "Pedidos"); }
+            Usuarios user = getCurrentUser();
+            return View(dal.GetPedidoWithPropuestas(idPedido));
         }
     }
 }

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Yachay.DAL;
 using Yachay.Entities;
 
-namespace Yachay.Dal
+namespace Yachay.DAL
 {
     public class NotificacionDAL : Base
     {

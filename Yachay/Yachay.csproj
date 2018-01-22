@@ -156,6 +156,7 @@
     <Compile Include="Controllers\NegociosController.cs" />
     <Compile Include="Controllers\NotificacionesController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
+    <Compile Include="Controllers\PropuestasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4056,6 +4057,8 @@
     <Content Include="Views\Login\Registrate.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
     <Content Include="Views\Pedidos\Pedido.cshtml" />
+    <Content Include="Views\Propuestas\Index.cshtml" />
+    <Content Include="Views\Pedidos\Propuestas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Yachay.DAL;
 using Yachay.Entities;
 
-namespace Yachay.Dal
+namespace Yachay.DAL
 {
     public class PedidoDAL : Base
     {
@@ -33,6 +33,14 @@ namespace Yachay.Dal
             using (var context = getContext())
             {
                 return context.Pedido.Where(x => x.IdPedido == id).SingleOrDefault();
+            }
+        }
+
+        public Pedido GetPedidoWithPropuestas(int idPedido)
+        {
+            using (var context = getContext())
+            {
+                return context.Pedido.Where(x => x.IdPedido == idPedido).Include(x => x.Pedido_Propuesta).SingleOrDefault();
             }
         }
 

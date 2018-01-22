@@ -93,6 +93,27 @@
                                             <a class="nav-link text-center" href="@Url.Action("Index", "Notificaciones")"> <strong>Revisar todas las notificaciones</strong> <i class="fa fa-angle-right"></i> </a>
                                         </li>
                                     </ul>
+                                    <ul>
+                                        <li>
+                                            <div class="drop-title">Notificaciones 2</div>
+                                        </li>
+                                        <li>
+                                            <div class="message-center">
+                                                @foreach (var item in (List<Yachay.Entities.Pedido>)ViewBag.Notificaciones)
+                                                {
+                                                    <a href="@Url.Action("Pedido", "Pedidos", new { id = item.IdPedido })">
+                                                        <div class="btn btn-success btn-circle"><i class="fa fa-dropbox"></i></div>
+                                                        <div class="mail-contnet">
+                                                            <h5>@item.Nombre</h5> <span class="mail-desc">@item.Descripcion</span> <span class="time">@item.Fecha</span>
+                                                        </div>
+                                                    </a>
+                                                }
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-center" href="@Url.Action("Index", "Notificaciones")"> <strong>Revisar todas las notificaciones</strong> <i class="fa fa-angle-right"></i> </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </li>
                         }
@@ -322,13 +343,19 @@
                         <li>
                             <a href="@Url.Action("Index", "Alertas")" aria-expanded="false"><i class="mdi mdi-alert-box"></i><span class="hide-menu">Alertas</span></a>
                         </li>
+                        @if (!ViewBag.esUsuario)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "Notificaciones")" aria-expanded="false"><i class="mdi mdi-message"></i><span class="hide-menu">Notificaciones</span></a>
+                            </li>
+                        }
                         <li>
                             <a href="@Url.Action("Index", "Pedidos")" aria-expanded="false"><i class="mdi mdi-alert-box"></i><span class="hide-menu">Pedidos</span></a>
                         </li>
                         @if (!ViewBag.esUsuario)
                         {
                             <li>
-                                <a href="@Url.Action("Index", "Notificaciones")" aria-expanded="false"><i class="mdi mdi-message"></i><span class="hide-menu">Notificaciones</span></a>
+                                <a href="@Url.Action("Index", "Propuestas")" aria-expanded="false"><i class="mdi mdi-message"></i><span class="hide-menu">Propuestas</span></a>
                             </li>
                         }
                         <li>

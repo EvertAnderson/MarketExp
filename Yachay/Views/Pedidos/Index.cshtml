@@ -61,6 +61,7 @@
                                         @item.Fecha
                                     </td>
                                     <td>
+                                        @Html.ActionLink("Propuestas", "Propuestas", "Pedidos", new { idPedido = item.IdPedido }, new { }) |
                                         @Html.ActionLink("Editar", "Pedido", "Pedidos", new { id = item.IdPedido }, new { })
                                     </td>
                                 </tr>
