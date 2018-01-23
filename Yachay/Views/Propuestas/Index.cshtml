@@ -31,6 +31,9 @@
                                 <th>
                                     Fecha
                                 </th>
+                                <th>
+                                    Estado
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -45,10 +48,13 @@
                                         @item.Descripcion
                                     </td>
                                     <td>
-                                        @item.Pedido_Propuesta .Cantidad
+                                        @item.Cantidad
                                     </td>
                                     <td>
                                         @item.Fecha
+                                    </td>
+                                    <td>
+                                        @item.Estado
                                     </td>
                                     <td>
                                         @*@Html.ActionLink("Tomar", "Notificacion", "Notificaciones", new { id = item.IdAlerta }, new { })*@
