@@ -38,4 +38,3 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Entities\bin\Deb
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Entities\obj\Debug\Yachay.Entities.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Entities\obj\Debug\Yachay.Entities.pdb
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Entities\obj\Debug\Yachay.Entities.csproj.CoreCompileInputs.cache
-C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Entities\obj\Debug\Yachay.Entities.csprojResolveAssemblyReference.cache
