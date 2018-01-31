@@ -350,10 +350,29 @@
             if (circle != null) { circle.setMap(null); }
         }
 
+        //Facebook App
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1972166699717669',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v2.11'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
     </script>
 
     @Scripts.Render("~/bundles/jquery")
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&libraries=places&callback=initMap"></script>
+    @*Modo debug de facebok*@
+    @*<script src="https://connect.facebook.net/en_US/sdk/debug.js"></script>*@
 </body>
 </html>

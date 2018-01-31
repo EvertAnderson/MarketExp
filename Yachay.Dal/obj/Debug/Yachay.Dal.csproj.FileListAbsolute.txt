@@ -65,3 +65,5 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\obj\Debug\Ya
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\obj\Debug\Yachay.Dal.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\obj\Debug\Yachay.Dal.pdb
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\obj\Debug\Yachay.DAL.csproj.CoreCompileInputs.cache
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Debug\Newtonsoft.Json.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Debug\Newtonsoft.Json.xml
