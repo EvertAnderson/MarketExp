@@ -1,11 +1,11 @@
-﻿using Facebook;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Yachay.DAL;
+using Yachay.DAL.Services;
 using Yachay.Entities;
 using System.Web.Helpers;
 
@@ -60,19 +60,10 @@ namespace Yachay.Controllers
         [HttpGet]
         public JsonResult FbGraphRequest(double lat, double lng, string texto)
         {
-            var client = new FacebookClient("EAACEdEose0cBAMG0Qllgya4akfV65ZBMABIg1SkfZB4iT4741VIZCcciHvxMvNXMeOwmZA2x5hcFWZCFhHVQBvcExZBexVBVWp0k65g7Oi08JWhG8fkqLrXatCHHhWc0lULD81ZBMIX1CwrMpwYsEpiMPxY2iZANqkZCVAKsTUncFIVVwWnkEPijRmZC39nIi5WT8ZD");
-            dynamic places = client.Get("search?type=place&q=" + texto +"&center=" + lat + "," + lng + "&distance=1500&fields=id,name,location") as IDictionary<string, object>;
-            //var ubicaciones = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(me);
+            FacebookApi fbApi = new FacebookApi();
 
-            List<NodoDTO> listaNodos = new List<NodoDTO>();  
-            foreach (var item in places["data"])
-            {
-                NodoDTO obj = new NodoDTO();
-                obj.Nombre = item["name"];
-                obj.Direccion_Latitud = Convert.ToString((item["location"])["latitude"]);
-                obj.Direccion_Longitud = Convert.ToString((item["location"])["longitude"]);
-                listaNodos.Add(obj);
-            }
+            var listaNodos = fbApi.FindFacebookPlaces(lat, lng, texto);
+
             return Json(new { listaNodos }, JsonRequestBehavior.AllowGet);
         }
     }
