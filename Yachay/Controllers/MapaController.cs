@@ -60,11 +60,11 @@ namespace Yachay.Controllers
         [HttpGet]
         public JsonResult FbGraphRequest(double lat, double lng, string texto)
         {
-            var client = new FacebookClient("EAACEdEose0cBAARm9gO7e96nVXUAY4nezDtR01yqO5Ekf3FKmp5VCysHbh62G4ZBV6DReUgamGIFjVpsE33gVFcmTBpmAquoZA3XzAVgLcw9dukSUMwshAyCZAy5wpu84AhLR9siD6cXmnqukRMhQ4oZBMXmmFymz9lfjIdZByaqP9ZCJsZCoTVhTJ9pHAZC9uEZD");
+            var client = new FacebookClient("EAACEdEose0cBAMG0Qllgya4akfV65ZBMABIg1SkfZB4iT4741VIZCcciHvxMvNXMeOwmZA2x5hcFWZCFhHVQBvcExZBexVBVWp0k65g7Oi08JWhG8fkqLrXatCHHhWc0lULD81ZBMIX1CwrMpwYsEpiMPxY2iZANqkZCVAKsTUncFIVVwWnkEPijRmZC39nIi5WT8ZD");
             dynamic places = client.Get("search?type=place&q=" + texto +"&center=" + lat + "," + lng + "&distance=1500&fields=id,name,location") as IDictionary<string, object>;
             //var ubicaciones = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(me);
 
-            List<NodoDTO> listaNodos = new List<NodoDTO>();
+            List<NodoDTO> listaNodos = new List<NodoDTO>();  
             foreach (var item in places["data"])
             {
                 NodoDTO obj = new NodoDTO();
