@@ -321,3 +321,5 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.pdb
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\obj\Debug\Yachay.csproj.CoreCompileInputs.cache
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\bin\Facebook.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\bin\Facebook.xml

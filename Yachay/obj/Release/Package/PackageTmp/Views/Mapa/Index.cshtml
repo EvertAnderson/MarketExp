@@ -98,18 +98,21 @@
         var miBaseUrl = "";
         var lugares = [];
         $(function () {
-            miBaseUrl = '@Url.Action("BuscarNegocios", "Mapa")';
         });
 
         $('#buscador').keyup(function (e) {
             if (e.keyCode == 13) {
+                EliminarRadio();
+                deleteMarkers();
                 BuscarNegocios($(this).val());
+                FbGraphRequest($(this).val());
             }
         });
 
         function BuscarNegocios(texto) {
             var jsLat = $('#lat').val();
             var jsLng = $('#lng').val();
+            miBaseUrl = '@Url.Action("BuscarNegocios", "Mapa")';
 
             $.ajax({
                 type: "GET",
@@ -118,10 +121,31 @@
                 data: { lat: jsLat, lng: jsLng, texto: texto },
                 dataType: 'json',
                 success: function (data) {
+                    console.log(data.listaNodos);
                     if (data.listaNodos.length > 0)
                     {
-                        EliminarRadio();
-                        deleteMarkers();
+                        addMarkers(data.listaNodos);
+                        map.setZoom(17);
+                        map.setCenter(new google.maps.LatLng(lugares[0].Direccion_Latitud, lugares[0].Direccion_Longitud));
+                    }
+                }
+            });
+        }
+
+        function FbGraphRequest(texto) {
+            var jsLat = $('#lat').val();
+            var jsLng = $('#lng').val();
+            miBaseUrl = '@Url.Action("FbGraphRequest", "Mapa")';
+
+            $.ajax({
+                type: "GET",
+                url: miBaseUrl,
+                cache: false,
+                data: { lat: jsLat, lng: jsLng, texto: texto },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data.listaNodos);
+                    if (data.listaNodos.length > 0) {
                         addMarkers(data.listaNodos);
                         map.setZoom(17);
                         map.setCenter(new google.maps.LatLng(lugares[0].Direccion_Latitud, lugares[0].Direccion_Longitud));
@@ -157,8 +181,8 @@
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
 
-            
-            
+
+
             var lstNodos = [];
             if (lstNodos.length > 0)
             {
@@ -349,8 +373,6 @@
         function EliminarRadio() {
             if (circle != null) { circle.setMap(null); }
         }
-
-
     </script>
 
     @Scripts.Render("~/bundles/jquery")

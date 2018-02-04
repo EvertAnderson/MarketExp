@@ -402,3 +402,5 @@ D:\Proyectos\MarketExp\Yachay\obj\Release\Yachay.csprojResolveAssemblyReference.
 D:\Proyectos\MarketExp\Yachay\obj\Release\Yachay.csproj.CoreCompileInputs.cache
 D:\Proyectos\MarketExp\Yachay\obj\Release\Yachay.dll
 D:\Proyectos\MarketExp\Yachay\obj\Release\Yachay.pdb
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\bin\Facebook.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay\bin\Facebook.xml

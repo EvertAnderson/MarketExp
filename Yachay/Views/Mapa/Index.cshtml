@@ -98,18 +98,21 @@
         var miBaseUrl = "";
         var lugares = [];
         $(function () {
-            miBaseUrl = '@Url.Action("BuscarNegocios", "Mapa")';
         });
 
         $('#buscador').keyup(function (e) {
             if (e.keyCode == 13) {
+                EliminarRadio();
+                deleteMarkers();
                 BuscarNegocios($(this).val());
+                FbGraphRequest($(this).val());
             }
         });
 
         function BuscarNegocios(texto) {
             var jsLat = $('#lat').val();
             var jsLng = $('#lng').val();
+            miBaseUrl = '@Url.Action("BuscarNegocios", "Mapa")';
 
             $.ajax({
                 type: "GET",
@@ -118,10 +121,31 @@
                 data: { lat: jsLat, lng: jsLng, texto: texto },
                 dataType: 'json',
                 success: function (data) {
+                    console.log(data.listaNodos);
                     if (data.listaNodos.length > 0)
                     {
-                        EliminarRadio();
-                        deleteMarkers();
+                        addMarkers(data.listaNodos);
+                        map.setZoom(17);
+                        map.setCenter(new google.maps.LatLng(lugares[0].Direccion_Latitud, lugares[0].Direccion_Longitud));
+                    }
+                }
+            });
+        }
+
+        function FbGraphRequest(texto) {
+            var jsLat = $('#lat').val();
+            var jsLng = $('#lng').val();
+            miBaseUrl = '@Url.Action("FbGraphRequest", "Mapa")';
+
+            $.ajax({
+                type: "GET",
+                url: miBaseUrl,
+                cache: false,
+                data: { lat: jsLat, lng: jsLng, texto: texto },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data.listaNodos);
+                    if (data.listaNodos.length > 0) {
                         addMarkers(data.listaNodos);
                         map.setZoom(17);
                         map.setCenter(new google.maps.LatLng(lugares[0].Direccion_Latitud, lugares[0].Direccion_Longitud));
@@ -157,8 +181,8 @@
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
 
-            
-            
+
+
             var lstNodos = [];
             if (lstNodos.length > 0)
             {
@@ -349,30 +373,9 @@
         function EliminarRadio() {
             if (circle != null) { circle.setMap(null); }
         }
-
-        //Facebook App
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '1972166699717669',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v2.11'
-            });
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
     </script>
 
     @Scripts.Render("~/bundles/jquery")
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKJpDPqH74pcAMMT8rcsg6WuO3QhDoaQ&libraries=places&callback=initMap"></script>
-    @*Modo debug de facebok*@
-    @*<script src="https://connect.facebook.net/en_US/sdk/debug.js"></script>*@
 </body>
 </html>
