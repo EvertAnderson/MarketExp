@@ -84,3 +84,5 @@ D:\Proyectos\MarketExp\Yachay.Dal\obj\Release\Yachay.Dal.dll
 D:\Proyectos\MarketExp\Yachay.Dal\obj\Release\Yachay.Dal.pdb
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Release\Newtonsoft.Json.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Release\Newtonsoft.Json.xml
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Release\Facebook.dll
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Release\Facebook.xml
