@@ -63,8 +63,31 @@ namespace Yachay.Controllers
             FacebookApi fbApi = new FacebookApi();
 
             var listaNodos = fbApi.FindFacebookPlaces(lat, lng, texto);
+            listaNodos = ValidarNodosEnRadio(lat, lng, 1.5, listaNodos);
 
             return Json(new { listaNodos }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<NodoDTO> ValidarNodosEnRadio(double clat, double clng, double radio, List<NodoDTO> lista)
+        {
+            List<NodoDTO> lstFiltrada = new List<NodoDTO>();
+            foreach (var item in lista)
+            {
+                if(Distancia(clat, clng, Convert.ToDouble(item.Direccion_Latitud), Convert.ToDouble(item.Direccion_Longitud)) <= 1.5)
+                {
+                    lstFiltrada.Add(item);
+                }
+            }
+            return lstFiltrada;
+        }
+
+        private double Distancia(double clat, double clng, double lat, double lng)
+        {
+            double distancia = (6371 * Math.Acos(Math.Cos(clat / (180 / Math.PI))
+                * Math.Cos(lat / (180 / Math.PI))
+                * Math.Cos(lng / (180 / Math.PI) - (clng / (180 / Math.PI))) + Math.Sin(clat / (180 / Math.PI))
+                * Math.Sin(lat / (180 / Math.PI))));
+            return distancia;
         }
     }
 }
