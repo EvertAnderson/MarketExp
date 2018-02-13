@@ -52,6 +52,14 @@
                     <a class="btn btn-secondary waves-effect waves-light" href="tel:+51910026770" target="_blank"><i class="fa fa-phone"></i> </a>
                     <a class="btn btn-facebook waves-effect waves-light" href="https://www.facebook.com/yachay.digital/" target="_blank"><i class="fa fa-facebook"></i> </a>
                     <a class="btn btn-success waves-effect waves-light" href="https://api.whatsapp.com/send?phone=51910026770" target="_blank"><i class="fa fa-whatsapp"></i> </a>
+                    <!---->
+                    <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>
+                    @*<div class="fb-like"
+                         data-share="true"
+                         data-width="450"
+                         data-show-faces="true">
+                    </div>*@
+                    <!---->
                     <a class="btn btn-success pull-right" href="@Url.Action("Ingresar", "Login")">Ingresar</a>
                 </div>
             </div>
@@ -349,6 +357,47 @@
         function EliminarRadio() {
             if (circle != null) { circle.setMap(null); }
         }
+
+        //Facebook Api
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1972166699717669', // App ID
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+            });
+
+            // Additional initialization code here
+            FB.Event.subscribe('auth.authResponseChange', function (response) {
+                if (response.status === 'connected') {
+                    // the user is logged in and has authenticated your
+                    // app, and response.authResponse supplies
+                    // the user's ID, a valid access token, a signed
+                    // request, and the time the access token 
+                    // and signed request each expire
+                    var uid = response.authResponse.userID;
+                    var accessToken = response.authResponse.accessToken;
+                    console.log(accessToken);
+                    // TODO: Handle the access token
+
+                } else if (response.status === 'not_authorized') {
+                    // the user is logged in to Facebook, 
+                    // but has not authenticated your app
+                } else {
+                    // the user isn't logged in to Facebook.
+                }
+            });
+        };
+
+        // Load the SDK Asynchronously
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+
     </script>
 
     @Scripts.Render("~/bundles/jquery")
