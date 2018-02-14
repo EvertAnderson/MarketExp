@@ -89,5 +89,14 @@ namespace Yachay.Controllers
                 * Math.Sin(lat / (180 / Math.PI))));
             return distancia;
         }
+
+        [HttpPost]
+        public ActionResult GuardarToken(string token)
+        {
+            //var lista = dal.GetNegocios_LatLng();
+
+            //string json = JsonConvert.SerializeObject(lista);
+            return Json(new { success = true, mensaje = "true" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

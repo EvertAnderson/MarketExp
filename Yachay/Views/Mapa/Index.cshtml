@@ -373,15 +373,16 @@
                     // the user is logged in and has authenticated your
                     // app, and response.authResponse supplies
                     // the user's ID, a valid access token, a signed
-                    // request, and the time the access token 
+                    // request, and the time the access token
                     // and signed request each expire
                     var uid = response.authResponse.userID;
                     var accessToken = response.authResponse.accessToken;
-                    console.log(accessToken);
+                    //console.log(accessToken);
+                    GuardarToken(accessToken);
                     // TODO: Handle the access token
 
                 } else if (response.status === 'not_authorized') {
-                    // the user is logged in to Facebook, 
+                    // the user is logged in to Facebook,
                     // but has not authenticated your app
                 } else {
                     // the user isn't logged in to Facebook.
@@ -397,6 +398,27 @@
             js.src = "//connect.facebook.net/en_US/all.js";
             ref.parentNode.insertBefore(js, ref);
         }(document));
+
+        function GuardarToken(token)
+        {
+            var ruta = '@Url.Action("GuardarToken", "Mapa")';
+            var miData = JSON.stringify({ 'token': token });
+
+            $.ajax({
+                type: 'POST',
+                url: ruta,
+                data: miData,
+                contentType: 'application/json',
+                dataType: 'text',
+                async: true,
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
 
     </script>
 
