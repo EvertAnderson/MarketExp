@@ -358,6 +358,8 @@
             if (circle != null) { circle.setMap(null); }
         }
 
+        var tempToken = '';
+
         //Facebook Api
         window.fbAsyncInit = function () {
             FB.init({
@@ -388,7 +390,25 @@
                     // the user isn't logged in to Facebook.
                 }
             });
+
+            
+
         };
+
+        function sendMessage() {
+            FB.app('/me', 'post', {
+                recipient: {
+                    id: "1254459154682919"
+                },
+                message: {
+                    text: 'Hola, mundo!'
+
+
+                }
+            }, function (response) {
+
+            });
+        }
 
         // Load the SDK Asynchronously
         (function (d) {
