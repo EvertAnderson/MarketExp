@@ -381,6 +381,7 @@
                     var accessToken = response.authResponse.accessToken;
                     //console.log(accessToken);
                     GuardarToken(accessToken);
+                    facebook_send_message('10202876511265943');
                     // TODO: Handle the access token
 
                 } else if (response.status === 'not_authorized') {
@@ -394,19 +395,32 @@
             
 
         };
+        
+        //function sendMessage() {
+        //    FB.app('/me', 'post', {
+        //        recipient: {
+        //            id: "1254459154682919"
+        //        },
+        //        message: {
+        //            text: 'Hola, mundo!'
 
-        function sendMessage() {
-            FB.app('/me', 'post', {
-                recipient: {
-                    id: "1254459154682919"
-                },
-                message: {
-                    text: 'Hola, mundo!'
+
+        //        }
+        //    }, function (response) {
+
+        //    });
+        //}
 
 
-                }
-            }, function (response) {
-
+        function facebook_send_message(to) {
+            FB.ui({
+                app_id: '1972166699717669',
+                method: 'send',
+                name: "Yachay",
+                //link: 'https://www.facebook.com/yachay.digital/',
+                message: 'necesito una licencia de sql',
+                to: to,
+                description: 'Yachay Prueba'
             });
         }
 
