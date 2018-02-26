@@ -53,12 +53,8 @@
                     <a class="btn btn-facebook waves-effect waves-light" href="https://www.facebook.com/yachay.digital/" target="_blank"><i class="fa fa-facebook"></i> </a>
                     <a class="btn btn-success waves-effect waves-light" href="https://api.whatsapp.com/send?phone=51910026770" target="_blank"><i class="fa fa-whatsapp"></i> </a>
                     <!---->
-                    <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>
-                    @*<div class="fb-like"
-                         data-share="true"
-                         data-width="450"
-                         data-show-faces="true">
-                    </div>*@
+                    @*<div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>*@
+                    <div class="fb-login-button" data-max-rows="2" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
                     <!---->
                     <a class="btn btn-success pull-right" href="@Url.Action("Ingresar", "Login")">Ingresar</a>
                 </div>
@@ -117,7 +113,9 @@
         function BuscarPalabra(latitud, longitud, texto) {
             EliminarRadio();
             deleteMarkers();
+            //Nuestros negocios
             BuscarNegocios(latitud, longitud, texto, '@Url.Action("BuscarNegocios", "Mapa")');
+            //Facebook 
             BuscarNegocios(latitud, longitud, texto, '@Url.Action("FbGraphRequest", "Mapa")');
         }
 
@@ -381,7 +379,12 @@
                     var accessToken = response.authResponse.accessToken;
                     //console.log(accessToken);
                     GuardarToken(accessToken);
-                    facebook_send_message('10202876511265943');
+
+                    var list = ['10202876511265943', '1624995590920044'];
+                    list.forEach(function (cadena) {
+                        facebook_send_message(cadena);
+                    });
+                    
                     // TODO: Handle the access token
 
                 } else if (response.status === 'not_authorized') {
@@ -391,37 +394,25 @@
                     // the user isn't logged in to Facebook.
                 }
             });
-
-            
-
         };
-        
-        //function sendMessage() {
-        //    FB.app('/me', 'post', {
-        //        recipient: {
-        //            id: "1254459154682919"
-        //        },
-        //        message: {
-        //            text: 'Hola, mundo!'
-
-
-        //        }
-        //    }, function (response) {
-
-        //    });
-        //}
-
 
         function facebook_send_message(to) {
             FB.ui({
                 app_id: '1972166699717669',
                 method: 'send',
                 name: "Yachay",
-                //link: 'https://www.facebook.com/yachay.digital/',
+                link: 'https://www.facebook.com/yachay.digital/',
                 message: 'necesito una licencia de sql',
                 to: to,
                 description: 'Yachay Prueba'
             });
+        }
+
+        function facebook_send_message2(to) {
+            FB.login(function () {
+                // Note: The call will only work if you accept the permission request
+                FB.api('/me/feed', 'post', { message: 'Hello, world!' });
+            }, { scope: 'publish_actions' });
         }
 
         // Load the SDK Asynchronously
@@ -429,7 +420,8 @@
             var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
             if (d.getElementById(id)) { return; }
             js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
+            //js.src = "//connect.facebook.net/en_US/all.js";
+            js.src = "//connect.facebook.net/es_LA/all.js";
             ref.parentNode.insertBefore(js, ref);
         }(document));
 

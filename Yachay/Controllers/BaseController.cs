@@ -51,5 +51,18 @@ namespace Yachay.Controllers
             if (getCurrentUser().Roles.FirstOrDefault().id_Rol == 3) return true;
             return false;
         }
+        protected bool fbToken()
+        {
+            if (System.Web.HttpContext.Current.Session != null && System.Web.HttpContext.Current.Session["Token"] != null) { return true; }
+            else { return false; }
+        }
+        protected string getFbToken()
+        {
+            if(this.fbToken())
+            {
+                return (string)System.Web.HttpContext.Current.Session["Token"];
+            }
+            return null;
+        }
     }
 }

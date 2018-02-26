@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
 using Yachay.Entities;
+using System.Configuration;
 
 namespace Yachay.DAL.Services
 {
@@ -12,13 +14,14 @@ namespace Yachay.DAL.Services
     {
         public List<NodoDTO> FindFacebookPlaces(double lat, double lng, string texto)
         {
-            var client = new FacebookClient("1972166699717669|FgXgnxrz6jjq7yLQRNwwIsmor28");
+            var client = new FacebookClient(ConfigurationManager.AppSettings["AppFbToken"]);
             dynamic places = client.Get("search?type=place&q=" + texto + "&center=" + lat + "," + lng + "&distance=1500&fields=id,name,location") as IDictionary<string, object>;
 
             List<NodoDTO> lista = new List<NodoDTO>();
             foreach (var item in places["data"])
             {
                 NodoDTO obj = new NodoDTO();
+                obj.sId = item["id"];
                 obj.Nombre = item["name"];
                 obj.Direccion_Latitud = Convert.ToString((item["location"])["latitude"]);
                 obj.Direccion_Longitud = Convert.ToString((item["location"])["longitude"]);

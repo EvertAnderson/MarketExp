@@ -49,11 +49,7 @@ namespace Yachay.Controllers
             List<NodoDTO> listaNodos;
 
             listaNodos = lista;
-
-            /*listaNodos = lista.Where(x => (
-            x.Nombre.ToLower() ?? "").Contains(texto) || 
-            x.PalabrasClave.Any(y => (y.ToLower() ?? "").Contains(texto)) ||
-            x.Productos.Any(z => (z.ToLower() ?? "").Contains(texto))).ToList();*/
+            
             return Json(new { listaNodos }, JsonRequestBehavior.AllowGet);
         }
 
@@ -93,9 +89,6 @@ namespace Yachay.Controllers
         [HttpPost]
         public ActionResult GuardarToken(string token)
         {
-            //var lista = dal.GetNegocios_LatLng();
-
-            //string json = JsonConvert.SerializeObject(lista);
             return Json(new { success = true, mensaje = "true" }, JsonRequestBehavior.AllowGet);
         }
     }
