@@ -99,7 +99,6 @@
         var markers = [];
         var circle;
 
-        var miBaseUrl = "";
         var lugares = [];
         $(function () {
         });
@@ -162,9 +161,7 @@
 
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
-
-
-
+    
             var lstNodos = [];
             if (lstNodos.length > 0)
             {
@@ -207,7 +204,6 @@
                 map: map
             });
             var infowindow = new google.maps.InfoWindow({
-                //content: '<b>' + item.Nombre + '</b>' + '<br>Latitud: ' + location.lat() + '<br>Longitud: ' + location.lng()
                 content: '<b>' + item.Nombre + '</b>'
             });
             infowindow.open(map, marker);
@@ -216,7 +212,6 @@
 
         function ObtenerSitios()
         {
-            //var miData = JSON.stringify({ 'idAplicacion': vIdApp, 'idAccion': idAccion });
             var lista = [];
             var ruta = '@Url.Action("ObtenerSitios", "Mapa")';
 
