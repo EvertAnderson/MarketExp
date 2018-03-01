@@ -135,14 +135,27 @@
             var location = new google.maps.LatLng(item.Direccion_Latitud, item.Direccion_Longitud);
             var marker = new google.maps.Marker({
                 position: location,
-                map: map
+                map: map,
+                //animation: google.maps.Animation.DROP
             });
+
+            //marker.addListener('click', toggleBounce(marker));
+
             var infowindow = new google.maps.InfoWindow({
                 content: '<b>' + item.Nombre + '</b>'
             });
             infowindow.open(map, marker);
             markers.push(marker);
         }
+
+        /*function toggleBounce(element) {
+            if (element.getAnimation() !== null) {
+                element.setAnimation(null);
+            } else {
+                element.setAnimation(google.maps.Animation.BOUNCE);
+            }
+        }*/
+
 
         function nodosValidados(lista) {
             var lstAux = [];
