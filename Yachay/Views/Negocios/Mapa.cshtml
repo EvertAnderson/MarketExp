@@ -14,16 +14,48 @@
         <div class="form-group">
             <div class="input-group">
                 <input id="buscador" type="text" class="form-control" placeholder="Buscar Negocio, producto o servicio">
+                <input id="lat" name="lat" type="hidden">
+                <input id="lng" name="lng" type="hidden">
                 <span class="input-group-btn">
                     <button class="btn btn-info" type="button" onclick="BuscarPalabra($('#lat').val(), $('#lng').val(), $('#buscador').val())">Buscar</button>
                 </span>
-                <input id="lat" name="lat" type="hidden">
-                <input id="lng" name="lng" type="hidden">
             </div>
         </div>
     </div>
     <div style="position:relative; height:calc(100vh - 4em - 168px);">
         <div id="map" class="gmaps" style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel1">Mensaje</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+
+                                <label class="control-label">Medio:</label><div class="fb-login-button" data-max-rows="2" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+                                <br />
+                                <label class="control-label">Destinatario: </label><label id="recipient-name"></label>
+                                @*<label for="recipient-name" class="control-label">Recipient: </label>*@
+                                <input type="text" class="form-control" id="recipient-code" hidden>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="control-label">Message: Escribe tu mensaje al levantar la pestañana de facebook. Gracias por utilizar Yachay.</label>
+                                @*<textarea class="form-control" id="message-text"></textarea>*@
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="send-message" type="button" class="btn btn-info" onclick="EnviarMensajeAFacebook();">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
     </div>
 </div>
 
@@ -138,13 +170,18 @@
                 map: map,
                 animation: google.maps.Animation.DROP
             });
+            //Data del Punto
+            marker['sId'] = item.sId;
+            marker['Nombre'] = item.Nombre;
 
+            //Evento Click
             marker.addListener('click', function () {
                 toggleBounce(this);
+                AbrirModalMensajeAFacebook(this);
             });
 
             var infowindow = new google.maps.InfoWindow({
-                content: '<b>' + item.Nombre + '</b>'
+                content: '<b>' + item.Nombre + '</b>' /*+ '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="">Open modal for Hola</button>'*/
             });
             infowindow.open(map, marker);
             markers.push(marker);
@@ -158,6 +195,21 @@
                 setTimeout(function () { element.setAnimation(null); }, 1500);
             }
         }
+
+        //Enviar Mensaje
+        
+        function AbrirModalMensajeAFacebook(pMarker) {
+            $('#exampleModal').modal('toggle');
+            $('#recipient-name').text(pMarker.Nombre);
+            $('#recipient-code').val(pMarker.sId);
+        }
+
+        function EnviarMensajeAFacebook() {
+            //facebook_send_message($('#recipient-code').val(), $('#message-text').text);
+            facebook_send_message($('#recipient-code').val());
+        }
+
+        //Enviar Mensaje
 
         function nodosValidados(lista) {
             var lstAux = [];
@@ -276,6 +328,99 @@
         function EliminarRadio() {
             if (circle != null) { circle.setMap(null); }
         }
+
+        //Facebook Api
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1972166699717669', // App ID
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+            });
+
+            // Additional initialization code here
+            FB.Event.subscribe('auth.authResponseChange', function (response) {
+                if (response.status === 'connected') {
+                    // the user is logged in and has authenticated your
+                    // app, and response.authResponse supplies
+                    // the user's ID, a valid access token, a signed
+                    // request, and the time the access token
+                    // and signed request each expire
+                    var uid = response.authResponse.userID;
+                    var accessToken = response.authResponse.accessToken;
+                    //console.log(accessToken);
+                    GuardarToken(accessToken);
+
+                    //var list = ['10202876511265943', '1624995590920044'];
+                    //var list = ['10202876511265943'];
+                    //list.forEach(function (cadena) {
+                    //    facebook_send_message(cadena);
+                    //});
+
+                    // TODO: Handle the access token
+
+                } else if (response.status === 'not_authorized') {
+                    // the user is logged in to Facebook,
+                    // but has not authenticated your app
+                } else {
+                    // the user isn't logged in to Facebook.
+                }
+            });
+        };
+
+        function facebook_send_message(to) {
+            console.log(to)
+            //to = '1624995590920044';
+            FB.ui({
+                app_id: '1972166699717669',
+                method: 'send',
+                name: "Yachay",
+                link: 'https://www.facebook.com/yachay.digital/',
+                text: 'necesito una licencia de sql',
+                to: to,
+                description: 'Mensaje desde la pagina web de Yachay.digital'
+            });
+            $('#exampleModal').modal('hide');
+        }
+
+        function facebook_send_message2(to) {
+            FB.login(function () {
+                // Note: The call will only work if you accept the permission request
+                FB.api('/me/feed', 'post', { message: 'Hello, world!' });
+            }, { scope: 'publish_actions' });
+        }
+
+        // Load the SDK Asynchronously
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            //js.src = "//connect.facebook.net/en_US/all.js";
+            js.src = "//connect.facebook.net/es_LA/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+
+        function GuardarToken(token)
+        {
+            var ruta = '@Url.Action("GuardarToken", "Mapa")';
+            var miData = JSON.stringify({ 'token': token });
+
+            $.ajax({
+                type: 'POST',
+                url: ruta,
+                data: miData,
+                contentType: 'application/json',
+                dataType: 'text',
+                async: true,
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+
 </script>
     <script src="~/Content/monster-admin/html/assets/plugins/select2/dist/js/select2.full.min.js"></script>
     <script src="~/Content/monster-admin/html/assets/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
