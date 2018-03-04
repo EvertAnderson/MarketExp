@@ -161,7 +161,16 @@
 
             var mapOptions = { center: myCenter, zoom: myZoom };
             map = new google.maps.Map(mapCanvas, mapOptions);
-    
+
+            //Click center en el mapa
+            google.maps.event.addListener(map, 'click', function (event) {
+                deleteMarkers();
+                placeMarkerText(map, event.latLng, 'Estás aqui.<br>Se mostrarán Negocios que<br> están a 1.5 KM de distancia.');
+                GuardarCentro(event.latLng.lat(), event.latLng.lng());
+                map.setCenter(event.latLng);
+            });
+
+
             var lstNodos = [];
             if (lstNodos.length > 0)
             {
@@ -373,10 +382,10 @@
                     //console.log(accessToken);
                     GuardarToken(accessToken);
 
-                    var list = ['10202876511265943', '1624995590920044'];
-                    list.forEach(function (cadena) {
-                        facebook_send_message(cadena);
-                    });
+                    //var list = ['10202876511265943', '1624995590920044'];
+                    //list.forEach(function (cadena) {
+                    //    facebook_send_message(cadena);
+                    //});
                     
                     // TODO: Handle the access token
 
