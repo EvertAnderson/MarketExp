@@ -69,3 +69,4 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Debug\Ne
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Debug\Newtonsoft.Json.xml
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Debug\Facebook.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\bin\Debug\Facebook.xml
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Dal\obj\Debug\Yachay.DAL.csproj.CopyComplete

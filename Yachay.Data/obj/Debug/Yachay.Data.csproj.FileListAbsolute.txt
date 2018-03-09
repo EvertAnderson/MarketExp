@@ -53,3 +53,4 @@ C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Y
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.dll
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.pdb
 C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.csproj.CoreCompileInputs.cache
+C:\Archivos\Personal\Visual Studio 2017\Yachay\MarketExp\Yachay.Data\obj\Debug\Yachay.Data.csproj.CopyComplete
