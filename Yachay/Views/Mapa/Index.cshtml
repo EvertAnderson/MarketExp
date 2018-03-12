@@ -53,8 +53,7 @@
                     <a class="btn btn-facebook waves-effect waves-light" href="https://www.facebook.com/yachay.digital/" target="_blank"><i class="fa fa-facebook"></i> </a>
                     <a class="btn btn-success waves-effect waves-light" href="https://api.whatsapp.com/send?phone=51910026770" target="_blank"><i class="fa fa-whatsapp"></i> </a>
                     <!---->
-                    @*<div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1"></div>*@
-                    <div class="fb-login-button" data-max-rows="2" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+                    @*<div class="fb-login-button" data-max-rows="2" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>*@
                     <!---->
                     <a class="btn btn-success pull-right" href="@Url.Action("Ingresar", "Login")">Ingresar</a>
                 </div>
@@ -69,6 +68,40 @@
                     </span>
                 </div>
             </div>
+        </div>
+        <div style="position:relative; height:calc(100vh - 4em - 168px);">
+            <div id="map" class="gmaps" style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel1">Info</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    @*<label class="control-label">Medio:</label><div class="fb-login-button" data-max-rows="2" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+                                    <br />*@
+                                    <label class="control-label">Destinatario: </label><label id="recipient-name"></label>
+                                    @*<label for="recipient-name" class="control-label">Recipient: </label>*@
+                                    <input type="text" class="form-control" id="recipient-code" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">Message: Escribe tu mensaje al levantar la pestañana de facebook. Gracias por utilizar Yachay.</label>
+                                    @*<textarea class="form-control" id="message-text"></textarea>*@
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button id="send-message" type="button" class="btn btn-info">Send message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
         </div>
         <div style="position:relative; height:calc(100vh - 4em - 144px);">
             <div id="map" class="gmaps" style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
@@ -151,7 +184,6 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                     myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     deleteMarkers();
-                    //placeMarker(map, myCenter);
                     GuardarCentro(position.coords.latitude, position.coords.longitude);
                     addYourLocationButton(map);
                 });
@@ -210,13 +242,43 @@
             var location = new google.maps.LatLng(item.Direccion_Latitud, item.Direccion_Longitud);
             var marker = new google.maps.Marker({
                 position: location,
-                map: map
+                map: map,
+                animation: google.maps.Animation.DROP
             });
+            //Data del Punto
+            marker['sId'] = item.sId;
+            marker['Nombre'] = item.Nombre;
+
+            //Evento Click
+            marker.addListener('click', function () {
+                toggleBounce(this);
+                AbrirModalMensajeAFacebook(this);
+            });
+
             var infowindow = new google.maps.InfoWindow({
-                content: '<b>' + item.Nombre + '</b>'
+                content: '<b>' + item.Nombre + '</b>' /*+ '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="">Open modal for Hola</button>'*/
             });
             infowindow.open(map, marker);
             markers.push(marker);
+        }
+
+        function toggleBounce(element) {
+            if (element.getAnimation() !== null) {
+                element.setAnimation(null);
+            } else {
+                element.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(function () { element.setAnimation(null); }, 1500);
+            }
+        }
+
+        function AbrirModalMensajeAFacebook(pMarker) {
+            $('#exampleModal').modal('toggle');
+            $('#recipient-name').text(pMarker.Nombre);
+            $('#recipient-code').val(pMarker.sId);
+        }
+
+        function EnviarMensajeAFacebook() {
+            facebook_send_message($('#recipient-code').val());
         }
 
         function ObtenerSitios()
@@ -288,7 +350,7 @@
             firstChild.style.cursor = 'pointer';
             firstChild.style.marginRight = '10px';
             firstChild.style.padding = '0px';
-            firstChild.title = 'Your Location';
+            firstChild.title = 'Tu Ubicación';
             controlDiv.appendChild(firstChild);
 
             var secondChild = document.createElement('div');
@@ -361,7 +423,7 @@
         }
 
         //Facebook Api
-        window.fbAsyncInit = function () {
+        @*window.fbAsyncInit = function () {
             FB.init({
                 appId: '1972166699717669', // App ID
                 status: true, // check login status
@@ -446,7 +508,7 @@
                     console.log(error);
                 }
             });
-        }
+        }*@
 
     </script>
 
